@@ -5,8 +5,6 @@ const NavbarGenre = async () => {
     const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
     const data: IGenres[] = response?.data?.data?.items;
 
-    console.log(data);
-
     return (
         <nav className="flex justify-center py-[26px] bg-secondary text-primary dark:bg-primary dark:text-secondary">
             <ul className="flex gap-7 text-[15px] container justify-center wrapper">
