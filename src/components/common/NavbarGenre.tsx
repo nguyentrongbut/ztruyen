@@ -16,7 +16,7 @@ const NavbarGenre = async () => {
                     </li>
                 ))}
                 <li>
-                    <Link href={`/the-loai/tat-ca`}>Tất cả ></Link>
+                    <Link href={`/the-loai/tat-ca`}>Tất cả</Link>
                 </li>
             </ul>
         </nav>
