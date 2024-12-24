@@ -63,6 +63,10 @@ body {
 }
 
 @layer base {
+  :root {
+    --primary: 0, 0%, 100%;
+    --secondary: 0, 0%, 13%;
+  }
   * {
     @apply border-border;
   }
