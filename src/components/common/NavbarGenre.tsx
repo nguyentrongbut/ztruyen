@@ -8,8 +8,8 @@ const NavbarGenre = async () => {
     console.log(data);
 
     return (
-        <nav className="conatiner flex justify-center py-[26px] bg-secondary text-primary dark:bg-primary dark:text-secondary">
-            <ul className="flex gap-7 text-[15px]">
+        <nav className="flex justify-center py-[26px] bg-secondary text-primary dark:bg-primary dark:text-secondary">
+            <ul className="flex gap-7 text-[15px] container justify-center wrapper">
                 {data.slice(0, 8).map((item, index) => (
                     <li key={index}>
                         <Link href={`/the-loai/${item.slug}`}>{item.name}</Link>
