@@ -74,3 +74,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.wrapper {
+  width: 1160px;
+  max-width: calc(100% - 50px);
+  margin-left: auto;
+  margin-right: auto;
+}
