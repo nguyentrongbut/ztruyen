@@ -15,7 +15,7 @@ const Genre = async ({
     console.log(data);
     return (
         <nav className="wrapper flex gap-3.5 justify-center container mt-6 mb-4">
-                <p className="flex-shrink-0 text-[15px] text-[#ffffffbd]">Thể loại</p>
+                <p className="flex-shrink-0 text-[15px] dark:text-[#ffffffbd]">Thể loại</p>
                 <ul className="flex gap-3.5 flex-wrap text-[15px]">
                     <li>
                         <Link href={`/the-loai/tat-ca`} className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${slug === "tat-ca" && "text-[#32aaff]"}`}>Tất cả</Link>
