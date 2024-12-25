@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import NprogressWrapper from "@/lib/nprogress.wrapper";
 
 // Tải font Montserrat với các subset và weight cần thiết
 const montserrat = Montserrat({
@@ -28,7 +29,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-            {children}
+            <NprogressWrapper>
+                {children}
+            </NprogressWrapper>
         </ThemeProvider>
         </body>
         </html>
