@@ -7,7 +7,7 @@ import NprogressWrapper from "@/lib/nprogress.wrapper";
 // Tải font Montserrat với các subset và weight cần thiết
 const montserrat = Montserrat({
     subsets: ['latin'],
-    weight: ['400', '700'], // Chỉ định các trọng lượng font cần sử dụng
+    weight: ['300', '400', '500', '600', '700'], // Chỉ định các trọng lượng font cần sử dụng
 });
 
 export const metadata: Metadata = {
