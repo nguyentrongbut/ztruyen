@@ -52,14 +52,14 @@ const Genre = async ({
                     const blurData = await getBase64(`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`)
                     return (
                         <figure key={index} className="flex flex-col">
-                            <Link href="/">
+                            <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`} width={180} height={240} alt={item.name}
                                        loading="lazy"
                                        placeholder="blur"
                                        blurDataURL={blurData}
                                        className="aspect-[3/4]"></Image>
                             </Link>
-                            <figcaption className="w-[180px] text-center mt-1.5 text-sm"><Link href="/">{item.name}</Link></figcaption>
+                            <figcaption className="w-[180px] text-center mt-1.5 text-sm"><Link href={`/truyen-tranh/${item.slug}`}>{item.name}</Link></figcaption>
                         </figure>
                     )
                 })}
