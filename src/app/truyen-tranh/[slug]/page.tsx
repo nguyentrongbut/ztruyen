@@ -43,8 +43,8 @@ const DetailPage = async ({
 
     const blurData = await getBase64(`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`)
     return (
-        <main className="bg-[#fafafa] pt-5">
-            <section className="wrapper flex gap-7 p-5 bg-primary shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
+        <main className="bg-[#fafafa] pt-5 dark:bg-[#020817]">
+            <section className="wrapper flex gap-7 p-5 bg-primary dark:bg-secondary shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
                        width={240} height={320} alt={data.name}
                        loading="lazy"
@@ -55,7 +55,7 @@ const DetailPage = async ({
                 <div className="flex flex-col justify-between w-full">
                     <h1 className="font-semibold text-xl">{data.name}</h1>
                     <div className="flex flex-col mt-3.5 gap-1.5">
-                        <div className="text-sm text-black/50 flex gap-1 items-center">
+                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                             <IconTag className="size-4"></IconTag>
                             <div className="flex gap-2">
                                 {data.category.map((item, index) => (
@@ -63,21 +63,21 @@ const DetailPage = async ({
                                 ))}
                             </div>
                         </div>
-                        <div className="text-sm text-black/50 flex gap-1 items-center">
+                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                             <IconStatus className="size-4"></IconStatus>
-                            <span className="text-sm text-black/50">{data.status}</span>
+                            <span className="text-sm">{data.status}</span>
                         </div>
-                        <div className="text-sm text-black/50 flex gap-1 items-center">
+                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                             <IconCalendar className="size-4"></IconCalendar>
                             <span
-                                className="text-sm text-black/50">{`${chapters?.length > 0 ? `Đã cập nhật tới chương ${lastestChapter}` : "Đang cập nhật"} `}</span>
+                                className="text-sm ">{`${chapters?.length > 0 ? `Đã cập nhật tới chương ${lastestChapter}` : "Đang cập nhật"} `}</span>
                         </div>
                     </div>
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <div dangerouslySetInnerHTML={{__html: data.content}}
-                                     className="text-sm text-black/75 mt-2 line-clamp-3"></div>
+                                     className="text-sm text-black/75 dark:text-white mt-2 line-clamp-3"></div>
                             </TooltipTrigger>
                             <TooltipContent className="w-[900px]">
                             <p dangerouslySetInnerHTML={{__html: data.content}} className="text-secondary/50 text-sm w-full"></p>
@@ -92,7 +92,7 @@ const DetailPage = async ({
             </section>
 
             <section className="flex mt-3 wrapper justify-between">
-                <section className="bg-primary p-5 w-[76%] h-min">
+                <section className="bg-primary dark:bg-secondary p-5 w-[76%] h-min">
 
                     {chapters?.length > 0 ? (
                         <>
@@ -105,7 +105,7 @@ const DetailPage = async ({
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
                                                             <Button variant="outline"
-                                                                    className="w-[198px] ">
+                                                                    className="w-[198px] dark:text-primary dark:border-primary">
                                                         <span
                                                             className="line-clamp-1">{`Chương ${item.chapter_name} - ${item.chapter_title}`}</span>
                                                             </Button>
@@ -116,7 +116,7 @@ const DetailPage = async ({
                                                     </Tooltip>
                                                 </TooltipProvider>) :
                                             (
-                                                <Button variant="outline" className="w-[198px]">
+                                                <Button variant="outline" className="w-[198px] dark:text-primary dark:border-primary">
                                                     {`Chương ${item.chapter_name}`}
                                                 </Button>
                                             )}
@@ -128,7 +128,7 @@ const DetailPage = async ({
                         !</p>}
 
                 </section>
-                <section className="bg-primary p-5 w-[23%] h-min">
+                <section className="bg-primary dark:bg-secondary p-5 w-[23%] h-min">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium text-lg">Truyện mới</h2>
                         <Link href="/" className="text-sm">Xem thêm</Link>
@@ -152,15 +152,15 @@ const DetailPage = async ({
                                         <figcaption className="w-[64%] flex justify-between flex-col">
                                             <span className="line-clamp-1" title={item.name}>{item.name}</span>
                                             <div className="flex flex-col gap-8">
-                                                <div className="text-black/50 flex gap-1 items-center">
+                                                <div className="text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                     <IconStatus className="size-3 flex-shrink-0"></IconStatus>
-                                                    <span className="text-xs text-black/50">{data.status}</span>
+                                                    <span className="text-xs ">{data.status}</span>
                                                 </div>
-                                                <div className="text-sm text-black/50 flex gap-1 items-center">
+                                                <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                     <IconCalendar className="size-3 flex-shrink-0"></IconCalendar>
                                                     <span
-                                                        className="text-sm text-black/50 line-clamp-1"
-                                                        title={`${item.chaptersLatest !== null ? `Đã cập nhật tới chương ${item?.chaptersLatest[0]?.chapter_name}` : "Đang cập nhật"}`}>{`${item.chaptersLatest !== null ? `Đã cập nhật tới chương ${item?.chaptersLatest[0]}` : "Đang cập nhật"} `}</span>
+                                                        className="text-sm line-clamp-1"
+                                                        title={`${item.chaptersLatest !== null ? `Đã cập nhật tới chương ${item?.chaptersLatest[0]?.chapter_name}` : "Đang cập nhật"}`}>{`${item.chaptersLatest !== null ? `Đã cập nhật tới chương ${item?.chaptersLatest[0]?.chapter_name}` : "Đang cập nhật"} `}</span>
                                                 </div>
                                             </div>
                                         </figcaption>

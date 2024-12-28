@@ -17,7 +17,7 @@ declare global {
         sub_docquyen: boolean;
         category: ICategory[];
         updatedAt: string;
-        chaptersLatest: null | string;
+        chaptersLatest: null | IChapter[];
     }
 
     interface ICategory {
