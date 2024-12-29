@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import getBase64 from "@/components/utils/getBase64";
+import {dynamicBlurDataUrl} from "@/components/utils/dynamicBlurDataUrl";
 
 
 export async function generateMetadata({
@@ -34,6 +34,10 @@ const Genre = async ({
     const res = await axios.get(`https://otruyenapi.com/v1/api/the-loai/${slug}`);
     const dataGenre: IComic[] = res?.data?.data?.items;
 
+    const placeholders = await Promise.all(
+        dataGenre.map(url => dynamicBlurDataUrl(`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url.thumb_url}`))
+    )
+
     return (
         <main>
             <nav className="wrapper flex gap-3.5 justify-center container mt-6 mb-8">
@@ -48,15 +52,18 @@ const Genre = async ({
                 </ul>
             </nav>
             <section className="wrapper flex flex-wrap gap-4 mb-8">
-                {dataGenre.map( async (item, index) => {
-                    const blurData = await getBase64(`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`)
+                {dataGenre.map( (item, index) => {
                     return (
                         <figure key={index} className="flex flex-col">
                             <Link href={`/truyen-tranh/${item.slug}`}>
-                                <Image src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`} width={180} height={240} alt={item.name}
-                                       loading="lazy"
+                                <Image src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
+                                       width={180} height={240}
+                                       alt={item.name}
+                                       sizes="(max-width: 50px) 2vw, max-width: 1920px) 180px)"
+                                       quality="60"
+                                       priority={index <= 0 ? true : false}
                                        placeholder="blur"
-                                       blurDataURL={blurData}
+                                       blurDataURL={placeholders[index]}
                                        className="aspect-[3/4]"></Image>
                             </Link>
                             <figcaption className="w-[180px] text-center mt-1.5 text-sm"><Link href={`/truyen-tranh/${item.slug}`}>{item.name}</Link></figcaption>
