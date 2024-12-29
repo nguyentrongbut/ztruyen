@@ -1,6 +1,5 @@
 import axios from "axios";
 import Image from "next/image";
-import getBase64 from "@/components/utils/getBase64";
 import {Button} from "@/components/ui/button";
 import IconTag from "@/components/icons/IconTag";
 import "dayjs/locale/vi";
@@ -10,6 +9,7 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/compon
 import Link from "next/link";
 import getIdFromUrl from "@/components/utils/getIdFromUrl";
 import convertSlugUrl from "@/components/utils/convertSlugUrl";
+import {dynamicBlurDataUrl} from "@/components/utils/dynamicBlurDataUrl";
 
 export async function generateMetadata({
                                            params,
@@ -43,16 +43,25 @@ const DetailPage = async ({
     const chapters: IChapter[] = data?.chapters[0]?.server_data;
     const lastestChapter = chapters?.slice(-1)[0]?.chapter_name;
 
-    const blurData = await getBase64(`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`)
+    const placeholder = await dynamicBlurDataUrl(
+        `${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`
+    )
+
+    const placeholders = await Promise.all(
+        res?.data?.data?.items.slice(0, 6).map((url: IComic)  => dynamicBlurDataUrl(`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url?.thumb_url}`))
+    )
+
     return (
         <main className="bg-[#fafafa] pt-5 dark:bg-[#020817]">
             <section
                 className="wrapper flex gap-7 p-5 bg-primary dark:bg-secondary shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
                        width={240} height={320} alt={data.name}
-                       loading="lazy"
+                       sizes="(max-width: 50px) 2vw, max-width: 1920px) 240px)"
+                       quality="60"
+                       priority={true}
                        placeholder="blur"
-                       blurDataURL={blurData}
+                       blurDataURL={placeholder}
                        className="aspect-[3/4]">
                 </Image>
                 <div className="flex flex-col justify-between w-full">
@@ -146,8 +155,7 @@ const DetailPage = async ({
                         <Link href="/" className="text-sm">Xem thêm</Link>
                     </div>
                     <ul className="mt-5">
-                        {res?.data?.data?.items.slice(0, 6).map(async (item: IComic, index: number) => {
-                            const blurData = await getBase64(`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`)
+                        {res?.data?.data?.items.slice(0, 6).map((item: IComic, index: number) => {
                             return (
                                 <Link href={`/truyen-tranh/${item.slug}`} key={index}>
                                     <figure className="flex mt-4 gap-3">
@@ -155,9 +163,11 @@ const DetailPage = async ({
                                             <Image
                                                 src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
                                                 width={100} height={240} alt={item.name}
-                                                loading="lazy"
+                                                sizes="(max-width: 50px) 2vw, max-width: 1920px) 100px)"
+                                                quality="60"
+                                                priority={index <= 0 ? true : false}
                                                 placeholder="blur"
-                                                blurDataURL={blurData}
+                                                blurDataURL={placeholders[index]}
                                                 className="aspect-[3/4]">
                                             </Image>
                                         </div>
