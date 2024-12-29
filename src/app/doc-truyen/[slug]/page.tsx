@@ -1,7 +1,7 @@
 import axios from "axios";
 import getIdFromUrl from "@/components/utils/getIdFromUrl";
 import Image from "next/image";
-import getBase64 from "@/components/utils/getBase64";
+// import getBase64 from "@/components/utils/getBase64";
 
 export async function generateMetadata({
                                            params,
@@ -31,7 +31,7 @@ const ChapterPage = async  ({
         <main className="wrapper">
             {chapter?.chapter_image && chapter?.chapter_image.length > 0 ?
                 chapter?.chapter_image.map(async (item, index) => {
-                const blurData = await getBase64(`${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${item?.image_file}`)
+                // const blurData = await getBase64(`${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${item?.image_file}`)
                 return (
                     <div key={index} className="flex flex-col items-center">
                         <Image key={index}
@@ -39,8 +39,8 @@ const ChapterPage = async  ({
                                alt={chapter?.comic_name}
                                width={925} height={1387}
                                loading="lazy"
-                               placeholder="blur"
-                               blurDataURL={blurData}
+                               // placeholder="blur"
+                               // blurDataURL={blurData}
                         ></Image>
                     </div>
                 )
