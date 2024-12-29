@@ -1,6 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
-import getBase64 from "@/components/common/getBase64";
+import getBase64 from "@/components/utils/getBase64";
 import {Button} from "@/components/ui/button";
 import IconTag from "@/components/icons/IconTag";
 import "dayjs/locale/vi";
@@ -8,6 +8,8 @@ import IconCalendar from "@/components/icons/IconCalendar";
 import IconStatus from "@/components/icons/IconStatus";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import Link from "next/link";
+import getIdFromUrl from "@/components/utils/getIdFromUrl";
+import convertSlugUrl from "@/components/utils/convertSlugUrl";
 
 export async function generateMetadata({
                                            params,
@@ -44,7 +46,8 @@ const DetailPage = async ({
     const blurData = await getBase64(`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`)
     return (
         <main className="bg-[#fafafa] pt-5 dark:bg-[#020817]">
-            <section className="wrapper flex gap-7 p-5 bg-primary dark:bg-secondary shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
+            <section
+                className="wrapper flex gap-7 p-5 bg-primary dark:bg-secondary shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
                        width={240} height={320} alt={data.name}
                        loading="lazy"
@@ -79,8 +82,9 @@ const DetailPage = async ({
                                 <div dangerouslySetInnerHTML={{__html: data.content}}
                                      className="text-sm text-black/75 dark:text-white mt-2 line-clamp-3"></div>
                             </TooltipTrigger>
-                            <TooltipContent className="w-[900px]">
-                            <p dangerouslySetInnerHTML={{__html: data.content}} className="text-secondary/50 text-sm w-full"></p>
+                            <TooltipContent className="w-[900px] pnpm run dev-4 bg-primary dark:bg-secondary">
+                                <p dangerouslySetInnerHTML={{__html: data.content}}
+                                   className="text-secondary/50 text-sm w-full"></p>
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
@@ -104,21 +108,29 @@ const DetailPage = async ({
                                                 <TooltipProvider>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>
-                                                            <Button variant="outline"
-                                                                    className="w-[198px] dark:text-primary dark:border-primary">
+                                                            <Link
+                                                                href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, "/")}`)}`}>
+                                                                <Button variant="outline"
+                                                                        className="w-[198px] dark:text-primary dark:border-primary">
                                                         <span
                                                             className="line-clamp-1">{`Chương ${item.chapter_name} - ${item.chapter_title}`}</span>
-                                                            </Button>
+                                                                </Button>
+                                                            </Link>
                                                         </TooltipTrigger>
-                                                        <TooltipContent className="w-[198px] text-center shadow-lg my-0.5">
+                                                        <TooltipContent
+                                                            className="w-[198px] text-center shadow-lg my-0.5 bg-primary dark:bg-secondary p-2">
                                                             <p className="text-secondary/50 text-sm">{item.chapter_title}</p>
                                                         </TooltipContent>
                                                     </Tooltip>
                                                 </TooltipProvider>) :
                                             (
-                                                <Button variant="outline" className="w-[198px] dark:text-primary dark:border-primary">
-                                                    {`Chương ${item.chapter_name}`}
-                                                </Button>
+                                                <Link
+                                                    href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, "/")}`)}`}>
+                                                    <Button variant="outline"
+                                                            className="w-[198px] dark:text-primary dark:border-primary">
+                                                        {`Chương ${item.chapter_name}`}
+                                                    </Button>
+                                                </Link>
                                             )}
                                     </li>
                                 ))}
@@ -152,11 +164,13 @@ const DetailPage = async ({
                                         <figcaption className="w-[64%] flex justify-between flex-col">
                                             <span className="line-clamp-1" title={item.name}>{item.name}</span>
                                             <div className="flex flex-col gap-8">
-                                                <div className="text-black/50 dark:text-white/50 flex gap-1 items-center">
+                                                <div
+                                                    className="text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                     <IconStatus className="size-3 flex-shrink-0"></IconStatus>
                                                     <span className="text-xs ">{data.status}</span>
                                                 </div>
-                                                <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
+                                                <div
+                                                    className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                     <IconCalendar className="size-3 flex-shrink-0"></IconCalendar>
                                                     <span
                                                         className="text-sm line-clamp-1"
