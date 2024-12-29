@@ -5,15 +5,15 @@ const getBase64 = async (item: string) => {
         const res = await fetch(item);
 
         if (!res.ok) {
-            throw new Error(`Failed to fetch image: ${item}`);
+            throw new Error(`Network response was not ok`);
         }
 
         const buffer = await res.arrayBuffer();
         const { base64 } = await getPlaiceholder(Buffer.from(buffer));
+
         return base64;
     } catch (error) {
-        console.error("Error generating placeholder:", error);
-        return "";
+        console.log("getBase64:", error);
     }
 };
 
