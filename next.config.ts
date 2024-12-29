@@ -9,7 +9,13 @@ const nextConfig: NextConfig = {
                 hostname: "img.otruyenapi.com",
                 port: "",
                 pathname: "/uploads/**",
-            }
+            },
+            {
+                protocol: "https",
+                hostname: "sv1.otruyencdn.com",
+                port: "",
+                pathname: "/uploads/**",
+            },
         ],
     },
 };
