@@ -17,7 +17,14 @@ const nextConfig: NextConfig = {
                 port: "",
                 pathname: "/uploads/**",
             },
+            {
+                protocol: "https",
+                hostname: "ztruyen-theta.vercel.app",
+                port: "",
+                pathname: "/**",
+            }
         ],
+
     },
 };
 
