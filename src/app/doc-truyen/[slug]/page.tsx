@@ -48,6 +48,7 @@ const ChapterPage = async  ({
                                priority={index <= 0 ? true : false}
                                placeholder="blur"
                                blurDataURL={placeholders[index]}
+                               className="bg-secondary dark:bg-primary"
                         ></Image>
                     </div>
                 )

@@ -62,7 +62,7 @@ const DetailPage = async ({
                        priority={true}
                        placeholder="blur"
                        blurDataURL={placeholder}
-                       className="aspect-[3/4]">
+                       className="aspect-[3/4] bg-secondary dark:bg-primary">
                 </Image>
                 <div className="flex flex-col justify-between w-full">
                     <h1 className="font-semibold text-xl">{data.name}</h1>
@@ -168,7 +168,7 @@ const DetailPage = async ({
                                                 priority={index <= 0 ? true : false}
                                                 placeholder="blur"
                                                 blurDataURL={placeholders[index]}
-                                                className="aspect-[3/4]">
+                                                className="aspect-[3/4] bg-secondary dark:bg-primary">
                                             </Image>
                                         </div>
                                         <figcaption className="w-[64%] flex justify-between flex-col">

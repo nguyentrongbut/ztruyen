@@ -64,7 +64,8 @@ const Genre = async ({
                                        priority={index <= 0 ? true : false}
                                        placeholder="blur"
                                        blurDataURL={placeholders[index]}
-                                       className="aspect-[3/4]"></Image>
+                                       className="aspect-[3/4] bg-secondary dark:bg-primary"
+                                ></Image>
                             </Link>
                             <figcaption className="w-[180px] text-center mt-1.5 text-sm"><Link href={`/truyen-tranh/${item.slug}`}>{item.name}</Link></figcaption>
                         </figure>
