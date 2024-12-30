@@ -16,15 +16,10 @@ const nextConfig: NextConfig = {
                 hostname: "sv1.otruyencdn.com",
                 port: "",
                 pathname: "/uploads/**",
-            },
-            {
-                protocol: "https",
-                hostname: "ztruyen-theta.vercel.app",
-                port: "",
-                pathname: "/**",
             }
         ],
 
+        unoptimized: true
     },
 };
 
