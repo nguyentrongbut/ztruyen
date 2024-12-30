@@ -16,8 +16,10 @@ const nextConfig: NextConfig = {
                 hostname: "sv1.otruyencdn.com",
                 port: "",
                 pathname: "/uploads/**",
-            },
+            }
         ],
+
+        unoptimized: true
     },
 };
 
