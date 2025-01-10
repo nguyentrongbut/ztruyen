@@ -1,9 +1,9 @@
-import axios from "axios";
-import Link from "next/link";
+import axios from 'axios'
+import Link from 'next/link'
 
 const NavbarGenre = async () => {
-    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
-    const data: IGenres[] = response?.data?.data?.items;
+    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`)
+    const data: IGenres[] = response?.data?.data?.items
 
     return (
         <nav className="flex justify-center py-[26px] bg-secondary text-primary dark:bg-primary dark:text-secondary">
@@ -18,7 +18,7 @@ const NavbarGenre = async () => {
                 </li>
             </ul>
         </nav>
-    );
-};
+    )
+}
 
-export default NavbarGenre;
+export default NavbarGenre

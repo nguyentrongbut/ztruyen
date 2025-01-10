@@ -1,17 +1,19 @@
-import axios from "axios";
-import getIdFromUrl from "@/components/utils/getIdFromUrl";
-import Image from "next/image";
-import {dynamicBlurDataUrl} from "@/components/utils/dynamicBlurDataUrl";
-
+import axios from 'axios';
+import getIdFromUrl from '@/components/utils/getIdFromUrl';
+import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
+import ImgsChapter from '@/app/doc-truyen/@Chapter/ImageChapter';
+import { getChapterName } from '@/components/utils/getChapterName';
 
 export async function generateMetadata({
-                                           params,
-                                       }: {
-    params: Promise<{ slug: string }>
+    params,
+}: {
+    params: Promise<{ slug: string }>;
 }) {
-    const slug = (await params).slug
+    const slug = (await params).slug;
 
-    const res = await axios.get(`https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, "-")}`);
+    const res = await axios.get(
+        `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`
+    );
     const chapter: IReader = res?.data?.data?.item;
 
     return {
@@ -20,42 +22,42 @@ export async function generateMetadata({
     };
 }
 
-const ChapterPage = async  ({
-                         params,
-                     }: {
-    params: Promise<{ slug: string }>
+const ChapterPage = async ({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
 }) => {
-    const slug = (await params).slug
-    const res = await axios.get(`https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, "-")}`);
+    const slug = (await params).slug;
+
+    const res = await axios.get(
+        `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`
+    );
+    const response = await axios.get(
+        `https://otruyenapi.com/v1/api/truyen-tranh/${getChapterName(slug)}`
+    );
     const chapter: IReader = res?.data?.data?.item;
-
     const placeholders = await Promise.all(
-        chapter?.chapter_image.map(url => dynamicBlurDataUrl(`${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${url.image_file}`))
-    )
+        chapter?.chapter_image.map((url) =>
+            dynamicBlurDataUrl(
+                `${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${url.image_file}`
+            )
+        )
+    );
 
+    const listChapter: IChapter[] =
+        response?.data?.data?.item?.chapters[0].server_data;
     return (
-        <main className="wrapper">
-            {chapter?.chapter_image && chapter?.chapter_image.length > 0 ?
-                chapter?.chapter_image.map((item, index) => {
-                return (
-                    <div key={index} className="flex flex-col items-center">
-                        <Image key={index}
-                               src={`${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${item?.image_file}`}
-                               alt={chapter?.comic_name}
-                               width={925} height={1387}
-                               sizes="(max-width: 50px) 2vw, max-width: 1920px) 925px)"
-                               quality="60"
-                               priority={index <= 0 ? true : false}
-                               placeholder="blur"
-                               blurDataURL={placeholders[index]}
-                        ></Image>
-                    </div>
-                )
-            })
-            : "No Image Loading...."
-            }
-        </main>
-    )
-}
+        <ImgsChapter
+            numberOfChapters={res.data?.data?.item?.chapter_name}
+            chapters={chapter?.chapter_image}
+            url={res?.data?.data?.domain_cdn}
+            urlPath={chapter?.chapter_path}
+            chapterName={chapter?.comic_name}
+            placeholders={placeholders}
+            listChapter={listChapter}
+            currentUrl={slug}
+        />
+    );
+};
 
 export default ChapterPage;
