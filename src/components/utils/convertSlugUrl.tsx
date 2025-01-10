@@ -1,9 +1,9 @@
-import slugify from "slugify";
+import slugify from 'slugify'
 
 const covertSlugUrl = (str: string) => {
-    if (!str) return "";
-    str = slugify(str, { lower: true, locale: 'vn' });
-    return str;
+    if (!str) return ''
+    str = slugify(str, { lower: true, locale: 'vn' })
+    return str
 }
 
-export default covertSlugUrl;
+export default covertSlugUrl
