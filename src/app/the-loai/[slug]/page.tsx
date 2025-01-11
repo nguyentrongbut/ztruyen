@@ -1,43 +1,37 @@
-import axios from 'axios'
-import Link from 'next/link'
-import Image from 'next/image'
-import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl'
+import axios from 'axios';
+import Link from 'next/link';
+import Pagination from '@/app/the-loai/@Pagination/Pagination';
 
 export async function generateMetadata({
     params,
 }: {
-    params: Promise<{ slug: string }>
+    params: Promise<{ slug: string }>;
 }) {
-    const slug = (await params).slug
+    const slug = (await params).slug;
 
     const res = await axios.get(
         `https://otruyenapi.com/v1/api/the-loai/${slug}`
-    )
-    const genreName: string = res?.data?.data.titlePage
+    );
+    const genreName: string = res?.data?.data.titlePage;
 
     return {
         title: `Kho Truyện Tranh ${genreName} - Truyện Tranh Hay, Cập Nhật Liên Tục`,
         description: `Khám phá kho truyện tranh Trung Quốc thể loại ${genreName} với hình ảnh đẹp, cốt truyện hấp dẫn. Đọc truyện tranh miễn phí, cập nhật liên tục, chất lượng cao.`,
-    }
+    };
 }
 
-const Genre = async ({ params }: { params: Promise<{ slug: string }> }) => {
-    const slug = (await params).slug
-    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`)
-    const data: IGenres[] = response?.data?.data?.items
-
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/the-loai/${slug}`
-    )
-    const dataGenre: IComic[] = res?.data?.data?.items
-
-    const placeholders = await Promise.all(
-        dataGenre.map((url) =>
-            dynamicBlurDataUrl(
-                `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url.thumb_url}`
-            )
-        )
-    )
+const Genre = async ({
+    params,
+    searchParams,
+}: {
+    params: Promise<{ slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) => {
+    const slug = (await params).slug;
+    const pageQuery =
+        parseInt(((await searchParams).page as string) || '1') || 1;
+    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
+    const data: IGenres[] = response?.data?.data?.items;
 
     return (
         <main>
@@ -58,35 +52,9 @@ const Genre = async ({ params }: { params: Promise<{ slug: string }> }) => {
                     ))}
                 </ul>
             </nav>
-            <section className="wrapper flex flex-wrap gap-4 mb-8">
-                {dataGenre.map((item, index) => {
-                    return (
-                        <figure key={index} className="flex flex-col">
-                            <Link href={`/truyen-tranh/${item.slug}`}>
-                                <Image
-                                    src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
-                                    width={180}
-                                    height={240}
-                                    alt={item.name}
-                                    sizes="(max-width: 50px) 2vw, max-width: 1920px) 180px)"
-                                    quality="60"
-                                    priority={index <= 0 ? true : false}
-                                    placeholder="blur"
-                                    blurDataURL={placeholders[index]}
-                                    className="aspect-[3/4] bg-secondary dark:bg-primary"
-                                ></Image>
-                            </Link>
-                            <figcaption className="w-[180px] text-center mt-1.5 text-sm">
-                                <Link href={`/truyen-tranh/${item.slug}`}>
-                                    {item.name}
-                                </Link>
-                            </figcaption>
-                        </figure>
-                    )
-                })}
-            </section>
+            <Pagination slug={slug} pageQuery={pageQuery}></Pagination>
         </main>
-    )
-}
+    );
+};
 
-export default Genre
+export default Genre;
