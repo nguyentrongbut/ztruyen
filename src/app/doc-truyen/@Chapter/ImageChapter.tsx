@@ -10,7 +10,7 @@ const ImgsChapter = ({
     chapterName,
     url,
     urlPath,
-    placeholders,
+    // placeholders,
     listChapter,
     currentUrl,
     numberOfChapters,
@@ -19,7 +19,7 @@ const ImgsChapter = ({
     chapterName: string;
     url: string;
     urlPath: string;
-    placeholders: string[];
+    // placeholders: string[];
     listChapter: IChapter[];
     currentUrl: string;
     numberOfChapters: number;
@@ -50,7 +50,7 @@ const ImgsChapter = ({
     }, [isModalOpen]);
 
     return (
-        <main
+        <div
             className="flex flex-col items-center"
             onContextMenu={handleRightClick}
         >
@@ -69,8 +69,8 @@ const ImgsChapter = ({
                               sizes="(max-width: 50px) 2vw, (max-width: 1920px) 925px)"
                               quality="60"
                               priority={index <= 0 ? true : false}
-                              placeholder="blur"
-                              blurDataURL={placeholders[index]}
+                              // placeholder="blur"
+                              // blurDataURL={placeholders[index]}
                               className={`bg-secondary dark:bg-primary`}
                               style={{ width: `${imgWidth}%` }}
                           ></Image>
@@ -130,7 +130,7 @@ const ImgsChapter = ({
                     </>
                 )}
             </div>
-        </main>
+        </div>
     );
 };
 

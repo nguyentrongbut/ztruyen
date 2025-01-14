@@ -87,4 +87,7 @@ body {
         width: 0;
     }
 
+    .transition-w-b {
+        transition: width 150ms ease-in-out, border-color 150ms ease-in-out;
+    }
 }

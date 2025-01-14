@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default {
     darkMode: ['class'],
@@ -9,6 +9,9 @@ export default {
     ],
     theme: {
         extend: {
+            boxShadow: {
+                custom: '0 0 5px 1px rgba(158, 179, 193, 0.5)',
+            },
             colors: {
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
@@ -59,4 +62,4 @@ export default {
         },
     },
     plugins: [require('tailwindcss-animate')],
-} satisfies Config
+} satisfies Config;

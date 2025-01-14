@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
+// import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 import axios from 'axios';
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 
@@ -19,13 +19,13 @@ const Pagination = async ({
     const totalItems = res?.data?.data?.params?.pagination?.totalItems || 0;
     const dataGenre: IComic[] = res?.data?.data?.items;
 
-    const placeholders = await Promise.all(
-        dataGenre.map((url) =>
-            dynamicBlurDataUrl(
-                `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url.thumb_url}`
-            )
-        )
-    );
+    // const placeholders = await Promise.all(
+    //     dataGenre.map((url) =>
+    //         dynamicBlurDataUrl(
+    //             `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url.thumb_url}`
+    //         )
+    //     )
+    // );
 
     return (
         <section className="wrapper flex flex-wrap gap-4 mb-8">
@@ -41,8 +41,8 @@ const Pagination = async ({
                                 sizes="(max-width: 50px) 2vw, max-width: 1920px) 180px)"
                                 quality="60"
                                 priority={index <= 0 ? true : false}
-                                placeholder="blur"
-                                blurDataURL={placeholders[index]}
+                                // placeholder="blur"
+                                // blurDataURL={placeholders[index]}
                                 className="aspect-[3/4] bg-secondary dark:bg-primary"
                             ></Image>
                         </Link>

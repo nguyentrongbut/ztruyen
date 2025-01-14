@@ -34,7 +34,7 @@ const Genre = async ({
     const data: IGenres[] = response?.data?.data?.items;
 
     return (
-        <main>
+        <>
             <nav className="wrapper flex gap-3.5 justify-center container mt-6 mb-8">
                 <p className="flex-shrink-0 text-[15px] dark:text-[#ffffffbd] text-[#00000057]">
                     Thể loại
@@ -53,7 +53,7 @@ const Genre = async ({
                 </ul>
             </nav>
             <Pagination slug={slug} pageQuery={pageQuery}></Pagination>
-        </main>
+        </>
     );
 };
 

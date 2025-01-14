@@ -14,7 +14,7 @@ import {
 import Link from 'next/link';
 import getIdFromUrl from '@/components/utils/getIdFromUrl';
 import convertSlugUrl from '@/components/utils/convertSlugUrl';
-import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
+// import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 
 export async function generateMetadata({
     params,
@@ -54,22 +54,22 @@ const DetailPage = async ({
     const chapters: IChapter[] = data?.chapters[0]?.server_data;
     const lastestChapter = chapters?.slice(-1)[0]?.chapter_name;
 
-    const placeholder = await dynamicBlurDataUrl(
-        `${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`
-    );
+    // const placeholder = await dynamicBlurDataUrl(
+    //     `${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`
+    // );
 
-    const placeholders = await Promise.all(
-        res?.data?.data?.items
-            .slice(0, 6)
-            .map((url: IComic) =>
-                dynamicBlurDataUrl(
-                    `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url?.thumb_url}`
-                )
-            )
-    );
+    // const placeholders = await Promise.all(
+    //     res?.data?.data?.items
+    //         .slice(0, 6)
+    //         .map((url: IComic) =>
+    //             dynamicBlurDataUrl(
+    //                 `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url?.thumb_url}`
+    //             )
+    //         )
+    // );
 
     return (
-        <main className="bg-[#fafafa] pt-5 dark:bg-secondary">
+        <div className="bg-[#fafafa] pt-5 dark:bg-secondary">
             <section className="wrapper flex gap-7 p-5 bg-primary dark:bg-black/10 shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image
                     src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
@@ -79,8 +79,8 @@ const DetailPage = async ({
                     sizes="(max-width: 50px) 2vw, max-width: 1920px) 240px)"
                     quality="60"
                     priority={true}
-                    placeholder="blur"
-                    blurDataURL={placeholder}
+                    // placeholder="blur"
+                    // blurDataURL={placeholder}
                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                 ></Image>
                 <div className="flex flex-col justify-between w-full">
@@ -215,10 +215,10 @@ const DetailPage = async ({
                                                             ? true
                                                             : false
                                                     }
-                                                    placeholder="blur"
-                                                    blurDataURL={
-                                                        placeholders[index]
-                                                    }
+                                                    // placeholder="blur"
+                                                    // blurDataURL={
+                                                    //     placeholders[index]
+                                                    // }
                                                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                                                 ></Image>
                                             </div>
@@ -252,7 +252,7 @@ const DetailPage = async ({
                     </ul>
                 </section>
             </section>
-        </main>
+        </div>
     );
 };
 
