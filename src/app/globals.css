@@ -6,6 +6,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.swiper-pagination-bullet-active {
+    background-color: #fff !important;
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -90,4 +94,5 @@ body {
     .transition-w-b {
         transition: width 150ms ease-in-out, border-color 150ms ease-in-out;
     }
+
 }
