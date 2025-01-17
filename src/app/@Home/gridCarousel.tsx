@@ -37,10 +37,10 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 pagination={{ clickable: true }}
                 spaceBetween={6}
                 loop={true}
-                // autoplay={{
-                //     delay: 4500,
-                //     disableOnInteraction: false,
-                // }}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                }}
                 onBeforeInit={(swiper) => {
                     swiperRef.current = swiper;
                 }}
