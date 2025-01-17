@@ -164,7 +164,7 @@ const DetailPage = async ({
                                             </TooltipProvider>
                                         ) : (
                                             <Link
-                                                href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`)}`}
+                                                href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`}
                                             >
                                                 <Button
                                                     variant="outline"
