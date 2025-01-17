@@ -38,7 +38,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 spaceBetween={6}
                 loop={true}
                 autoplay={{
-                    delay: 5000,
+                    delay: 4500,
                     disableOnInteraction: false,
                 }}
                 onBeforeInit={(swiper) => {
