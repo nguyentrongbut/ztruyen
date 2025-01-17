@@ -94,6 +94,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                                                     width={180}
                                                     height={240}
                                                     alt={item.name}
+                                                    title={item.name}
                                                     sizes="(max-width: 50px) 2vw, (max-width: 1920px) 180px"
                                                     quality={60}
                                                     priority={index <= 0}
