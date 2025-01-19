@@ -4,15 +4,15 @@ import Image from 'next/image';
 import axios from 'axios';
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 
-const Pagination = async ({
-    slug,
+const DynamicPageStatus = async ({
+    category,
     pageQuery,
 }: {
-    slug: string;
+    category: string;
     pageQuery: number;
 }) => {
     const res = await axios.get(
-        `https://otruyenapi.com/v1/api/the-loai/${slug}?page=${pageQuery}`
+        `https://otruyenapi.com/v1/api/${category}?page=${pageQuery}`
     );
     const itemsPerPage = 24;
 
@@ -63,4 +63,4 @@ const Pagination = async ({
     );
 };
 
-export default Pagination;
+export default DynamicPageStatus;

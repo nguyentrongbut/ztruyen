@@ -22,17 +22,26 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/dang-phat-hanh"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Đang phát hành
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/hoan-thanh"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Hoàn thành
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/sap-ra-mat"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Sắp ra mắt
                             </Link>
                         </li>
