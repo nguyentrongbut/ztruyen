@@ -1,6 +1,4 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import axios from 'axios';
-import getIdFromUrl from '@/components/utils/getIdFromUrl';
 
 export async function generateMetadata({
     params,
