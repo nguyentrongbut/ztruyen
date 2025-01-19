@@ -1,5 +1,4 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import convertSlugUrl from '@/components/utils/convertSlugUrl';
 
 const Status = async ({
     params,
