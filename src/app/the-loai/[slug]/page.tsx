@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
-import Pagination from '@/app/the-loai/@Pagination/Pagination';
+import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 
 export async function generateMetadata({
     params,
@@ -52,7 +52,10 @@ const Genre = async ({
                     ))}
                 </ul>
             </nav>
-            <Pagination slug={slug} pageQuery={pageQuery}></Pagination>
+            <DynamicPageStatus
+                category={`the-loai/${slug}`}
+                pageQuery={pageQuery}
+            ></DynamicPageStatus>
         </>
     );
 };

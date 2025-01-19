@@ -12,14 +12,7 @@ import Link from 'next/link';
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { useRef } from 'react';
-
-const chunkArray = (arr: IComic[], size: number): IComic[][] => {
-    const result: IComic[][] = [];
-    for (let i = 0; i < arr.length; i += size) {
-        result.push(arr.slice(i, i + size));
-    }
-    return result;
-};
+import chunkArray from '@/components/utils/chunkArray';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
@@ -47,7 +40,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 modules={[Autoplay, Pagination]}
             >
                 {groupedData.map((group, slideIndex) => (
-                    <SwiperSlide key={slideIndex} className=" ">
+                    <SwiperSlide key={slideIndex}>
                         <div>
                             <div className="grid grid-cols-7 grid-rows-6 gap-1.5">
                                 {group.map((item, index) => {

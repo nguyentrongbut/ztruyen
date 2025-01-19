@@ -4,7 +4,7 @@ import Search from '@/components/common/Search';
 
 const Header = () => {
     return (
-        <header className="shadow-custom z-20 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
+        <header className="shadow-custom z-40 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
             <nav className="wrapper flex justify-between items-center py-2 text-sm font-medium">
                 <div className="flex items-center gap-10">
                     <Link href="/" className="flex items-center gap-3">
@@ -22,17 +22,26 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/dang-phat-hanh"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Đang phát hành
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/hoan-thanh"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Hoàn thành
                             </Link>
                         </li>
                         <li>
-                            <Link href="#" className="hover:text-[#32aaff]">
+                            <Link
+                                href="/danh-sach/sap-ra-mat"
+                                className="hover:text-[#32aaff]"
+                            >
                                 Sắp ra mắt
                             </Link>
                         </li>
