@@ -12,14 +12,7 @@ import Link from 'next/link';
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { useRef } from 'react';
-
-const chunkArray = (arr: IComic[], size: number): IComic[][] => {
-    const result: IComic[][] = [];
-    for (let i = 0; i < arr.length; i += size) {
-        result.push(arr.slice(i, i + size));
-    }
-    return result;
-};
+import chunkArray from '@/components/utils/chunkArray';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
