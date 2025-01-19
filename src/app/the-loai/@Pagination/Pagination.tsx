@@ -46,7 +46,7 @@ const Pagination = async ({
                                 className="aspect-[3/4] bg-secondary dark:bg-primary"
                             ></Image>
                         </Link>
-                        <figcaption className="w-[180px] text-center mt-1.5 text-sm">
+                        <figcaption className="w-[180px] mt-1.5 text-sm line-clamp-1">
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 {item.name}
                             </Link>

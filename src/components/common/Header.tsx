@@ -4,7 +4,7 @@ import Search from '@/components/common/Search';
 
 const Header = () => {
     return (
-        <header className="shadow-custom z-20 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
+        <header className="shadow-custom z-40 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
             <nav className="wrapper flex justify-between items-center py-2 text-sm font-medium">
                 <div className="flex items-center gap-10">
                     <Link href="/" className="flex items-center gap-3">
