@@ -4,10 +4,14 @@ import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 
 export async function generateMetadata({
     params,
+    searchParams,
 }: {
     params: Promise<{ slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
     const slug = (await params).slug;
+    const pageQuery =
+        parseInt(((await searchParams).page as string) || '1') || 1;
 
     const res = await axios.get(
         `https://otruyenapi.com/v1/api/the-loai/${slug}`
@@ -15,8 +19,30 @@ export async function generateMetadata({
     const genreName: string = res?.data?.data.titlePage;
 
     return {
-        title: `Kho Truyện Tranh ${genreName} - Truyện Tranh Hay, Cập Nhật Liên Tục`,
-        description: `Khám phá kho truyện tranh Trung Quốc thể loại ${genreName} với hình ảnh đẹp, cốt truyện hấp dẫn. Đọc truyện tranh miễn phí, cập nhật liên tục, chất lượng cao.`,
+        title: `Thể loại - Truyện ${genreName} - Ztruyện`,
+        description: `Khám phá những câu chuyện hấp dẫn thuộc thể loại ${genreName}. Đọc ngay các truyện hay nhất, mới nhất về ${genreName} chỉ có tại Ztruyện`,
+        keywords: [
+            `truyện tranh ${genreName}`,
+            `truyện ${genreName}`,
+            `Truyện ${genreName}`,
+        ],
+        alternates: {
+            canonical: `/the-loai/${slug}?page=${pageQuery}`,
+            languages: {
+                vi: `/vi/the-loai/${slug}?page=${pageQuery}`,
+            },
+        },
+        openGraph: {
+            title: `Thể loại - Truyện ${genreName} - Ztruyện`,
+            description: `Khám phá những câu chuyện hấp dẫn thuộc thể loại ${genreName}. Đọc ngay các truyện hay nhất, mới nhất về ${genreName} chỉ có tại Ztruyện`,
+            images: [
+                {
+                    url: '/logo-all.png',
+                    width: 400,
+                    height: 200,
+                },
+            ],
+        },
     };
 }
 

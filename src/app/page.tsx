@@ -2,6 +2,27 @@ import axios from 'axios';
 import NavbarGenre from '@/components/common/NavbarGenre';
 import GridCarousel from '@/app/@Home/gridCarousel';
 import Carousel from '@/components/common/carousel';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    metadataBase: new URL('https://ztruyen.io.vn'),
+    title: 'Đọc truyện tranh Manhwa, Manga, Manhua Online - Ztruyện ',
+    description:
+        'Web đọc truyện tranh manhwa, manhua, manga, ngôn tình, tiên hiệp, kiếm hiệp online hay và mới nhất cập nhật liên tục tại ztruyen.io.vn',
+    keywords: [
+        'doc truyen tranh',
+        'manga',
+        'doc manga',
+        'ngon tinh',
+        'tien hiep',
+    ],
+    alternates: {
+        canonical: `/`,
+        languages: {
+            vi: '/vi',
+        },
+    },
+};
 
 export default async function Home() {
     const resHome = await axios.get(`https://otruyenapi.com/v1/api/home`);
