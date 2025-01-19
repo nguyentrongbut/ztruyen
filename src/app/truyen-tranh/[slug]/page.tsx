@@ -29,8 +29,28 @@ export async function generateMetadata({
     const comicName: string = res?.data?.data.seoOnPage.seoSchema.name;
 
     return {
-        title: `Truyện ${comicName} - Cập Nhật Chương Mới, Đọc Truyện Miễn Phí`,
-        description: `Khám phá truyện ${comicName} với các tình tiết gay cấn, nhân vật thú vị. Đọc truyện trực tuyến và theo dõi các chương mới được cập nhật liên tục.`,
+        title: `${comicName} Tiếng Việt`,
+        description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại Ztruyen.io.vn`,
+        keywords: [
+            `${comicName}`,
+            `${comicName} tiếng việt`,
+            `đọc truyện tranh ${comicName}`,
+        ],
+        alternates: {
+            canonical: `/truyen-tranh/${slug}`,
+            languages: {
+                vi: `/vi/truyen-tranh/${slug}`,
+            },
+        },
+        openGraph: {
+            title: `${comicName} Tiếng Việt`,
+            description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại Ztruyen.io.vn`,
+            images: [
+                {
+                    url: `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${res?.data?.data?.item?.thumb_url}`,
+                },
+            ],
+        },
     };
 }
 

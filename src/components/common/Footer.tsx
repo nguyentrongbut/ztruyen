@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 const Footer = () => {
     return (
         <footer className="w-full mt-32">
@@ -6,10 +7,16 @@ const Footer = () => {
                 <div className="wrapper text-white/70">
                     <div className="flex justify-between">
                         <div className="flex gap-[30px] items-center">
-                            <Link href="/">
-                                <span className="block text-[25px] font-medium first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-4xl">
-                                    Ztruyện
-                                </span>
+                            <Link href="/" className="flex items-center">
+                                <Image
+                                    src="/logo.png"
+                                    width={50}
+                                    height={50}
+                                    alt="ztruyện"
+                                ></Image>
+                                <p className="text-[25px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-4xl">
+                                    ztruyện
+                                </p>
                             </Link>
                             <div className="flex flex-wrap text-sm gap-[30px]">
                                 <Link href="/" className="">

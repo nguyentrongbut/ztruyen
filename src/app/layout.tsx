@@ -12,9 +12,46 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-    title: 'Kho Truyện Tranh Full, Cập Nhật Liên Tục - Đọc Miễn Phí',
+    metadataBase: new URL('https://ztruyen.io.vn'),
+    title: 'Đọc truyện tranh Manhwa, Manga, Manhua Online - Ztruyện ',
     description:
-        'Web truyện tranh online cập nhật mới nhất, đa dạng thể loại từ hành động, lãng mạn, kinh dị đến hài hước. Đọc truyện miễn phí, chất lượng cao, không quảng cáo!',
+        'Web đọc truyện tranh manhwa, manhua, manga, ngôn tình, tiên hiệp, kiếm hiệp online hay và mới nhất cập nhật liên tục tại ztruyen.io.vn',
+    generator: 'Next.js',
+    applicationName: 'ztruyen.io.vn Atom Feed - Rss,',
+    referrer: 'origin-when-cross-origin',
+    keywords: [
+        'doc truyen tranh',
+        'manga',
+        'doc manga',
+        'ngon tinh',
+        'tien hiep',
+    ],
+    authors: [
+        { name: 'Cloly' },
+        { name: 'Cloly', url: 'https://www.facebook.com/ree.6I6/' },
+    ],
+    creator: 'Cloly',
+    publisher: 'Cloly',
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+    openGraph: {
+        title: 'Đọc truyện tranh Manhwa, Manga, Manhua Online - Ztruyện ',
+        description:
+            'Web đọc truyện tranh manhwa, manhua, manga, ngôn tình, tiên hiệp, kiếm hiệp online hay và mới nhất cập nhật liên tục tại ztruyen.io.vn',
+        images: [
+            {
+                url: '/logo-all.png',
+                width: 400,
+                height: 200,
+            },
+        ],
+    },
+    verification: {
+        google: 'dOCBr5kCk-sa7ap46T-t94yqvkT2TJaNSONG8sIzP-0',
+    },
 };
 
 export default function RootLayout({

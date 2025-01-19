@@ -9,8 +9,32 @@ export async function generateMetadata({
 }) {
     const keyword = (await searchParams).keyword || '';
     return {
-        title: `${keyword} - Tìm Kiếm | Ztruyện`,
-        description: `${keyword} - Tìm Kiếm | Ztruyện`,
+        title: `${keyword} - Kết quả tìm kiếm | Ztruyện`,
+        description: `Tìm truyện tranh - Tất cả truyện đều có thể tìm thấy tại Ztruyện`,
+        keywords: [
+            `tìm truyện tranh`,
+            `tìm truyện tiếng việt`,
+            `đọc truyện tranh`,
+            `tìm ${keyword} với ztruyen.io.vn`,
+            `kết quả tìm kiếm ${keyword} từ ztruyen.io.vn`,
+        ],
+        alternates: {
+            canonical: `/tim-kiem?keyword=${keyword}`,
+            languages: {
+                vi: `/vi/tim-kiem?keyword=${keyword}`,
+            },
+        },
+        openGraph: {
+            title: `${keyword} - Kết quả tìm kiếm | Ztruyện`,
+            description: `Tìm truyện tranh - Tất cả truyện đều có thể tìm thấy tại Ztruyện`,
+            images: [
+                {
+                    url: '/logo-all.png',
+                    width: 400,
+                    height: 200,
+                },
+            ],
+        },
     };
 }
 const SearchPage = async ({

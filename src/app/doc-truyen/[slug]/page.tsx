@@ -17,8 +17,32 @@ export async function generateMetadata({
     const chapter: IReader = res?.data?.data?.item;
 
     return {
-        title: `Đọc truyện ${chapter?.comic_name} - Chương ${chapter?.chapter_name} Online, Mới Nhất`,
-        description: `Đọc truyện ${chapter?.comic_name} chương ${chapter?.chapter_name} miễn phí với nội dung hấp dẫn, cập nhật nhanh nhất. Truyện được trình bày rõ ràng, dễ đọc, không quảng cáo.`,
+        title: `${chapter?.comic_name} - Chap ${chapter?.chapter_name} Next Chap ${Number(chapter?.chapter_name) + 1}  Tiếng Việt`,
+        description: `Đọc truyện ${chapter?.comic_name} chap ${chapter?.chapter_name} next chap ${Number(chapter?.chapter_name) + 1}  tiếng việt Mới nhất nhanh nhất tại ztruyen.io.vn`,
+        keywords: [
+            `${chapter?.comic_name} ${chapter?.chapter_name}`,
+            `${chapter?.comic_name} chap ${chapter?.chapter_name}`,
+            `đọc truyện tranh ${chapter?.comic_name} chap ${chapter?.chapter_name}`,
+            `${chapter?.comic_name} chương ${chapter?.chapter_name}`,
+            `${chapter?.comic_name} ${chapter?.chapter_name} tiếng việt`,
+        ],
+        alternates: {
+            canonical: `/doc-truyen/${slug}`,
+            languages: {
+                vi: `/vi/doc-truyen/${slug}`,
+            },
+        },
+        openGraph: {
+            title: `${chapter?.comic_name} - Chap ${chapter?.chapter_name} Next Chap ${Number(chapter?.chapter_name) + 1}  Tiếng Việt`,
+            description: `Đọc truyện ${chapter?.comic_name} chap ${chapter?.chapter_name} next chap ${Number(chapter?.chapter_name) + 1}  tiếng việt Mới nhất nhanh nhất tại ztruyen.io.vn`,
+            images: [
+                {
+                    url: '/logo-all.png',
+                    width: 400,
+                    height: 200,
+                },
+            ],
+        },
     };
 }
 
