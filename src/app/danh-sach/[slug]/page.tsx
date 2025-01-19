@@ -1,4 +1,5 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
+import convertSlugUrl from '@/components/utils/convertSlugUrl';
 
 const Status = async ({
     params,
@@ -15,6 +16,7 @@ const Status = async ({
         <DynamicPageStatus
             category={`danh-sach/${slug}`}
             pageQuery={pageQuery}
+            title={true}
         ></DynamicPageStatus>
     );
 };
