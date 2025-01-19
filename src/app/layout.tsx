@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 import NprogressWrapper from '@/lib/nprogress.wrapper';
 import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -33,6 +34,7 @@ export default function RootLayout({
                     <NprogressWrapper>
                         <Header></Header>
                         <main className="mt-[56px]">{children}</main>
+                        <Footer></Footer>
                     </NprogressWrapper>
                 </ThemeProvider>
             </body>
