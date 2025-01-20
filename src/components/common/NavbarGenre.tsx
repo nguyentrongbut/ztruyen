@@ -10,11 +10,13 @@ const NavbarGenre = async () => {
             <ul className="flex gap-7 text-[15px] container justify-center wrapper">
                 {data.slice(0, 8).map((item, index) => (
                     <li key={index}>
-                        <Link href={`/the-loai/${item.slug}`}>{item.name}</Link>
+                        <Link href={`/the-loai/${item.slug}.html`}>
+                            {item.name}
+                        </Link>
                     </li>
                 ))}
                 <li>
-                    <Link href={`/the-loai/tat-ca`}>Tất cả</Link>
+                    <Link href={`/the-loai/tat-ca.html`}>Tất cả</Link>
                 </li>
             </ul>
         </nav>

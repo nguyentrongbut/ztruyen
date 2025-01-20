@@ -1,5 +1,6 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 import axios from 'axios';
+import removeExtension from '@/components/utils/removeExtension';
 
 export async function generateMetadata({
     params,
@@ -8,7 +9,8 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
+
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
 
@@ -55,7 +57,7 @@ const Status = async ({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
 
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;

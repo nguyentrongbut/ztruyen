@@ -1,4 +1,109 @@
 User-Agent: *
 Allow: /
+Disallow: /tim-kiem?keyword=*.com
+Disallow: /tim-kiem?keyword=*.cc
+Disallow: /tim-kiem?keyword=*.vip
+Disallow: /tim-kiem?keyword=*.net
+Disallow: /tim-kiem?keyword=*.CC
+Disallow: /tim-kiem?keyword=*.wink
+Disallow: /tim-kiem?keyword=*.live
+Disallow: /tim-kiem?keyword=*.LIVE
+Disallow: /top/
+Disallow: /*đánh lô đề*
+Disallow: /*daftar slot*
+Disallow: /*game+đổi+thưởng*
+Disallow: /*airdrop*
+Disallow: /*SOSO+CASINO*
+Disallow: /*binance*
+Disallow: /*WeChat*
+Disallow: /*telegram*
+Disallow: /*Telegram*
+Disallow: /*bleesvanos*
+Disallow: /*wibu69*
+Disallow: /*javhd*
+Disallow: /*@cryptoenthus2*
+Disallow: /*3dbet slot*
+Disallow: /*c65694*
+Disallow: /*d43369*
+Disallow: /*ElSX*
+Disallow: /*f56669*
+Disallow: /*f66584*
+Disallow: /*h12831*
+Disallow: /*h89796*
+Disallow: /*i12449*
+Disallow: /*j26592*
+Disallow: /*j38891*
+Disallow: /*j93673*
+Disallow: /*k62342*
+Disallow: /*king88bet*
+Disallow: /*kingbet88*
+Disallow: /*l93972*
+Disallow: /*liga365*
+Disallow: /*m25186*
+Disallow: /*m77385*
+Disallow: /*mbak4d*
+Disallow: /*murah4d*
+Disallow: /*n74642*
+Disallow: /*n88 slot*
+Disallow: /*o81648*
+Disallow: /*o84175*
+Disallow: /*OGDx*
+Disallow: /*petir138*
+Disallow: /*qqwin88*
+Disallow: /*r18979*
+Disallow: /*r53518*
+Disallow: /*s18428*
+Disallow: /*s88828*
+Disallow: /*u12745*
+Disallow: /*v86538*
+Disallow: /*v96366*
+Disallow: /*vipbet88 slot*
+Disallow: /*w46334*
+Disallow: /*we88*
+Disallow: /*win77 slot*
+Disallow: /*win777 slot*
+Disallow: /*x54585*
+Disallow: /*YrKR*
+Disallow: /*z21496*
+Disallow: /*SOSO20CASINO*
+Disallow: /*casino*
+Disallow: /*188bet*
+Disallow: /*s26bet*
+Disallow: /*S26Bet*
+Disallow: /*S26bet*
+Disallow: /*S26BET*
+Disallow: /*ivf###*
+Disallow: /*ibb###*
+Disallow: /*229 8881*
+Disallow: /*AppStore*
+Disallow: /*1-305-590-1878*
+Disallow: /*Sex*
+Disallow: /*xxxx*
+Disallow: /*Sodo6*
+Disallow: /*[*
+Disallow: /*《*
+Disallow: /*』*
+Disallow: /*】*
+Disallow: /*【*
+Disallow: /*sudo6*
+Disallow: /*B6H3319*
+Disallow: /*में*
+Disallow: /*PDF9*
+Disallow: /*〖*
+Disallow: /*lienge89867*
+Disallow: /*Web:*
+Disallow: /*☞*
+Disallow: /*E2%98%9E*
+Disallow: /*url:*
+Disallow: /*gboplay*
+Disallow: /*bets899*
+Disallow: /*btr788*
+Disallow: /*indoplay88*
+Disallow: /*mq168*
+Disallow: /*eggcsite*
+Disallow: /*win77*  # Blocks win77, win777, etc.
+Disallow: /*.live*  # Blocks anything ending in .live
+Disallow: /*⭕*
+Disallow: /*⭐*
 
 Sitemap: https://ztruyen.io.vn/sitemap.xml

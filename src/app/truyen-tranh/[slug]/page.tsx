@@ -165,7 +165,7 @@ const DetailPage = async ({
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Link
-                                                            href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`)}`}
+                                                            href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`)}.html`}
                                                         >
                                                             <Button
                                                                 variant="outline"
@@ -184,7 +184,7 @@ const DetailPage = async ({
                                             </TooltipProvider>
                                         ) : (
                                             <Link
-                                                href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`}
+                                                href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
                                             >
                                                 <Button
                                                     variant="outline"
