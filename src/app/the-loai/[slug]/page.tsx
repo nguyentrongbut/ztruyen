@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Link from 'next/link';
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
+import removeExtension from '@/components/utils/removeExtension';
 
 export async function generateMetadata({
     params,
@@ -9,7 +10,8 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
+
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
 
@@ -53,7 +55,8 @@ const Genre = async ({
     params: Promise<{ slug: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
+
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
     const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
@@ -69,7 +72,7 @@ const Genre = async ({
                     {data.map((item, index) => (
                         <li key={index}>
                             <Link
-                                href={`/the-loai/${item.slug}`}
+                                href={`/the-loai/${item.slug}.html`}
                                 className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
                             >
                                 {item.name}

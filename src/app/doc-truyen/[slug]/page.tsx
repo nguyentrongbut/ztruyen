@@ -3,13 +3,14 @@ import getIdFromUrl from '@/components/utils/getIdFromUrl';
 // import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 import ImgsChapter from '@/app/doc-truyen/@Chapter/ImageChapter';
 import { getChapterName } from '@/components/utils/getChapterName';
+import removeExtension from '@/components/utils/removeExtension';
 
 export async function generateMetadata({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
 
     const res = await axios.get(
         `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`
@@ -51,7 +52,7 @@ const ChapterPage = async ({
 }: {
     params: Promise<{ slug: string }>;
 }) => {
-    const slug = (await params).slug;
+    const slug = removeExtension((await params).slug, '.html');
 
     const res = await axios.get(
         `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`

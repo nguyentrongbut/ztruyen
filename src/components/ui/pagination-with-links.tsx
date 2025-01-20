@@ -19,6 +19,7 @@ import {
 } from './select';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import removeExtension from '@/components/utils/removeExtension';
 
 export interface PaginationWithLinksProps {
     pageSizeSelectOptions?: {
@@ -62,7 +63,7 @@ export function PaginationWithLinks({
             if (!searchParams) return `${pathname}?${key}=${newPage}`;
             const newSearchParams = new URLSearchParams(searchParams);
             newSearchParams.set(key, String(newPage));
-            return `${pathname}?${newSearchParams.toString()}`;
+            return `${removeExtension(pathname, '.html')}?${newSearchParams.toString()}.html`;
         },
         [searchParams, pathname]
     );

@@ -22,7 +22,7 @@ const Header = () => {
                     <ul className="flex items-center gap-[25px]">
                         <li>
                             <Link
-                                href="/the-loai/action"
+                                href="/the-loai/action.html"
                                 className="hover:text-[#32aaff]"
                             >
                                 Thể loại
@@ -30,7 +30,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                href="/danh-sach/dang-phat-hanh"
+                                href="/danh-sach/dang-phat-hanh.html"
                                 className="hover:text-[#32aaff]"
                             >
                                 Đang phát hành
@@ -38,7 +38,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                href="/danh-sach/hoan-thanh"
+                                href="/danh-sach/hoan-thanh.html"
                                 className="hover:text-[#32aaff]"
                             >
                                 Hoàn thành
@@ -46,7 +46,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                href="/danh-sach/sap-ra-mat"
+                                href="/danh-sach/sap-ra-mat.html"
                                 className="hover:text-[#32aaff]"
                             >
                                 Sắp ra mắt

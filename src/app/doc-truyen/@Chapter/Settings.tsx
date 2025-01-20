@@ -211,7 +211,7 @@ const Settings = ({
                                     return (
                                         <li key={i}>
                                             <Link
-                                                href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${item.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`}
+                                                href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${item.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
                                                 className={`px-10 py-3 block text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-[#33aaff]' : ''}`}
                                             >
                                                 {`Chương ${item.chapter_name} ${item.chapter_title ? `- ${item.chapter_title}` : ''}`}
