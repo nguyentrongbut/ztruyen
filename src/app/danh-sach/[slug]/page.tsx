@@ -1,4 +1,5 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
+import axios from 'axios';
 
 export async function generateMetadata({
     params,
@@ -11,15 +12,21 @@ export async function generateMetadata({
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
 
+    const res = await axios.get(
+        `https://otruyenapi.com/v1/api/danh-sach/${slug}?page=${pageQuery}`
+    );
+
+    const status = res?.data?.data?.titlePage;
+
     return {
-        title: `Truyện ${slug} - ztruyen.io.vn`,
-        description: `Truyện ${slug} tại ztruyen.io.vn`,
+        title: `${status} - ztruyen.io.vn`,
+        description: `${status} tại ztruyen.io.vn`,
         keywords: [
             `Truyện tranh`,
             `manga`,
             `comic`,
             `manhua`,
-            `manhua ${slug}`,
+            `manhua ${status}`,
         ],
         alternates: {
             canonical: `/danh-sach/${slug}?page=${pageQuery}`,
@@ -28,8 +35,8 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: `Truyện ${slug} - ztruyen.io.vn`,
-            description: `Truyện ${slug} tại ztruyen.io.vn`,
+            title: `Truyện ${status} - ztruyen.io.vn`,
+            description: `Truyện ${status} tại ztruyen.io.vn`,
             images: [
                 {
                     url: '/logo-all.png',
