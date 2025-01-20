@@ -21,7 +21,7 @@ export default async function Home() {
     const dataCs = resCs?.data?.data?.items;
     return (
         <>
-            <main>
+            <main className="pb-[352px]">
                 <GridCarousel data={data}></GridCarousel>
                 <NavbarGenre></NavbarGenre>
                 <Carousel
