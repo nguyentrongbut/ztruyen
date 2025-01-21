@@ -249,7 +249,7 @@ const Settings = ({
             <div className="my-5 flex flex-1 w-[600px] min-w-[120px] bg-secondary border-[#3e3e3e] rounded-[40px] text-white items-center justify-between gap-4 relative">
                 {prevChapter ? (
                     <Link
-                        href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${prevChapter?.chapter_name}-${getIdFromUrl(prevChapter?.chapter_api_data, '/')}`}
+                        href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${prevChapter?.chapter_name}-${getIdFromUrl(prevChapter?.chapter_api_data, '/')}.html`}
                         className="p-2"
                     >
                         <IconPrev></IconPrev>
@@ -272,7 +272,7 @@ const Settings = ({
                 />
                 {nextChapter ? (
                     <Link
-                        href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}`}
+                        href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}.html`}
                         className="p-2"
                     >
                         <IconNext></IconNext>
