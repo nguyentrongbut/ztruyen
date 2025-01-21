@@ -40,9 +40,11 @@ const DynamicPageStatus = async ({
     return (
         <section className="wrapper pt-6">
             {title && (
-                <h2 className="capitalize text-xl mb-6">
-                    {res?.data?.data?.titlePage}
-                </h2>
+                <h1>
+                    <p className="capitalize text-xl mb-6">
+                        {res?.data?.data?.titlePage}
+                    </p>
+                </h1>
             )}
             <div className="flex flex-wrap gap-4 mb-8">
                 {dataGenre.map((item, index) => {
@@ -63,9 +65,11 @@ const DynamicPageStatus = async ({
                                 ></Image>
                             </Link>
                             <figcaption className="w-[180px] mt-1.5 text-sm line-clamp-1">
-                                <Link href={`/truyen-tranh/${item.slug}`}>
-                                    {item.name}
-                                </Link>
+                                <h2>
+                                    <Link href={`/truyen-tranh/${item.slug}`}>
+                                        {item.name}
+                                    </Link>
+                                </h2>
                             </figcaption>
                         </figure>
                     );

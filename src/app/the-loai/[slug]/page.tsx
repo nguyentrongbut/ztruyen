@@ -71,22 +71,38 @@ const Genre = async ({
                 <ul className="flex gap-3.5 flex-wrap text-[15px]">
                     {data.map((item, index) => (
                         <li key={index}>
-                            <Link
-                                href={`/the-loai/${item.slug}.html`}
-                                className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
-                            >
-                                {item.name}
-                            </Link>
+                            {item.slug === slug ? (
+                                <h1>
+                                    <Link
+                                        href={`/the-loai/${item.slug}.html`}
+                                        className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </h1>
+                            ) : (
+                                <Link
+                                    href={`/the-loai/${item.slug}.html`}
+                                    className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
+                                >
+                                    {item.name}
+                                </Link>
+                            )}
                         </li>
                     ))}
                     <li>
-                        {' '}
-                        <Link
-                            href={`/the-loai/tat-ca.html`}
-                            className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${'tat-ca' === slug && 'text-[#32aaff]'}`}
-                        >
-                            Tất cả
-                        </Link>
+                        {'tat-ca' === slug ? (
+                            <h1 className="rounded-[5px] px-[10px] py-1.5 text-[#32aaff]">
+                                Tất cả
+                            </h1>
+                        ) : (
+                            <Link
+                                href={`/the-loai/tat-ca.html`}
+                                className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5"
+                            >
+                                Tất cả
+                            </Link>
+                        )}
                     </li>
                 </ul>
             </nav>
