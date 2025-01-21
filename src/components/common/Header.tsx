@@ -70,8 +70,8 @@ const Header = ({
                             </li>
                         </ul>
                     )}
-                    {children}
                 </div>
+                {children}
                 <div className="flex items-center gap-[17px]">
                     {!asChild && <Search></Search>}
                     <ul className="flex items-center gap-4">
