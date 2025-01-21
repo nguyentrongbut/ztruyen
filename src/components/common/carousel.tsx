@@ -101,9 +101,10 @@ const Carousel = ({
                                                             );
                                                         }}
                                                     ></div>
-                                                    <ul className="absolute bottom-2.5 flex gap-2 items-center overflow-auto w-full px-[12px] scroll-hidden">
-                                                        {item.category?.map(
-                                                            (tag, i) => (
+                                                    <ul className="absolute bottom-2.5 flex gap-2 items-center overflow-hidden w-full px-[12px] scroll-sub">
+                                                        {item.category
+                                                            ?.slice(0, 2)
+                                                            .map((tag, i) => (
                                                                 <li
                                                                     key={i}
                                                                     className="rounded-sm text-white text-xs h-[20px] py-[1px] px-1.5 flex-shrink-0"
@@ -116,15 +117,14 @@ const Carousel = ({
                                                                     }
                                                                 >
                                                                     <Link
-                                                                        href={`the-loai/${tag?.slug}`}
+                                                                        href={`the-loai/${tag?.slug}.html`}
                                                                     >
                                                                         {
                                                                             tag?.name
                                                                         }
                                                                     </Link>
                                                                 </li>
-                                                            )
-                                                        )}
+                                                            ))}
                                                     </ul>
                                                 </div>
                                                 <figcaption className="w-[180px]">

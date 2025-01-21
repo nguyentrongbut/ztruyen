@@ -88,8 +88,9 @@ body {
     }
 
     body.modal-scrollbar-hidden::-webkit-scrollbar, .scroll-hidden::-webkit-scrollbar {
-        width: 0;
+        display: none;
     }
+
 
     .transition-w-b {
         transition: width 150ms ease-in-out, border-color 150ms ease-in-out;
