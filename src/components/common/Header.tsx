@@ -22,7 +22,7 @@ const Header = () => {
                     <ul className="flex items-center gap-[25px]">
                         <li>
                             <Link
-                                href="/the-loai/action.html"
+                                href="/the-loai/tat-ca.html"
                                 className="hover:text-[#32aaff]"
                             >
                                 Thể loại
@@ -50,6 +50,14 @@ const Header = () => {
                                 className="hover:text-[#32aaff]"
                             >
                                 Sắp ra mắt
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/danh-sach/truyen-moi.html"
+                                className="hover:text-[#32aaff]"
+                            >
+                                Truyện mới
                             </Link>
                         </li>
                     </ul>

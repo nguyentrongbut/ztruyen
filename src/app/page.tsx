@@ -48,18 +48,18 @@ export default async function Home() {
                 <Carousel
                     data={dataCs}
                     title="Truyện Sắp Ra Mắt"
-                    href="sap-ra-mat"
+                    href="danh-sach/sap-ra-mat"
                 ></Carousel>
                 <Carousel
                     data={dataPublishing}
                     title="Truyện Đang Phát Hành"
                     bgColor={true}
-                    href="dang-phat-hanh"
+                    href="danh-sach/dang-phat-hanh"
                 ></Carousel>
                 <Carousel
                     data={dataComp}
                     title="Truyện Đã Hoàn Thành"
-                    href="hoan-thanh"
+                    href="danh-sach/hoan-thanh"
                 ></Carousel>
             </main>
         </>

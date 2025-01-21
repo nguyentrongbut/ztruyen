@@ -13,9 +13,17 @@ const DynamicPageStatus = async ({
     pageQuery: number;
     title?: boolean;
 }) => {
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/${category}?page=${pageQuery}`
-    );
+    let res;
+    if (category == 'the-loai/tat-ca') {
+        res = await axios.get(
+            `https://otruyenapi.com/v1/api/danh-sach/truyen-moi?page=${pageQuery}`
+        );
+    } else {
+        res = await axios.get(
+            `https://otruyenapi.com/v1/api/${category}?page=${pageQuery}`
+        );
+    }
+
     const itemsPerPage = 24;
 
     const totalItems = res?.data?.data?.params?.pagination?.totalItems || 0;

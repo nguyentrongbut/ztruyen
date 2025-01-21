@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import getIdFromUrl from '@/components/utils/getIdFromUrl';
-import convertSlugUrl from '@/components/utils/convertSlugUrl';
 // import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 
 export async function generateMetadata({
@@ -145,7 +144,13 @@ const DetailPage = async ({
                     </TooltipProvider>
 
                     {chapters?.length > 0 && (
-                        <Button className="mt-[21px]">Đọc chương 1</Button>
+                        <Button className="mt-[21px]" asChild={true}>
+                            <Link
+                                href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
+                            >
+                                Đọc chương {chapters[0].chapter_name}
+                            </Link>
+                        </Button>
                     )}
                 </div>
             </section>
@@ -165,7 +170,7 @@ const DetailPage = async ({
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
                                                         <Link
-                                                            href={`/doc-truyen/${convertSlugUrl(`${data?.name}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}`)}.html`}
+                                                            href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
                                                         >
                                                             <Button
                                                                 variant="outline"
@@ -208,7 +213,7 @@ const DetailPage = async ({
                 <section className="bg-primary dark:bg-black/10 p-5 w-[23%] h-min">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium text-lg">Truyện mới</h2>
-                        <Link href="/" className="text-sm">
+                        <Link href="/danh-sach/truyen-moi" className="text-sm">
                             Xem thêm
                         </Link>
                     </div>

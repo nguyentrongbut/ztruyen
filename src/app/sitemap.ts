@@ -65,6 +65,12 @@ export default async function sitemap() {
             changeFrequency: 'monthly',
             priority: 0.3,
         },
+        {
+            url: `${baseURL}/tat-ca.html`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
         ...dataGenreUrls,
         ...dataHomeUrls,
     ];
