@@ -76,14 +76,14 @@ const SearchPage = async ({
                                 ></Image>
                             </Link>
                             <figcaption className="w-[180px] mt-1.5 text-lg flex flex-col justify-between">
-                                <Link
-                                    href={`/truyen-tranh/${item.slug}`}
-                                    title={item.name}
-                                >
-                                    <h2 className="line-clamp-1 font-medium">
+                                <h1 className="line-clamp-1 font-medium">
+                                    <Link
+                                        href={`/truyen-tranh/${item.slug}`}
+                                        title={item.name}
+                                    >
                                         {item.name}
-                                    </h2>
-                                </Link>
+                                    </Link>
+                                </h1>
                                 <div className="text-xs text-black/30 dark:text-white/30">
                                     <ul className="flex gap-2 line-clamp-1">
                                         {item.author.map((author, index) => (

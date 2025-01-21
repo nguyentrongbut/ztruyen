@@ -132,7 +132,7 @@ const DetailPage = async ({
                                     className="text-sm text-black/75 dark:text-white mt-2 line-clamp-3"
                                 ></div>
                             </TooltipTrigger>
-                            <TooltipContent className="w-[900px] pnpm run dev-4 bg-primary dark:bg-secondary">
+                            <TooltipContent className="w-[900px] p-4 bg-primary dark:bg-secondary">
                                 <p
                                     dangerouslySetInnerHTML={{
                                         __html: data.content,

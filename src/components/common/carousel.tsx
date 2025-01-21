@@ -22,11 +22,13 @@ const Carousel = ({
     title,
     bgColor = false,
     href = '/',
+    titleSeo = false,
 }: {
     data: IComic[];
     title: string;
     bgColor?: boolean;
     href: string;
+    titleSeo?: boolean;
 }) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
@@ -45,11 +47,19 @@ const Carousel = ({
             }`}
         >
             <div className="wrapper">
-                <Link href={href}>
-                    <h2 className="pt-[60px] pb-[38px] text-[34px] font-medium">
-                        {title}
+                {titleSeo ? (
+                    <h1>
+                        <p className="pt-[60px] pb-[38px] text-[34px] font-medium">
+                            <Link href={href}>{title}</Link>
+                        </p>
+                    </h1>
+                ) : (
+                    <h2>
+                        <p className="pt-[60px] pb-[38px] text-[34px] font-medium">
+                            <Link href={href}>{title}</Link>
+                        </p>
                     </h2>
-                </Link>
+                )}
                 <div className="relative pb-[65px]">
                     <Swiper
                         slidesPerView={1}
@@ -128,13 +138,15 @@ const Carousel = ({
                                                     </ul>
                                                 </div>
                                                 <figcaption className="w-[180px]">
-                                                    <Link
-                                                        href={`/truyen-tranh/${item.slug}`}
-                                                        className="text-lg line-clamp-1 mt-2.5 mb-1"
-                                                        title={item.name}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
+                                                    <h3>
+                                                        <Link
+                                                            href={`/truyen-tranh/${item.slug}`}
+                                                            className="text-lg line-clamp-1 mt-2.5 mb-1"
+                                                            title={item.name}
+                                                        >
+                                                            {item.name}
+                                                        </Link>
+                                                    </h3>
                                                     <div
                                                         className="text-sm line-clamp-1"
                                                         title={`Cập nhật ${formatRelativeTime(item.updatedAt)}`}
