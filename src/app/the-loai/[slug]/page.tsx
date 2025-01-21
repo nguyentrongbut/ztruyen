@@ -18,10 +18,10 @@ export async function generateMetadata({
     const res = await axios.get(
         `https://otruyenapi.com/v1/api/the-loai/${slug}`
     );
-    const genreName: string = res?.data?.data.titlePage;
+    const genreName: string = res?.data?.data.titlePage || 'Tất cả';
 
     return {
-        title: `Thể loại - Truyện ${genreName} - Ztruyện`,
+        title: `${genreName === 'Tất cả' ? 'Tất cả thể loại' : `Thể loại - Truyện ${genreName}`} - Ztruyện`,
         description: `Khám phá những câu chuyện hấp dẫn thuộc thể loại ${genreName}. Đọc ngay các truyện hay nhất, mới nhất về ${genreName} chỉ có tại Ztruyện`,
         keywords: [
             `truyện tranh ${genreName}`,
@@ -64,7 +64,7 @@ const Genre = async ({
 
     return (
         <>
-            <nav className="wrapper flex gap-3.5 justify-center container mt-6 mb-8">
+            <nav className="wrapper flex gap-3.5 justify-center container py-6 ">
                 <p className="flex-shrink-0 text-[15px] dark:text-[#ffffffbd] text-[#00000057]">
                     Thể loại
                 </p>
@@ -79,6 +79,15 @@ const Genre = async ({
                             </Link>
                         </li>
                     ))}
+                    <li>
+                        {' '}
+                        <Link
+                            href={`/the-loai/tat-ca.html`}
+                            className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${'tat-ca' === slug && 'text-[#32aaff]'}`}
+                        >
+                            Tất cả
+                        </Link>
+                    </li>
                 </ul>
             </nav>
             <DynamicPageStatus

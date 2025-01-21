@@ -38,7 +38,11 @@ const Carousel = ({
     const groupData = chunkArray(chunkData, 5);
     return (
         <section
-            className={`bg-[${bgColor ? '#f6f9ff' : '#ffff'}] ${bgColor && 'dark:bg-black'}`}
+            className={`${
+                bgColor
+                    ? 'bg-[#f6f9ff] dark:bg-black'
+                    : 'bg-[#ffff] dark:bg-secondary'
+            }`}
         >
             <div className="wrapper">
                 <Link href={href}>
@@ -46,7 +50,7 @@ const Carousel = ({
                         {title}
                     </h2>
                 </Link>
-                <div className="relative">
+                <div className="relative pb-[65px]">
                     <Swiper
                         slidesPerView={1}
                         onBeforeInit={(swiper) => {
