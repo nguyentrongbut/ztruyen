@@ -4,6 +4,8 @@ import getIdFromUrl from '@/components/utils/getIdFromUrl';
 import ImgsChapter from '@/app/doc-truyen/@Chapter/ImageChapter';
 import { getChapterName } from '@/components/utils/getChapterName';
 import removeExtension from '@/components/utils/removeExtension';
+import Header from '@/components/common/Header';
+import Link from 'next/link';
 
 export async function generateMetadata({
     params,
@@ -72,16 +74,29 @@ const ChapterPage = async ({
     const listChapter: IChapter[] =
         response?.data?.data?.item?.chapters[0].server_data;
     return (
-        <ImgsChapter
-            numberOfChapters={res.data?.data?.item?.chapter_name}
-            chapters={chapter?.chapter_image}
-            url={res?.data?.data?.domain_cdn}
-            urlPath={chapter?.chapter_path}
-            chapterName={chapter?.comic_name}
-            // placeholders={placeholders}
-            listChapter={listChapter}
-            currentUrl={slug}
-        />
+        <>
+            <Header asChild={true}>
+                <h1 className="text-sm">
+                    <Link
+                        href={`/truyen-tranh/${response?.data?.data?.item.slug}`}
+                        className="hover:text-[#32aaff]"
+                    >
+                        {response?.data?.data?.item.name}
+                    </Link>
+                    - Chapter {chapter.chapter_name}
+                </h1>
+            </Header>
+            <ImgsChapter
+                numberOfChapters={res.data?.data?.item?.chapter_name}
+                chapters={chapter?.chapter_image}
+                url={res?.data?.data?.domain_cdn}
+                urlPath={chapter?.chapter_path}
+                chapterName={chapter?.comic_name}
+                // placeholders={placeholders}
+                listChapter={listChapter}
+                currentUrl={slug}
+            />
+        </>
     );
 };
 
