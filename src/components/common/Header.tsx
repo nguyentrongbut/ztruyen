@@ -3,6 +3,14 @@ import { ModeToggle } from '@/components/common/ModeToggle';
 import Search from '@/components/common/Search';
 import Image from 'next/image';
 import { ReactNode } from 'react';
+import IconMenu from '@/components/icons/IconMenu';
+import {
+    Sheet,
+    SheetContent,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
+import IconSearch from '@/components/icons/IconSearch';
 
 const Header = ({
     asChild = false,
@@ -27,7 +35,7 @@ const Header = ({
                         </p>
                     </Link>
                     {!asChild && (
-                        <ul className="flex items-center gap-[25px]">
+                        <ul className="hidden xl:flex items-center gap-[25px]">
                             <li>
                                 <Link
                                     href="/the-loai/tat-ca.html"
@@ -73,7 +81,14 @@ const Header = ({
                 </div>
                 {children}
                 <div className="flex items-center gap-[17px]">
-                    {!asChild && <Search></Search>}
+                    {!asChild && (
+                        <div className="hidden sm:block">
+                            <Search></Search>
+                        </div>
+                    )}
+                    <div className="sm:hidden">
+                        <IconSearch></IconSearch>
+                    </div>
                     <ul className="flex items-center gap-4">
                         <li>
                             <Link href="#">Đăng nhập</Link>
@@ -82,7 +97,84 @@ const Header = ({
                             <Link href="#">Đăng ký</Link>
                         </li>
                     </ul>
-                    <ModeToggle></ModeToggle>
+                    <div className="hidden xl:block">
+                        <ModeToggle></ModeToggle>
+                    </div>
+                    <div className="xl:hidden">
+                        <Sheet>
+                            <SheetTrigger asChild={true}>
+                                <IconMenu></IconMenu>
+                            </SheetTrigger>
+                            <SheetContent
+                                side="left"
+                                className="w-[255px]"
+                                hideCloseButton={true}
+                            >
+                                <ul className="text-sm">
+                                    <SheetTitle asChild={true}>
+                                        <li className="mb-3 flex justify-between">
+                                            <Link
+                                                href="/"
+                                                className="flex items-center"
+                                            >
+                                                <Image
+                                                    src="/logo.png"
+                                                    width={32}
+                                                    height={32}
+                                                    alt="ztruyện"
+                                                ></Image>
+                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-xl">
+                                                    ztruyện
+                                                </p>
+                                            </Link>
+                                            <ModeToggle></ModeToggle>
+                                        </li>
+                                    </SheetTitle>
+                                    <SheetTitle asChild={true}>
+                                        <li className="rounded-md">
+                                            <Link
+                                                href="/the-loai/tat-ca.html"
+                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                            >
+                                                Thể loại
+                                            </Link>
+                                        </li>
+                                    </SheetTitle>
+                                    <SheetTitle asChild={true}>
+                                        <li className="rounded-md">
+                                            <Link
+                                                href="/danh-sach/dang-phat-hanh.html"
+                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                            >
+                                                Đang phát hành
+                                            </Link>
+                                        </li>
+                                    </SheetTitle>
+                                    <SheetTitle asChild={true}>
+                                        <li className="rounded-md">
+                                            <Link
+                                                href="/danh-sach/hoan-thanh.html"
+                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                            >
+                                                Hoàn thành
+                                            </Link>
+                                        </li>
+                                    </SheetTitle>
+                                    <SheetTitle asChild={true}>
+                                        <li className="rounded-md">
+                                            <Link
+                                                href="/danh-sach/sap-ra-mat.html"
+                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                            >
+                                                Sắp ra mắt
+                                            </Link>
+                                        </li>
+                                    </SheetTitle>
+                                    <SheetTitle asChild={true}></SheetTitle>
+                                </ul>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
                 </div>
             </nav>
         </header>
