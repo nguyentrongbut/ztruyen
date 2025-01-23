@@ -81,7 +81,7 @@ const Header = ({
                 {children}
                 <div className="flex items-center gap-[17px]">
                     {!asChild && <Search></Search>}
-                    <ul className="flex items-center gap-4">
+                    <ul className="flex items-center gap-4 text-xs lg:text-sm">
                         <li>
                             <Link href="#">Đăng nhập</Link>
                         </li>
