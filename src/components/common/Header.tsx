@@ -10,7 +10,6 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import IconSearch from '@/components/icons/IconSearch';
 
 const Header = ({
     asChild = false,
@@ -81,15 +80,8 @@ const Header = ({
                 </div>
                 {children}
                 <div className="flex items-center gap-[17px]">
-                    {!asChild && (
-                        <div className="hidden sm:block">
-                            <Search></Search>
-                        </div>
-                    )}
-                    <div className="sm:hidden">
-                        <IconSearch></IconSearch>
-                    </div>
-                    <ul className="flex items-center gap-4">
+                    {!asChild && <Search></Search>}
+                    <ul className="flex items-center gap-4 text-xs lg:text-sm">
                         <li>
                             <Link href="#">Đăng nhập</Link>
                         </li>
@@ -102,7 +94,10 @@ const Header = ({
                     </div>
                     <div className="xl:hidden">
                         <Sheet>
-                            <SheetTrigger asChild={true}>
+                            <SheetTrigger
+                                asChild={true}
+                                className="cursor-pointer"
+                            >
                                 <IconMenu></IconMenu>
                             </SheetTrigger>
                             <SheetContent

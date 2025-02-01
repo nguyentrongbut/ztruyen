@@ -117,13 +117,13 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 }}
             ></div>
             <div
-                className="absolute w-8 h-20 left-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer flex items-center justify-center"
+                className="absolute lg:w-8 lg:h-20 left-12 lg:left-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer hidden sm:flex items-center justify-center"
                 onClick={() => swiperRef.current?.slidePrev()}
             >
                 <IconPrev className="text-white/60"></IconPrev>
             </div>
             <div
-                className="absolute w-8 h-20 right-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer flex items-center justify-center"
+                className="absolute lg:w-8 lg:h-20 right-12 lg:right-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer hidden sm:flex items-center justify-center"
                 onClick={() => swiperRef.current?.slideNext()}
             >
                 <IconNext className="text-white/60"></IconNext>

@@ -5,8 +5,8 @@ const Footer = () => {
         <footer className="w-full mt-32">
             <div className="bg-secondary pt-10 pb-5 shadow-custom">
                 <div className="wrapper text-white/70">
-                    <div className="flex justify-between">
-                        <div className="flex gap-[30px] items-center">
+                    <div className="flex justify-between items-end gap-4">
+                        <div className="flex gap-[30px] items-center flex-wrap">
                             <Link href="/" className="flex items-center">
                                 <Image
                                     src="/logo.png"
@@ -14,11 +14,11 @@ const Footer = () => {
                                     height={50}
                                     alt="ztruyện"
                                 ></Image>
-                                <p className="text-[25px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-4xl">
+                                <p className="text-lg md:text-[25px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-2xl md:first-letter:text-4xl">
                                     ztruyện
                                 </p>
                             </Link>
-                            <div className="flex flex-wrap text-sm gap-[30px]">
+                            <div className="flex flex-wrap text-xs md:text-sm gap-[30px]">
                                 <Link href="/" className="">
                                     Giới thiệu
                                 </Link>
@@ -33,9 +33,9 @@ const Footer = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="w-[1px] bg-white/70 mx-8"></div>
-                        <div className="text-xs flex flex-col gap-1">
-                            <h3 className="font-semibold text-base">
+                        <div className="w-[1px] bg-white/70"></div>
+                        <div className="text-xs flex flex-col gap-1 flex-shrink-0">
+                            <h3 className="font-semibold text-sm md:text-base">
                                 Liên hệ đặt quảng cáo
                             </h3>
                             <p className="mt-0.5">
@@ -51,7 +51,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="mt-6 flex flex-col gap-1.5 text-xs">
-                        <h3 className="font-semibold text-base">
+                        <h3 className="font-semibold md:text-base text-sm">
                             Miễn trừ trách nhiệm
                         </h3>
                         <p className="mt-0.5">
@@ -69,7 +69,7 @@ const Footer = () => {
                             giải quyết.
                         </p>
                     </div>
-                    <p className="mt-5 text-sm font-medium">
+                    <p className="mt-5 text-xs md:text-sm font-semibold">
                         Copyright @ {new Date().getFullYear()} Ztruyện
                     </p>
                 </div>
