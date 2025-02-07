@@ -19,4 +19,18 @@ declare global {
         msFullscreenElement?: HTMLElement | null;
         fullscreenElement?: HTMLElement | null;
     }
+
+    interface Breakpoints {
+        windowWidth: number;
+        /** screen ≥ 640px (sm) */
+        isSm: boolean;
+        /** screen ≥ 768px (md) */
+        isMd: boolean;
+        /** screen ≥ 1024px (lg) */
+        isLg: boolean;
+        /** screen ≥ 1280px (xl) */
+        isXl: boolean;
+        /** screen ≥ 1536px (2xl) */
+        is2xl: boolean;
+    }
 }

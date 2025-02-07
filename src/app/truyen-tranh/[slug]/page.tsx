@@ -89,7 +89,7 @@ const DetailPage = async ({
 
     return (
         <div className="bg-[#fafafa] pt-5 dark:bg-secondary">
-            <section className="wrapper flex gap-7 p-5 bg-primary dark:bg-black/10 shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
+            <section className="wrapper flex flex-col items-center sm:items-stretch sm:flex-row gap-7 p-5 bg-primary dark:bg-black/10 shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image
                     src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
                     width={240}
@@ -102,12 +102,12 @@ const DetailPage = async ({
                     // blurDataURL={placeholder}
                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                 ></Image>
-                <div className="flex flex-col justify-between w-full">
+                <div className="flex flex-col items-center sm:items-start justify-between w-full">
                     <h1 className="font-semibold text-xl">{data.name}</h1>
-                    <div className="flex flex-col mt-3.5 gap-1.5">
-                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
+                    <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
+                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconTag className="size-4"></IconTag>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 flex-wrap">
                                 {data.category.map((item, index) => (
                                     <span key={index}>{item.name}</span>
                                 ))}
@@ -117,7 +117,7 @@ const DetailPage = async ({
                             <IconStatus className="size-4"></IconStatus>
                             <span className="text-sm">{data.status}</span>
                         </div>
-                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
+                        <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconCalendar className="size-4"></IconCalendar>
                             <span className="text-sm ">{`${chapters?.length > 0 ? `Đã cập nhật tới chương ${lastestChapter}` : 'Đang cập nhật'} `}</span>
                         </div>
@@ -129,7 +129,7 @@ const DetailPage = async ({
                                     dangerouslySetInnerHTML={{
                                         __html: data.content,
                                     }}
-                                    className="text-sm text-black/75 dark:text-white mt-2 line-clamp-3"
+                                    className="text-sm text-black/75 dark:text-white mt-2 sm:line-clamp-3"
                                 ></div>
                             </TooltipTrigger>
                             <TooltipContent className="w-[900px] p-4 bg-primary dark:bg-secondary">
@@ -144,7 +144,7 @@ const DetailPage = async ({
                     </TooltipProvider>
 
                     {chapters?.length > 0 && (
-                        <Button className="mt-[21px]" asChild={true}>
+                        <Button className="mt-[21px] w-full" asChild={true}>
                             <Link
                                 href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
                             >
@@ -155,16 +155,19 @@ const DetailPage = async ({
                 </div>
             </section>
 
-            <section className="flex mt-3 wrapper justify-between">
-                <section className="bg-primary p-5 w-[76%] h-min dark:bg-black/10">
+            <section className="flex flex-col gap-4 lg:gap-0 lg:flex-row mt-3 wrapper justify-between">
+                <section className="bg-primary p-5 lg:w-[70%] xl:w-[76%] h-min dark:bg-black/10">
                     {chapters?.length > 0 ? (
                         <>
                             <h2 className="font-medium text-lg">
                                 Danh sách chương
                             </h2>
-                            <ul className="flex flex-wrap mt-5 gap-4">
+                            <ul className="flex flex-wrap mt-5 gap-4 -mr-4">
                                 {chapters?.map((item, index) => (
-                                    <li key={index}>
+                                    <li
+                                        key={index}
+                                        className="w-[calc(100%/2-16px)] sm:w-[calc(100%/3-16px)] md:w-[calc(100%/4-16px)]"
+                                    >
                                         {item.chapter_title ? (
                                             <TooltipProvider>
                                                 <Tooltip>
@@ -174,7 +177,7 @@ const DetailPage = async ({
                                                         >
                                                             <Button
                                                                 variant="outline"
-                                                                className="w-[198px] dark:text-primary dark:border-primary"
+                                                                className="w-full dark:text-primary dark:border-primary"
                                                             >
                                                                 <span className="line-clamp-1">{`Chương ${item.chapter_name} - ${item.chapter_title}`}</span>
                                                             </Button>
@@ -193,7 +196,7 @@ const DetailPage = async ({
                                             >
                                                 <Button
                                                     variant="outline"
-                                                    className="w-[198px] dark:text-primary dark:border-primary"
+                                                    className="w-full dark:text-primary dark:border-primary"
                                                 >
                                                     {`Chương ${item.chapter_name}`}
                                                 </Button>
@@ -210,7 +213,7 @@ const DetailPage = async ({
                         </p>
                     )}
                 </section>
-                <section className="bg-primary dark:bg-black/10 p-5 w-[23%] h-min">
+                <section className="bg-primary dark:bg-black/10 p-5 lg:w-[29%] xl:w-[23%] h-min">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium text-lg">Truyện mới</h2>
                         <Link href="/danh-sach/truyen-moi" className="text-sm">
@@ -227,7 +230,7 @@ const DetailPage = async ({
                                         key={index}
                                     >
                                         <figure className="flex mt-4 gap-3">
-                                            <div className="w-[35%]">
+                                            <div className="lg:w-[35%]">
                                                 <Image
                                                     src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
                                                     width={100}

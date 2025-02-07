@@ -76,14 +76,14 @@ const ChapterPage = async ({
     return (
         <>
             <Header asChild={true}>
-                <h1 className="text-sm">
+                <h1 className="text-sm line-clamp-1 hidden md:block">
                     <Link
                         href={`/truyen-tranh/${response?.data?.data?.item.slug}`}
                         className="hover:text-[#32aaff]"
                     >
-                        {response?.data?.data?.item.name}
+                        {response?.data?.data?.item.name} {' - '}
                     </Link>
-                    - Chapter {chapter.chapter_name}
+                    Chapter {chapter.chapter_name}
                 </h1>
             </Header>
             <ImgsChapter

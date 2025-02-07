@@ -4,6 +4,7 @@ import Settings from '@/app/doc-truyen/@Chapter/Settings';
 import { useEffect, useRef, useState } from 'react';
 import Overlay from '@/components/common/Overlay';
 import IconSettings from '@/components/icons/IconSettings';
+import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
 
 const ImgsChapter = ({
     chapters,
@@ -26,11 +27,27 @@ const ImgsChapter = ({
 }) => {
     const totalImages = chapters?.length;
 
-    const [imgWidth, setImgWidth] = useState(50);
+    const { isMd } = useTailwindBreakpoints();
+    const [imgWidth, setImgWidth] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+    useEffect(() => {
+        if (isMd) {
+            setImgWidth(50);
+        } else {
+            setImgWidth(100);
+        }
+    }, [isMd]);
+
+    const handleOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isMd) {
+            e.preventDefault();
+            setIsModalOpen(!isModalOpen);
+        }
+    };
 
     const handleRightClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -53,6 +70,7 @@ const ImgsChapter = ({
         <div
             className="flex flex-col items-center"
             onContextMenu={handleRightClick}
+            onClick={handleOnClick}
         >
             {chapters && chapters.length > 0
                 ? chapters.map((item, index) => {
@@ -90,7 +108,7 @@ const ImgsChapter = ({
                 />
             </Overlay>
 
-            <div className="fixed bottom-[18px] left-[38px] bg-[#fafafa] dark:bg-[#030303] py-2 px-3 rounded-[3px] border dark:border-[#3e3e3e] flex gap-[11px] items-center">
+            <div className="hidden xl:flex fixed bottom-[18px] left-[38px] bg-[#fafafa] dark:bg-[#030303] py-2 px-3 rounded-[3px] border dark:border-[#3e3e3e] gap-[11px] items-center">
                 <div
                     className="dark:text-white/30 relative flex items-center justify-center text-xs"
                     title={`Ảnh ${currentImageIndex + 1}`}
@@ -111,20 +129,20 @@ const ImgsChapter = ({
             </div>
 
             <div
-                className="fixed bottom-[24px] right-[65px] bg-[#fafafa] shadow dark:bg-[#030303] border dark:border-[#3e3e3e] flex gap-[11px] items-center rounded-full py-1.5 px-4 cursor-pointer"
+                className="fixed bottom-[24px] right-[65px] bg-[#fafafa] shadow dark:bg-[#030303] border dark:border-[#3e3e3e] hidden lg:flex gap-[11px] items-center rounded-full py-1.5 px-4 cursor-pointer"
                 onClick={() => setIsModalOpen((prevState) => !prevState)}
             >
                 {isModalOpen ? (
                     <>
                         <IconSettings className="size-6 text-[#32aaff]"></IconSettings>
-                        <span className="dark:text-white/85 text-xs">
+                        <span className="hidden xl:block dark:text-white/85 text-xs">
                             Ẩn thanh công cụ
                         </span>
                     </>
                 ) : (
                     <>
                         <IconSettings className="size-6"></IconSettings>
-                        <span className="dark:text-white/85 text-xs">
+                        <span className="hidden xl:block dark:text-white/85 text-xs">
                             Hiển thị thanh công cụ
                         </span>
                     </>

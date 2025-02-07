@@ -49,7 +49,11 @@ const DynamicPageStatus = async ({
             <div className="flex flex-wrap gap-4 mb-8">
                 {dataGenre.map((item, index) => {
                     return (
-                        <figure key={index} className="flex flex-col">
+                        <figure
+                            key={index}
+                            title={item.name}
+                            className="flex flex-col w-[calc(100%/3-16px)] sm:w-[calc(100%/4-16px)] md:w-[calc(100%/5-16px)] lg:w-[calc(100%/6-16px)]"
+                        >
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image
                                     src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
@@ -64,7 +68,10 @@ const DynamicPageStatus = async ({
                                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                                 ></Image>
                             </Link>
-                            <figcaption className="w-[180px] mt-1.5 text-sm line-clamp-1">
+                            <figcaption
+                                className="mt-1.5 text-sm line-clamp-1"
+                                title={item.name}
+                            >
                                 <h2>
                                     <Link href={`/truyen-tranh/${item.slug}`}>
                                         {item.name}

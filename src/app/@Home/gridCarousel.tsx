@@ -13,9 +13,12 @@ import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { useRef } from 'react';
 import chunkArray from '@/components/utils/chunkArray';
+import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
+
+    const { isMd } = useTailwindBreakpoints();
 
     if (!data || data.length === 0) {
         return <p>No comics available</p>;
@@ -26,7 +29,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
     return (
         <div className="bg-black relative py-2">
             <Swiper
-                slidesPerView={1.5}
+                slidesPerView={isMd ? 1.5 : 1}
                 pagination={{ clickable: true }}
                 spaceBetween={6}
                 loop={true}
@@ -42,7 +45,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 {groupedData.map((group, slideIndex) => (
                     <SwiperSlide key={slideIndex}>
                         <div>
-                            <div className="grid grid-cols-7 grid-rows-6 gap-1.5">
+                            <div className="grid grid-cols-7 grid-rows-6 gap-0.5 sm:gap-1.5">
                                 {group.map((item, index) => {
                                     const gridPositions = [
                                         { className: 'col-span-2 row-span-6' },
