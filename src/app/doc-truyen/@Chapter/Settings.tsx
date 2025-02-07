@@ -188,7 +188,7 @@ const Settings = ({
 
     return (
         <div
-            className={`absolute bottom-0 flex flex-col items-center left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out`}
+            className={`w-full absolute bottom-0 flex flex-col items-center left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out`}
         >
             <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max">
                 <DropdownMenu>
@@ -246,7 +246,7 @@ const Settings = ({
             </div>
 
             {/*Slider*/}
-            <div className="my-5 flex flex-1 w-[600px] min-w-[120px] bg-secondary border-[#3e3e3e] rounded-[40px] text-white items-center justify-between gap-4 relative">
+            <div className="mt-5 p-3 md:p-0 md:my-5 flex flex-1 w-full md:w-[600px] md:min-w-[120px] bg-secondary border-[#3e3e3e] md:rounded-[40px] text-white items-center justify-between gap-4 relative">
                 {prevChapter ? (
                     <Link
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${prevChapter?.chapter_name}-${getIdFromUrl(prevChapter?.chapter_api_data, '/')}.html`}
@@ -282,7 +282,7 @@ const Settings = ({
                         <IconNext></IconNext>
                     </span>
                 )}
-                <div className="absolute bottom-0 -left-[140px]">
+                <div className="absolute bottom-0 -left-[140px] hidden lg:block">
                     <div className="bg-secondary border-[#3e3e3e] rounded-[40px] flex text-white w-[120px] items-center justify-between">
                         <span
                             className="p-3 cursor-pointer"

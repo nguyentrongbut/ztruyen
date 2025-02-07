@@ -60,7 +60,10 @@ const SearchPage = async ({
             <div className="flex flex-wrap gap-4">
                 {data.map((item, index) => {
                     return (
-                        <figure key={index} className="flex gap-4">
+                        <figure
+                            key={index}
+                            className="flex gap-4 lg:w-[calc(100%/3-16px)]"
+                        >
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image
                                     src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}

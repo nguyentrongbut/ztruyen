@@ -6,7 +6,7 @@ const NavbarGenre = async () => {
     const data: IGenres[] = response?.data?.data?.items;
 
     return (
-        <nav className="flex justify-center py-[26px] bg-secondary text-primary dark:bg-black dark:text-primary">
+        <nav className="flex justify-center py-3.5 sm:py-[26px] bg-secondary text-primary dark:bg-black dark:text-primary">
             <ul className="flex sm:gap-7 gap-5 text-xs lg:text-[15px] container justify-center wrapper">
                 {data.slice(0, 8).map((item, index) => (
                     <li
