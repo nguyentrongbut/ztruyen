@@ -1,14 +1,14 @@
-import axios from 'axios';
 import Link from 'next/link';
+import { getListGenre } from '@/lib/actions/data';
 
 const NavbarGenre = async () => {
-    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
-    const data: IGenres[] = response?.data?.data?.items;
+
+    const listGenre: IGenres[] = await getListGenre();
 
     return (
         <nav className="flex justify-center py-3.5 sm:py-[26px] bg-secondary text-primary dark:bg-black dark:text-primary">
             <ul className="flex sm:gap-7 gap-5 text-xs lg:text-[15px] container justify-center wrapper">
-                {data.slice(0, 8).map((item, index) => (
+                {listGenre.slice(0, 8).map((item, index) => (
                     <li
                         key={index}
                         className={`${

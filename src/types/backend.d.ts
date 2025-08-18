@@ -2,13 +2,13 @@ export {};
 
 declare global {
     interface IGenres {
-        id: string;
+        _id: string;
         slug: string;
         name: string;
     }
 
     interface IComic {
-        id: string;
+        _id: string;
         name: string;
         slug: string;
         origin_name: string[];
@@ -22,13 +22,13 @@ declare global {
     }
 
     interface ICategory {
-        id: string;
+        _id: string;
         name: string;
         slug: string;
     }
 
     interface IDetail {
-        id: string;
+        _id: string;
         name: string;
         slug: string;
         origin_name: string[];
@@ -50,7 +50,7 @@ declare global {
     }
 
     interface IReader {
-        id: string;
+        _id: string;
         comic_name: string;
         chapter_name: string;
         chapter_title: string;

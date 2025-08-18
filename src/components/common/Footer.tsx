@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 const Footer = () => {
     return (
-        <footer className="w-full mt-32">
+        <footer className="w-full">
             <div className="bg-secondary pt-10 pb-5 shadow-custom">
                 <div className="wrapper text-white/70">
                     <div className="flex justify-between items-end gap-4">

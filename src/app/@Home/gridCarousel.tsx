@@ -20,10 +20,6 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
 
     const { isMd } = useTailwindBreakpoints();
 
-    if (!data || data.length === 0) {
-        return <p>No comics available</p>;
-    }
-
     const groupedData = chunkArray(data, 8);
 
     return (
