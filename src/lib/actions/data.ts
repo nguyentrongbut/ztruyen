@@ -1,128 +1,46 @@
-'use server'
-
-function delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
+'use server';
 
 const url = `${process.env.NEXT_PUBLIC_API_URL_OUT_SIDE}`;
 
-export async function getListHome() {
+async function fetchData(endpoint: string) {
     try {
-        const res = await fetch(`${url}/home`, {
+        const res = await fetch(`${url}${endpoint}`, {
             method: 'GET',
             cache: 'no-cache',
-        })
+        });
 
         if (!res.ok) {
-            throw new Error(`Failed to fetch list home: ${res.statusText}`);
+            throw new Error(`Failed to fetch data from ${endpoint}: ${res.statusText}`);
         }
 
         const data = await res.json();
-
-        return data?.data?.items;
+        return data?.data?.items || [];
     } catch (err) {
-        console.log(err);
-        return null;
+        console.error(err);
+        return [];
     }
+}
+
+export async function getListHome() {
+    return fetchData('/home');
 }
 
 export async function getListPublishing() {
-    try {
-        const res = await fetch(`${url}/danh-sach/dang-phat-hanh?sort_field=updatedAt`, {
-            method: 'GET',
-            cache: 'no-cache',
-        })
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch list publishing: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-
-        return data?.data?.items;
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return fetchData('/danh-sach/dang-phat-hanh?sort_field=updatedAt');
 }
 
 export async function getListComplete() {
-    try {
-        const res = await fetch(`${url}/danh-sach/hoan-thanh?sort_field=updatedAt`, {
-            method: 'GET',
-            cache: 'no-cache',
-        })
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch list complete: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-
-        return data?.data?.items;
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return fetchData('/danh-sach/hoan-thanh?sort_field=updatedAt');
 }
 
 export async function getListComingSoon() {
-    try {
-        const res = await fetch(`${url}/danh-sach/sap-ra-mat?sort_field=updatedAt`, {
-            method: 'GET',
-            cache: 'no-cache',
-        })
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch list coming soon: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-
-        return data?.data?.items;
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return fetchData('/danh-sach/sap-ra-mat?sort_field=updatedAt');
 }
 
 export async function getListNew() {
-    try {
-        const res = await fetch(`${url}/danh-sach/truyen-moi?sort_field=updatedAt`, {
-            method: 'GET',
-            cache: 'no-cache',
-        })
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch list new: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-
-        return data?.data?.items;
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return fetchData('/danh-sach/truyen-moi?sort_field=updatedAt');
 }
 
 export async function getListGenre() {
-    try {
-        const res = await fetch(`${url}/the-loai`, {
-            method: 'GET',
-            cache: 'no-cache',
-        })
-
-        if (!res.ok) {
-            throw new Error(`Failed to fetch list genre: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-
-        return data?.data?.items;
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return fetchData('/the-loai');
 }
