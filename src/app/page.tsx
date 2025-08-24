@@ -58,6 +58,7 @@ export default function Home() {
                 <Suspense fallback={<ListComicSkeleton  bgColor/>}>
                     <CompleteComic />
                 </Suspense>
+
             </main>
         </>
     );

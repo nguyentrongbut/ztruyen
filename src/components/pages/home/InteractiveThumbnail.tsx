@@ -7,7 +7,9 @@ import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
 
 const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     // State to store the selected comic
-    const [selectedComic, setSelectedComic] = useState<IComic | null>(listNewComic[0]);
+    const [selectedComic, setSelectedComic] = useState<IComic | null>(
+        listNewComic[0]
+    );
 
     // Function to handle image click
     const handleImageClick = (comic: IComic) => {
@@ -19,7 +21,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     const { isSm } = useTailwindBreakpoints();
 
     if (!isSm) {
-        numberOfItems = 5
+        numberOfItems = 5;
     }
 
     return (
@@ -32,8 +34,14 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
             }}
         >
             <div className="z-10 w-full sm:w-[49%]">
-                <figcaption className="lg:text-3xl line-clamp-1">
-                    {selectedComic?.name}
+                <figcaption className="lg:text-3xl line-clamp-1" title={selectedComic?.name}>
+                    {!isSm ? (
+                        <Link href={`truyen-tranh/${selectedComic?.slug}`}>
+                            {selectedComic?.name}
+                        </Link>
+                    ) : (
+                        selectedComic?.name
+                    )}
                 </figcaption>
 
                 <ul className="flex gap-1 sm:gap-2 md:gap-2.5 lg:gap-3 items-center overflow-hidden scroll-sub mt-5">
@@ -44,7 +52,9 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                             style={{ background: 'hsla(0, 0%, 100%, .4)' }}
                             title={tag?.name}
                         >
-                            <Link href={`/the-loai/${tag?.slug}.html`}>{tag?.name}</Link>
+                            <Link href={`/the-loai/${tag?.slug}.html`}>
+                                {tag?.name}
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -58,7 +68,9 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                         <div
                             key={item?._id}
                             className={`aspect-[3/4] rounded-[5px] overflow-hidden cursor-pointer transform transition-all ease-in-out duration-300 ${
-                                selectedComic?._id === item?._id ? 'scale-[1.15] border border-white' : ''
+                                selectedComic?._id === item?._id
+                                    ? 'scale-[1.15] border border-white'
+                                    : ''
                             }`}
                             onClick={() => handleImageClick(item)}
                         >
@@ -68,20 +80,27 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                                 width={62}
                                 height={83}
                                 className="object-cover size-full"
+                                title={item?.name}
                             />
                         </div>
                     ))}
                 </div>
 
-                <Link href={`truyen-tranh/${selectedComic?.slug}`} className="hidden sm:block rounded-2xl overflow-hidden aspect-video absolute top-4  right-6 sm:-top-8 w-[45%]">
+                <Link
+                    href={`truyen-tranh/${selectedComic?.slug}`}
+                    className="hidden sm:block rounded-2xl overflow-hidden aspect-video absolute top-4  right-6 sm:-top-8 w-[45%]"
+                >
                     <Image
                         src={`${process.env.NEXT_PUBLIC_URL_IMG}/${selectedComic?.thumb_url}`}
-                        alt={selectedComic?.name || ''}
+                        alt={selectedComic?.name || 'title name ztruyen'}
                         width={522}
                         height={300}
                         className="object-cover size-full"
+                        title={selectedComic?.name || 'title name ztruyen'}
                     />
-                    <button className='bg-black/60 text-white absolute right-6 bottom-4 rounded-full px-4 py-2 text-xs hover:scale-105 transition ease-in-out'>Đọc ngay</button>
+                    <button className="bg-black/60 text-white absolute right-6 bottom-4 rounded-full px-4 py-2 text-xs hover:scale-105 transition ease-in-out">
+                        Đọc ngay
+                    </button>
                 </Link>
             </div>
 

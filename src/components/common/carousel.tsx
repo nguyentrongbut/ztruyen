@@ -115,14 +115,14 @@ const Carousel = ({
                     >
                         {groupData?.map((group, i) => (
                             <SwiperSlide key={i}>
-                                <div className="flex gap-1.5">
+                                <div className="grid grid-flow-col grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1.5 ">
                                     {group.map((item, i) => {
                                         return (
                                             <figure
-                                                className="flex flex-col w-[calc(100%/3-6px)] sm:w-[calc(100%/3-6px)] md:w-[calc(100%/4-6px)] lg:w-[calc(100%/5-6px)]"
+                                                className="flex flex-col"
                                                 key={i}
                                             >
-                                                <div className="relative overflow-hidden">
+                                                <div className="relative overflow-hidden" title={item.name}>
                                                     <Image
                                                         src={`https://img.otruyenapi.com/uploads/comics/${item.thumb_url}`}
                                                         width={219}
