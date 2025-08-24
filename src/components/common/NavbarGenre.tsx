@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getListGenre } from '@/lib/actions/data';
+import { getListGenre } from '@/lib/actions/home';
 
 const NavbarGenre = async () => {
 

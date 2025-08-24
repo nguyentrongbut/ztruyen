@@ -1,6 +1,5 @@
 import axios from 'axios';
 import getIdFromUrl from '@/components/utils/getIdFromUrl';
-// import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 import ImgsChapter from '@/app/doc-truyen/@Chapter/ImageChapter';
 import { getChapterName } from '@/components/utils/getChapterName';
 import removeExtension from '@/components/utils/removeExtension';
@@ -63,13 +62,6 @@ const ChapterPage = async ({
         `https://otruyenapi.com/v1/api/truyen-tranh/${getChapterName(slug)}`
     );
     const chapter: IReader = res?.data?.data?.item;
-    // const placeholders = await Promise.all(
-    //     chapter?.chapter_image.map((url) =>
-    //         dynamicBlurDataUrl(
-    //             `${res?.data?.data?.domain_cdn}/${chapter?.chapter_path}/${url.image_file}`
-    //         )
-    //     )
-    // );
 
     const listChapter: IChapter[] =
         response?.data?.data?.item?.chapters[0].server_data;
@@ -92,7 +84,6 @@ const ChapterPage = async ({
                 url={res?.data?.data?.domain_cdn}
                 urlPath={chapter?.chapter_path}
                 chapterName={chapter?.comic_name}
-                // placeholders={placeholders}
                 listChapter={listChapter}
                 currentUrl={slug}
             />

@@ -1,5 +1,5 @@
 import Carousel from '@/components/common/carousel';
-import { getListComingSoon } from '@/lib/actions/data';
+import { getListComingSoon } from '@/lib/actions/home';
 
 const ComingSoon = async () => {
 

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import IconTag from '@/components/icons/IconTag';
@@ -13,8 +12,8 @@ import {
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import getIdFromUrl from '@/components/utils/getIdFromUrl';
-import RangeBtnPagination from '@/components/pages/truyen-tranh/range.btn.pagination';
-// import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
+import RangeBtnPagination from '@/components/pages/truyen-tranh/RangeBtnPagination';
+import { getComicDetail, getListNewSection } from '@/lib/actions/detail';
 
 export async function generateMetadata({
     params,
@@ -23,10 +22,9 @@ export async function generateMetadata({
 }) {
     const slug = (await params).slug;
 
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/truyen-tranh/${slug}`
-    );
-    const comicName: string = res?.data?.data.seoOnPage.seoSchema.name;
+    const res = await getComicDetail(slug)
+
+    const comicName: string = res?.data.seoOnPage.seoSchema.name;
 
     return {
         title: `${comicName} Tiếng Việt`,
@@ -47,7 +45,7 @@ export async function generateMetadata({
             description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại Ztruyen.io.vn`,
             images: [
                 {
-                    url: `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${res?.data?.data?.item?.thumb_url}`,
+                    url: `${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${res?.data?.item?.thumb_url}`,
                 },
             ],
         },
@@ -61,50 +59,31 @@ const DetailPage = async ({
 }) => {
     const slug = (await params).slug;
 
-    const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL_OUT_SIDE}/truyen-tranh/${slug}`
-    );
+    const [response, res] = await Promise.all([
+        getComicDetail(slug),
+        getListNewSection(),
+    ]);
 
-    const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL_OUT_SIDE}/danh-sach/truyen-moi`
-    );
-
-    const data: IDetail = response?.data?.data?.item;
+    const data: IDetail = response?.data?.item;
 
     const chapters: IChapter[] = data?.chapters[0]?.server_data;
     const lastestChapter = chapters?.slice(-1)[0]?.chapter_name;
 
-    // const placeholder = await dynamicBlurDataUrl(
-    //     `${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`
-    // );
-
-    // const placeholders = await Promise.all(
-    //     res?.data?.data?.items
-    //         .slice(0, 6)
-    //         .map((url: IComic) =>
-    //             dynamicBlurDataUrl(
-    //                 `${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${url?.thumb_url}`
-    //             )
-    //         )
-    // );
-
     return (
-        <div className="bg-[#fafafa] pt-5 dark:bg-secondary">
+        <div className="bg-[#fafafa] pt-5 dark:bg-secondary pb-20">
             <section className="wrapper flex flex-col items-center sm:items-stretch sm:flex-row gap-7 p-5 bg-primary dark:bg-black/10 shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
                 <Image
-                    src={`${response?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data.thumb_url}`}
+                    src={`${response?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data?.thumb_url}`}
                     width={240}
                     height={320}
-                    alt={data.name}
+                    alt={data?.name}
                     sizes="(max-width: 50px) 2vw, max-width: 1920px) 240px)"
                     quality="60"
                     priority={true}
-                    // placeholder="blur"
-                    // blurDataURL={placeholder}
                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                 ></Image>
                 <div className="flex flex-col items-center sm:items-start justify-between w-full">
-                    <h1 className="font-semibold text-xl">{data.name}</h1>
+                    <h1 className="font-semibold text-xl">{data?.name}</h1>
                     <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconTag className="size-4"></IconTag>
@@ -116,7 +95,7 @@ const DetailPage = async ({
                         </div>
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
                             <IconStatus className="size-4"></IconStatus>
-                            <span className="text-sm">{data.status}</span>
+                            <span className="text-sm">{data?.status}</span>
                         </div>
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconCalendar className="size-4"></IconCalendar>
@@ -149,7 +128,7 @@ const DetailPage = async ({
                             <Link
                                 href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
                             >
-                                Đọc chương {chapters[0].chapter_name}
+                                Đọc chương {chapters[0]?.chapter_name}
                             </Link>
                         </Button>
                     )}
@@ -180,7 +159,7 @@ const DetailPage = async ({
                         </Link>
                     </div>
                     <ul className="mt-5">
-                        {res?.data?.data?.items
+                        {res?.data?.items
                             .slice(0, 6)
                             .map((item: IComic, index: number) => {
                                 return (
@@ -191,7 +170,7 @@ const DetailPage = async ({
                                         <figure className="flex mt-4 gap-3">
                                             <div className="lg:w-[35%]">
                                                 <Image
-                                                    src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
+                                                    src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
                                                     width={100}
                                                     height={240}
                                                     alt={item.name}
@@ -202,17 +181,13 @@ const DetailPage = async ({
                                                             ? true
                                                             : false
                                                     }
-                                                    // placeholder="blur"
-                                                    // blurDataURL={
-                                                    //     placeholders[index]
-                                                    // }
                                                     className="aspect-[3/4] bg-secondary dark:bg-primary"
                                                 ></Image>
                                             </div>
                                             <figcaption className="w-[64%] flex justify-between flex-col">
                                                 <span
                                                     className="line-clamp-1"
-                                                    title={item.name}
+                                                    title={item?.name}
                                                 >
                                                     {item.name}
                                                 </span>

@@ -6,10 +6,10 @@ import ComingSoon from '@/components/pages/home/ComingSoon';
 import PublishingComic from '@/components/pages/home/PublishingComic';
 import CompleteComic from '@/components/pages/home/CompleteComic';
 import { Suspense } from 'react';
-import GridCarouselSkeleton from '@/components/skeleton/GridCarouselSkeleton';
-import NavbarGenreSkeleton from '@/components/skeleton/NavbarGenreSkeleton';
-import ListComicSkeleton from '@/components/skeleton/ListComicSkeleton';
-import NewComicSkeleton from '@/components/skeleton/NewComicSkeleton';
+import GridCarouselSkeleton from '@/components/skeleton/home/GridCarouselSkeleton';
+import NavbarGenreSkeleton from '@/components/skeleton/home/NavbarGenreSkeleton';
+import ListComicSkeleton from '@/components/skeleton/home/ListComicSkeleton';
+import NewComicSkeleton from '@/components/skeleton/home/NewComicSkeleton';
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://ztruyen.io.vn'),

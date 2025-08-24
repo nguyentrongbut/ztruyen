@@ -1,5 +1,5 @@
 import Carousel from '@/components/common/carousel';
-import { getListPublishing } from '@/lib/actions/data';
+import { getListPublishing } from '@/lib/actions/home';
 
 const PublishingComic = async () => {
 

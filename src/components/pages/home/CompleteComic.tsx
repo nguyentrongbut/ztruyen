@@ -1,5 +1,5 @@
 import Carousel from '@/components/common/carousel';
-import { getListComplete } from '@/lib/actions/data';
+import { getListComplete } from '@/lib/actions/home';
 
 const CompleteComic = async () => {
 

@@ -1,4 +1,4 @@
-import { getListNew } from '@/lib/actions/data';
+import { getListNew } from '@/lib/actions/home';
 import Link from 'next/link';
 import InteractiveThumbnail from '@/components/pages/home/InteractiveThumbnail';
 

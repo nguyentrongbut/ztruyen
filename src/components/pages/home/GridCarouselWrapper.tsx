@@ -1,5 +1,5 @@
 import GridCarousel from '@/app/@Home/gridCarousel';
-import { getListHome } from '@/lib/actions/data';
+import { getListHome } from '@/lib/actions/home';
 
 const GridCarouselWrapper = async () => {
 
