@@ -29,7 +29,7 @@ const DynamicPageStatus = async ({
     const dataGenre: IComic[] = res?.data?.data?.items;
 
     return (
-        <section className="wrapper pt-6">
+        <section className="wrapper pt-6 pb-20">
             {title && (
                 <h1>
                     <p className="capitalize text-xl mb-6">
@@ -37,13 +37,13 @@ const DynamicPageStatus = async ({
                     </p>
                 </h1>
             )}
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="grid grid-cols-3 sm:w-grid-cols-4 md:w-grid-cols-5 lg:grid-cols-6 gap-4 mb-8">
                 {dataGenre.map((item, index) => {
                     return (
                         <figure
                             key={index}
                             title={item.name}
-                            className="flex flex-col w-[calc(100%/3-16px)] sm:w-[calc(100%/4-16px)] md:w-[calc(100%/5-16px)] lg:w-[calc(100%/6-16px)]"
+                            className="flex flex-col"
                         >
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image
@@ -70,12 +70,12 @@ const DynamicPageStatus = async ({
                         </figure>
                     );
                 })}
-                <PaginationWithLinks
-                    page={pageQuery}
-                    pageSize={itemsPerPage}
-                    totalCount={totalItems}
-                />
             </div>
+            <PaginationWithLinks
+                page={pageQuery}
+                pageSize={itemsPerPage}
+                totalCount={totalItems}
+            />
         </section>
     );
 };

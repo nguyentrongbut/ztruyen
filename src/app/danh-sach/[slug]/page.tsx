@@ -1,6 +1,8 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 import axios from 'axios';
 import removeExtension from '@/components/utils/removeExtension';
+import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
+import { Suspense } from 'react';
 
 export async function generateMetadata({
     params,
@@ -62,11 +64,15 @@ const Status = async ({
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
     return (
-        <DynamicPageStatus
-            category={`danh-sach/${slug}`}
-            pageQuery={pageQuery}
-            title={true}
-        ></DynamicPageStatus>
+       <div>
+           <Suspense fallback={<DynamicPageStatusSkeleton title/>}>
+               <DynamicPageStatus
+                   category={`danh-sach/${slug}`}
+                   pageQuery={pageQuery}
+                   title={true}
+               ></DynamicPageStatus>
+           </Suspense>
+       </div>
     );
 };
 

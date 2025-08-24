@@ -2,6 +2,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 import removeExtension from '@/components/utils/removeExtension';
+import { Suspense } from 'react';
+import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
 
 export async function generateMetadata({
     params,
@@ -81,35 +83,46 @@ const Genre = async ({
                                     </Link>
                                 </h1>
                             ) : (
-                                <Link
-                                    href={`/the-loai/${item.slug}.html`}
-                                    className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
-                                >
-                                    {item.name}
-                                </Link>
+                               <h2>
+                                   <Link
+                                       href={`/the-loai/${item.slug}.html`}
+                                       className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
+                                   >
+                                       {item.name}
+                                   </Link>
+                               </h2>
                             )}
                         </li>
                     ))}
                     <li>
                         {'tat-ca' === slug ? (
-                            <h1 className="rounded-[5px] px-[10px] py-1.5 text-[#32aaff]">
-                                Tất cả
+                            <h1>
+                                <Link
+                                    href={`/the-loai/tat-ca.html`}
+                                    className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 text-[#32aaff]"
+                                >
+                                    Tất cả
+                                </Link>
                             </h1>
                         ) : (
-                            <Link
-                                href={`/the-loai/tat-ca.html`}
-                                className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5"
-                            >
-                                Tất cả
-                            </Link>
+                           <h2>
+                               <Link
+                                   href={`/the-loai/tat-ca.html`}
+                                   className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5"
+                               >
+                                   Tất cả
+                               </Link>
+                           </h2>
                         )}
                     </li>
                 </ul>
             </nav>
-            <DynamicPageStatus
-                category={`the-loai/${slug}`}
-                pageQuery={pageQuery}
-            ></DynamicPageStatus>
+            <Suspense fallback={<DynamicPageStatusSkeleton/>}>
+                <DynamicPageStatus
+                    category={`the-loai/${slug}`}
+                    pageQuery={pageQuery}
+                ></DynamicPageStatus>
+            </Suspense>
         </>
     );
 };
