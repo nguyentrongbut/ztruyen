@@ -1,9 +1,9 @@
-import axios from 'axios';
 import Link from 'next/link';
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
 import removeExtension from '@/components/utils/removeExtension';
 import { Suspense } from 'react';
 import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
+import { getGenreDetail, getGenres } from '@/lib/actions/dynamic.page';
 
 export async function generateMetadata({
     params,
@@ -17,10 +17,9 @@ export async function generateMetadata({
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
 
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/the-loai/${slug}`
-    );
-    const genreName: string = res?.data?.data.titlePage || 'Tất cả';
+    const res = await getGenreDetail(slug)
+
+    const genreName: string = res?.data.titlePage || 'Tất cả';
 
     return {
         title: `${genreName === 'Tất cả' ? 'Tất cả thể loại' : `Thể loại - Truyện ${genreName}`} - Ztruyện`,
@@ -61,8 +60,8 @@ const Genre = async ({
 
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
-    const response = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
-    const data: IGenres[] = response?.data?.data?.items;
+    const response = await getGenres();
+    const data: IGenres[] = response?.data?.items;
 
     return (
         <>

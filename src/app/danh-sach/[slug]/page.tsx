@@ -1,8 +1,8 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import axios from 'axios';
 import removeExtension from '@/components/utils/removeExtension';
 import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
 import { Suspense } from 'react';
+import { getListStatusComic } from '@/lib/actions/dynamic.page';
 
 export async function generateMetadata({
     params,
@@ -16,11 +16,9 @@ export async function generateMetadata({
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
 
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/danh-sach/${slug}?page=${pageQuery}`
-    );
+    const res = await getListStatusComic(slug, pageQuery);
 
-    const status = res?.data?.data?.titlePage;
+    const status = res?.data?.titlePage;
 
     return {
         title: `${status} - ztruyen.io.vn`,

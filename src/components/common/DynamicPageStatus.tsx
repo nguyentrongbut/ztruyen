@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import axios from 'axios';
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
+import { getListCategoryComic, getListNewComic } from '@/lib/actions/dynamic.page';
 
 const DynamicPageStatus = async ({
     category,
@@ -14,26 +14,22 @@ const DynamicPageStatus = async ({
 }) => {
     let res;
     if (category == 'the-loai/tat-ca') {
-        res = await axios.get(
-            `https://otruyenapi.com/v1/api/danh-sach/truyen-moi?page=${pageQuery}`
-        );
+        res = await getListNewComic(pageQuery)
     } else {
-        res = await axios.get(
-            `https://otruyenapi.com/v1/api/${category}?page=${pageQuery}`
-        );
+        res = await getListCategoryComic(category, pageQuery)
     }
 
     const itemsPerPage = 24;
 
-    const totalItems = res?.data?.data?.params?.pagination?.totalItems || 0;
-    const dataGenre: IComic[] = res?.data?.data?.items;
+    const totalItems = res?.data?.params?.pagination?.totalItems || 0;
+    const dataGenre: IComic[] = res?.data?.items;
 
     return (
         <section className="wrapper pt-6 pb-20">
             {title && (
                 <h1>
                     <p className="capitalize text-xl mb-6">
-                        {res?.data?.data?.titlePage}
+                        {res?.data?.titlePage}
                     </p>
                 </h1>
             )}
@@ -47,7 +43,7 @@ const DynamicPageStatus = async ({
                         >
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image
-                                    src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
+                                    src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
                                     width={180}
                                     height={240}
                                     alt={item.name}
