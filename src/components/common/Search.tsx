@@ -74,7 +74,6 @@ const Search = () => {
                     className="sm:hidden cursor-pointer"
                     onClick={() => {
                         setSearchIconClick(true);
-                        console.log(searchIconClick);
                     }}
                 >
                     <IconSearch></IconSearch>

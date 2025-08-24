@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import getIdFromUrl from '@/components/utils/getIdFromUrl';
+import RangeBtnPagination from '@/components/pages/truyen-tranh/range.btn.pagination';
 // import { dynamicBlurDataUrl } from '@/components/utils/dynamicBlurDataUrl';
 
 export async function generateMetadata({
@@ -61,11 +62,11 @@ const DetailPage = async ({
     const slug = (await params).slug;
 
     const response = await axios.get(
-        `https://otruyenapi.com/v1/api/truyen-tranh/${slug}`
+        `${process.env.NEXT_PUBLIC_API_URL_OUT_SIDE}/truyen-tranh/${slug}`
     );
 
     const res = await axios.get(
-        `https://otruyenapi.com/v1/api/danh-sach/truyen-moi`
+        `${process.env.NEXT_PUBLIC_API_URL_OUT_SIDE}/danh-sach/truyen-moi`
     );
 
     const data: IDetail = response?.data?.data?.item;
@@ -162,49 +163,7 @@ const DetailPage = async ({
                             <h2 className="font-medium text-lg">
                                 Danh sách chương
                             </h2>
-                            <ul className="flex flex-wrap mt-5 gap-4 -mr-4">
-                                {chapters?.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className="w-[calc(100%/2-16px)] sm:w-[calc(100%/3-16px)] md:w-[calc(100%/4-16px)]"
-                                    >
-                                        {item.chapter_title ? (
-                                            <TooltipProvider>
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <Link
-                                                            href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
-                                                        >
-                                                            <Button
-                                                                variant="outline"
-                                                                className="w-full dark:text-primary dark:border-primary"
-                                                            >
-                                                                <span className="line-clamp-1">{`Chương ${item.chapter_name} - ${item.chapter_title}`}</span>
-                                                            </Button>
-                                                        </Link>
-                                                    </TooltipTrigger>
-                                                    <TooltipContent className="w-[198px] text-center shadow-lg my-0.5 bg-primary dark:bg-secondary p-2">
-                                                        <p className="text-secondary/50 text-sm">
-                                                            {item.chapter_title}
-                                                        </p>
-                                                    </TooltipContent>
-                                                </Tooltip>
-                                            </TooltipProvider>
-                                        ) : (
-                                            <Link
-                                                href={`/doc-truyen/${data?.slug}-chuong-${item?.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
-                                            >
-                                                <Button
-                                                    variant="outline"
-                                                    className="w-full dark:text-primary dark:border-primary"
-                                                >
-                                                    {`Chương ${item.chapter_name}`}
-                                                </Button>
-                                            </Link>
-                                        )}
-                                    </li>
-                                ))}
-                            </ul>
+                            <RangeBtnPagination chapters={chapters} slug={data?.slug} />
                         </>
                     ) : (
                         <p className="text-center m-6 text-[15px]">
