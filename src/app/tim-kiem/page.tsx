@@ -1,7 +1,7 @@
-import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
+import { getSearchComic } from '@/lib/actions/search';
 export async function generateMetadata({
     searchParams,
 }: {
@@ -42,15 +42,14 @@ const SearchPage = async ({
 }: {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
-    const keyword = (await searchParams).keyword || '';
+    const keywordParam  = (await searchParams).keyword || '';
+    const keyword = Array.isArray(keywordParam) ? keywordParam[0] : keywordParam || "";
     const pageQuery =
         parseInt(((await searchParams).page as string) || '1') || 1;
-    const res = await axios.get(
-        `https://otruyenapi.com/v1/api/tim-kiem?keyword=${keyword}&page=${pageQuery}`
-    );
-    const data: IComic[] = res?.data?.data?.items;
+    const res = await getSearchComic(keyword, pageQuery);
+    const data: IComic[] = res?.data?.items;
     const itemsPerPage = 24;
-    const totalItems = res?.data?.data?.params?.pagination?.totalItems || 0;
+    const totalItems = res?.data?.params?.pagination?.totalItems || 0;
     return (
         <section className="wrapper">
             <div className="flex gap-[5px] text-sm py-8">
@@ -66,7 +65,7 @@ const SearchPage = async ({
                         >
                             <Link href={`/truyen-tranh/${item.slug}`}>
                                 <Image
-                                    src={`${res?.data?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
+                                    src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
                                     width={135}
                                     height={180}
                                     alt={item.name}
@@ -116,6 +115,8 @@ const SearchPage = async ({
                         </figure>
                     );
                 })}
+            </div>
+            <div className='pt-8 pb-20'>
                 <PaginationWithLinks
                     page={pageQuery}
                     pageSize={itemsPerPage}
