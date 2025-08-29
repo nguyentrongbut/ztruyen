@@ -86,7 +86,8 @@ const ImgsChapter = ({
                               height={1387}
                               sizes="(max-width: 50px) 2vw, (max-width: 1920px) 925px)"
                               quality="60"
-                              priority={index <= 0 ? true : false}
+                              priority={index === 0}
+                              loading={index === 0 ? 'eager' : 'lazy'}
                               // placeholder="blur"
                               // blurDataURL={placeholders[index]}
                               className={`bg-secondary dark:bg-primary`}
@@ -95,18 +96,23 @@ const ImgsChapter = ({
                       );
                   })
                 : 'No Image Loading....'}
-            <Overlay isModalOpen={isModalOpen}>
-                <Settings
-                    imgWidth={imgWidth}
-                    totalImages={totalImages}
-                    setImgWidth={setImgWidth}
-                    listChapter={listChapter}
-                    currentUrl={currentUrl}
-                    imgRefs={imgRefs}
-                    currentImageIndex={currentImageIndex}
-                    setCurrentImageIndex={setCurrentImageIndex}
-                />
-            </Overlay>
+            {
+                isModalOpen && (
+                    <Overlay isModalOpen={isModalOpen}>
+                        <Settings
+                            imgWidth={imgWidth}
+                            totalImages={totalImages}
+                            setImgWidth={setImgWidth}
+                            listChapter={listChapter}
+                            currentUrl={currentUrl}
+                            imgRefs={imgRefs}
+                            currentImageIndex={currentImageIndex}
+                            setCurrentImageIndex={setCurrentImageIndex}
+                        />
+                    </Overlay>
+                )
+            }
+
 
             <div className="hidden xl:flex fixed bottom-[18px] left-[38px] bg-[#fafafa] dark:bg-[#030303] py-2 px-3 rounded-[3px] border dark:border-[#3e3e3e] gap-[11px] items-center">
                 <div
