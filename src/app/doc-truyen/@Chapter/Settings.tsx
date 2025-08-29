@@ -212,7 +212,7 @@ const Settings = ({
                                         <li key={i}>
                                             <Link
                                                 href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${item.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
-                                                className={`px-10 py-3 block text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-[#33aaff]' : ''}`}
+                                                className={`px-10 py-3 block text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-primaryV1' : ''}`}
                                             >
                                                 {`Chương ${item.chapter_name} ${item.chapter_title ? `- ${item.chapter_title}` : ''}`}
                                             </Link>

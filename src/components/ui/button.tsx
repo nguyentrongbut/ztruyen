@@ -9,7 +9,7 @@ const buttonVariants = cva(
     {
         variants: {
             variant: {
-                default: 'bg-[#33aaff] text-primary hover:bg-[#33aaff]/90',
+                default: 'bg-primaryV1 text-primary hover:bg-primaryV1/90',
                 destructive:
                     'bg-destructive text-destructive-foreground hover:bg-destructive/90',
                 outline:
@@ -37,20 +37,26 @@ export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
         VariantProps<typeof buttonVariants> {
     asChild?: boolean
+    isLoading?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, asChild = false, ...props }, ref) => {
-        const Comp = asChild ? Slot : 'button'
+    ({className, variant, size, asChild = false, isLoading, children, ...props}, ref) => {
+        const Comp = asChild ? Slot : "button"
+        const child = isLoading ?
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div> : children
         return (
             <Comp
-                className={cn(buttonVariants({ variant, size, className }))}
+                className={cn(buttonVariants({variant, size, className}))}
                 ref={ref}
                 {...props}
-            />
+            >
+                {child}
+            </Comp>
         )
     }
 )
-Button.displayName = 'Button'
+
+Button.displayName = "Button";
 
 export { Button, buttonVariants }

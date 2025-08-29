@@ -70,6 +70,7 @@ body {
     :root {
         --primary: 0, 0%, 100%;
         --secondary: 0, 0%, 13%;
+        --primaryV1: #33aaff;
     }
     * {
         @apply border-border;

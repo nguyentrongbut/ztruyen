@@ -5,6 +5,8 @@ import { ThemeProvider } from '@/components/common/ThemeProvider';
 import NprogressWrapper from '@/lib/nprogress.wrapper';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import { AuthDialogProvider } from '@/contexts/AuthDialogContext';
+import { Toaster } from 'react-hot-toast';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -69,11 +71,19 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <NprogressWrapper>
-                        <Header></Header>
-                        <main className="mt-[56px]">{children}</main>
-                        <Footer></Footer>
+                        <AuthDialogProvider>
+                            <Header/>
+                            <main className="mt-[56px]">{children}</main>
+                            <Footer/>
+                        </AuthDialogProvider>
                     </NprogressWrapper>
                 </ThemeProvider>
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        className: 'text-sm shadow-md rounded-lg text-amber-500 text-center',
+                    }}
+                ></Toaster>
             </body>
         </html>
     );

@@ -10,7 +10,7 @@ const ProgressWrapper = ({ children }: { children: React.ReactNode }) => {
             <Suspense>
                 <ProgressBar
                     height="2px"
-                    color="#32aaff"
+                    color="var(--primaryV1)"
                     options={{ showSpinner: false }}
                     shallowRouting
                 />

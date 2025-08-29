@@ -57,7 +57,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                             onClick={() => setCurrentRange(idx)}
                             className={`px-6 py-2 rounded-full text-xs transition ${
                                 idx === currentRange
-                                    ? "bg-blue-100 text-blue-600"
+                                    ? "bg-blue-100 text-primaryV1"
                                     : "bg-gray-100 text-gray-600 hover:text-black"
                             }`}
                         >

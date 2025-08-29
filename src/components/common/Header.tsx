@@ -10,6 +10,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import DialogCta from '@/components/common/DialogCta';
 
 const Header = ({
     asChild = false,
@@ -29,7 +30,7 @@ const Header = ({
                             height={32}
                             alt="ztruyện"
                         ></Image>
-                        <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-xl">
+                        <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryV1 first-letter:text-xl">
                             ztruyện
                         </p>
                     </Link>
@@ -38,7 +39,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/the-loai/tat-ca.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryV1"
                                 >
                                     Thể loại
                                 </Link>
@@ -46,7 +47,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/dang-phat-hanh.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryV1"
                                 >
                                     Đang phát hành
                                 </Link>
@@ -54,7 +55,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/hoan-thanh.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryV1"
                                 >
                                     Hoàn thành
                                 </Link>
@@ -62,7 +63,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/sap-ra-mat.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryV1"
                                 >
                                     Sắp ra mắt
                                 </Link>
@@ -70,7 +71,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/truyen-moi.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryV1"
                                 >
                                     Truyện mới
                                 </Link>
@@ -81,14 +82,7 @@ const Header = ({
                 {children}
                 <div className="flex items-center gap-[17px]">
                     {!asChild && <Search></Search>}
-                    <ul className="flex items-center gap-4 text-xs lg:text-sm">
-                        <li>
-                            <Link href="#">Đăng nhập</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Đăng ký</Link>
-                        </li>
-                    </ul>
+                    <DialogCta/>
                     <div className="hidden xl:block">
                         <ModeToggle></ModeToggle>
                     </div>
@@ -118,7 +112,7 @@ const Header = ({
                                                     height={32}
                                                     alt="ztruyện"
                                                 ></Image>
-                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-xl">
+                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryV1 first-letter:text-xl">
                                                     ztruyện
                                                 </p>
                                             </Link>
@@ -129,7 +123,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/the-loai/tat-ca.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryV1 py-2 pl-3 block"
                                             >
                                                 Thể loại
                                             </Link>
@@ -139,7 +133,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/dang-phat-hanh.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryV1 py-2 pl-3 block"
                                             >
                                                 Đang phát hành
                                             </Link>
@@ -149,7 +143,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/hoan-thanh.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryV1 py-2 pl-3 block"
                                             >
                                                 Hoàn thành
                                             </Link>
@@ -159,7 +153,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/sap-ra-mat.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryV1 py-2 pl-3 block"
                                             >
                                                 Sắp ra mắt
                                             </Link>

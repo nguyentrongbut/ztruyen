@@ -53,7 +53,7 @@ const SearchPage = async ({
     return (
         <section className="wrapper">
             <div className="flex gap-[5px] text-sm py-8">
-                <span className="text-[#32aaff]">{`"${keyword}"`}</span>
+                <span className="text-primaryV1">{`"${keyword}"`}</span>
                 <span>Kết quả tìm kiếm</span>
             </div>
             <div className="flex flex-wrap gap-4">
