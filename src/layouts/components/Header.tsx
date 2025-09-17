@@ -29,7 +29,7 @@ const Header = ({
                             height={32}
                             alt="ztruyện"
                         ></Image>
-                        <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-xl">
+                        <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
                             ztruyện
                         </p>
                     </Link>
@@ -38,7 +38,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/the-loai/tat-ca.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryColor"
                                 >
                                     Thể loại
                                 </Link>
@@ -46,7 +46,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/dang-phat-hanh.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryColor"
                                 >
                                     Đang phát hành
                                 </Link>
@@ -54,7 +54,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/hoan-thanh.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryColor"
                                 >
                                     Hoàn thành
                                 </Link>
@@ -62,7 +62,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/sap-ra-mat.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryColor"
                                 >
                                     Sắp ra mắt
                                 </Link>
@@ -70,7 +70,7 @@ const Header = ({
                             <li>
                                 <Link
                                     href="/danh-sach/truyen-moi.html"
-                                    className="hover:text-[#32aaff]"
+                                    className="hover:text-primaryColor"
                                 >
                                     Truyện mới
                                 </Link>
@@ -118,7 +118,7 @@ const Header = ({
                                                     height={32}
                                                     alt="ztruyện"
                                                 ></Image>
-                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-xl">
+                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
                                                     ztruyện
                                                 </p>
                                             </Link>
@@ -129,7 +129,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/the-loai/tat-ca.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryColor py-2 pl-3 block"
                                             >
                                                 Thể loại
                                             </Link>
@@ -139,7 +139,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/dang-phat-hanh.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryColor py-2 pl-3 block"
                                             >
                                                 Đang phát hành
                                             </Link>
@@ -149,7 +149,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/hoan-thanh.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryColor py-2 pl-3 block"
                                             >
                                                 Hoàn thành
                                             </Link>
@@ -159,7 +159,7 @@ const Header = ({
                                         <li className="rounded-md">
                                             <Link
                                                 href="/danh-sach/sap-ra-mat.html"
-                                                className="hover:text-[#32aaff] py-2 pl-3 block"
+                                                className="hover:text-primaryColor py-2 pl-3 block"
                                             >
                                                 Sắp ra mắt
                                             </Link>

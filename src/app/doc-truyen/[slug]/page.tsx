@@ -71,7 +71,7 @@ const ChapterPage = async ({
                 <h1 className="text-sm line-clamp-1 hidden md:block">
                     <Link
                         href={`/truyen-tranh/${response?.data?.data?.item.slug}`}
-                        className="hover:text-[#32aaff]"
+                        className="hover:text-primaryColor"
                     >
                         {response?.data?.data?.item.name} {' - '}
                     </Link>

@@ -14,7 +14,7 @@ const Footer = () => {
                                     height={50}
                                     alt="ztruyện"
                                 ></Image>
-                                <p className="text-lg md:text-[25px] font-bold first-letter:uppercase first-letter:text-[#32aaff] first-letter:text-2xl md:first-letter:text-4xl">
+                                <p className="text-lg md:text-[25px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-2xl md:first-letter:text-4xl">
                                     ztruyện
                                 </p>
                             </Link>

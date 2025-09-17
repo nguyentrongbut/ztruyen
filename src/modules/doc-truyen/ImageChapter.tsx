@@ -140,7 +140,7 @@ const ImgsChapter = ({
             >
                 {isModalOpen ? (
                     <>
-                        <IconSettings className="size-6 text-[#32aaff]"></IconSettings>
+                        <IconSettings className="size-6 text-primaryColor"></IconSettings>
                         <span className="hidden xl:block dark:text-white/85 text-xs">
                             Ẩn thanh công cụ
                         </span>

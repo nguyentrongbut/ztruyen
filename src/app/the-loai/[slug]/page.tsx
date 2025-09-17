@@ -76,7 +76,7 @@ const Genre = async ({
                                 <h1>
                                     <Link
                                         href={`/the-loai/${item.slug}.html`}
-                                        className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
+                                        className={`active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-primaryColor'}`}
                                     >
                                         {item.name}
                                     </Link>
@@ -85,7 +85,7 @@ const Genre = async ({
                                <h2>
                                    <Link
                                        href={`/the-loai/${item.slug}.html`}
-                                       className={`active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-[#32aaff]'}`}
+                                       className={`active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-primaryColor'}`}
                                    >
                                        {item.name}
                                    </Link>
@@ -98,7 +98,7 @@ const Genre = async ({
                             <h1>
                                 <Link
                                     href={`/the-loai/tat-ca.html`}
-                                    className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5 text-[#32aaff]"
+                                    className="active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 text-primaryColor"
                                 >
                                     Tất cả
                                 </Link>
@@ -107,7 +107,7 @@ const Genre = async ({
                            <h2>
                                <Link
                                    href={`/the-loai/tat-ca.html`}
-                                   className="active:bg-[#32aaff] active:text-primary rounded-[5px] px-[10px] py-1.5"
+                                   className="active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5"
                                >
                                    Tất cả
                                </Link>
