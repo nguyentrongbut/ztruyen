@@ -6,6 +6,7 @@ import NprogressWrapper from '@/components/common/nprogress.wrapper';
 import Header from '@/layouts/components/Header';
 import Footer from '@/layouts/components/Footer';
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -76,6 +77,7 @@ export default function RootLayout({
                     </NprogressWrapper>
                 </ThemeProvider>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
