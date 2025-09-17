@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/common/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
 import Header from '@/layouts/components/Header';
 import Footer from '@/layouts/components/Footer';
+import { Analytics } from "@vercel/analytics/next"
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -74,6 +75,7 @@ export default function RootLayout({
                         <Footer></Footer>
                     </NprogressWrapper>
                 </ThemeProvider>
+                <Analytics />
             </body>
         </html>
     );
