@@ -38,6 +38,7 @@ body {
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
     }
+
     .dark {
         --background: var(--secondary);
         --foreground: 210 40% 98%;
@@ -71,12 +72,15 @@ body {
         --primary: 0, 0%, 100%;
         --secondary: 0, 0%, 13%;
     }
+
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
     }
+
     #nprogress .bar {
         z-index: 9999 !important;
         background: #32aaff !important;
@@ -86,9 +90,15 @@ body {
 @layer utilities {
     .wrapper {
         width: 1160px;
-        max-width: calc(100% - 50px);
+        max-width: calc(100% - 100px);
         margin-left: auto;
         margin-right: auto;
+    }
+
+    @media (max-width: 640px) {
+        .wrapper {
+            max-width: calc(100% - 60px);
+        }
     }
 
     body.modal-scrollbar-hidden::-webkit-scrollbar, .scroll-hidden::-webkit-scrollbar {

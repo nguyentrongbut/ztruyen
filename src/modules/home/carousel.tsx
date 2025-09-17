@@ -209,7 +209,7 @@ const Carousel = ({
                     {/* Prev button */}
                     <div
                         className={`
-              absolute size-[50px] sm:size-[60px] md:size-[64px] lg:size-[74px]
+              absolute size-12 sm:size-[60px] md:size-[64px] lg:size-[74px]
               -left-6 sm:-left-[36px] z-20 top-1/3 -translate-y-1/3
               bg-white opacity-80 cursor-pointer flex items-center justify-center rounded-full
               ${atBeginning ? 'hidden' : ''}
@@ -217,21 +217,21 @@ const Carousel = ({
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slidePrev()}
                     >
-                        <IconPrev className="text-secondary size-8" />
+                        <IconPrev className="text-secondary size-6 sm:size-8" />
                     </div>
 
                     {/* Next button */}
                     <div
                         className={`
-              absolute size-[50px] sm:size-[60px] md:size-[64px] lg:size-[74px]
-              -right-4 sm:-right-[34px] z-20 top-1/3 -translate-y-1/3
+              absolute size-12 sm:size-[60px] md:size-[64px] lg:size-[74px]
+              -right-6 sm:-right-[34px] z-20 top-1/3 -translate-y-1/3
               bg-white opacity-90 cursor-pointer flex items-center justify-center rounded-full
               ${atEnd ? 'hidden' : ''}
             `}
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slideNext()}
                     >
-                        <IconNext className="text-secondary size-8" />
+                        <IconNext className="text-secondary size-6 sm:size-8" />
                     </div>
                 </div>
             </div>
