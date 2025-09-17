@@ -16,7 +16,7 @@ import formatRelativeTime from '@/utils/formatRelativeTime';
 import { useRouter } from 'next-nprogress-bar';
 import chunkArray from '@/utils/chunkArray';
 import getFirstNValues from '@/utils/getFirstNValues';
-import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
+import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 
 const Carousel = ({
     data,

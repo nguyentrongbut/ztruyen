@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
+import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 
 const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     // State to store the selected comic

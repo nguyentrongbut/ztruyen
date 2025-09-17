@@ -4,7 +4,7 @@ import Settings from '@/modules/doc-truyen/Settings';
 import { useEffect, useRef, useState } from 'react';
 import Overlay from '@/components/common/Overlay';
 import IconSettings from '@/components/icons/IconSettings';
-import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
+import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 
 const ImgsChapter = ({
     chapters,

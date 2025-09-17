@@ -1,31 +1,55 @@
 'use client';
+
+// ** Next
+import Image from 'next/image';
+import Link from 'next/link';
+
+// ** React
+import { useEffect, useRef, useState } from 'react';
+
+// ** Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
+import { Autoplay, Pagination } from 'swiper/modules';
 
-// Import Swiper styles
+// ** Swiper styles
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-import Image from 'next/image';
-import { Autoplay, Pagination } from 'swiper/modules';
-import Link from 'next/link';
+
+// ** Components
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
-import { useRef } from 'react';
+
+// ** utils
 import chunkArray from '@/utils/chunkArray';
-import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
+
+// ** skeleton
+import GridCarouselSkeleton from '@/skeleton/home/GridCarouselSkeleton';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
 
-    const { isMd } = useTailwindBreakpoints();
+    // component mounted ?
+    const [isMounted, setIsMounted] = useState(false)
+
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
+
+    if (!isMounted) {
+        return  <GridCarouselSkeleton/>
+    }
 
     const groupedData = chunkArray(data, 8);
 
     return (
-        <div className="bg-black relative py-2">
+        <div className="bg-black relative py-2 md:h-[57vh]">
             <Swiper
-                slidesPerView={isMd ? 1.5 : 1}
+                breakpoints={{
+                    0: { slidesPerView: 1 },
+                    768: { slidesPerView: 1.5 },
+                }}
                 pagination={{ clickable: true }}
                 spaceBetween={6}
                 loop={true}
@@ -37,11 +61,18 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                     swiperRef.current = swiper;
                 }}
                 modules={[Autoplay, Pagination]}
+                className='md:h-full'
             >
                 {groupedData.map((group, slideIndex) => (
-                    <SwiperSlide key={slideIndex}>
-                        <div>
-                            <div className="grid grid-cols-7 grid-rows-6 gap-0.5 sm:gap-1.5">
+                    <SwiperSlide key={slideIndex} className='md:h-full'>
+                        <div className='md:size-full'>
+                            <div
+                                className="grid grid-cols-7 grid-rows-6 gap-0.5 sm:gap-1.5 md:h-full"
+                                style={{
+                                    willChange: 'auto',
+                                    transform: 'translateZ(0)',
+                                }}
+                            >
                                 {group.map((item, index) => {
                                     const gridPositions = [
                                         { className: 'col-span-2 row-span-6' },
@@ -76,10 +107,11 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                                     return (
                                         <div
                                             key={index}
-                                            className={`${position?.className} relative`}
+                                            className={`${position?.className} relative md:h-full`}
                                         >
                                             <Link
                                                 href={`/truyen-tranh/${item.slug}`}
+                                                className='md:h-full block'
                                             >
                                                 <Image
                                                     src={`https://img.otruyenapi.com/uploads/comics/${item.thumb_url}`}
@@ -87,9 +119,17 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                                                     height={240}
                                                     alt={item.name}
                                                     title={item.name}
-                                                    sizes="(max-width: 50px) 2vw, (max-width: 1920px) 180px"
+                                                    sizes="(max-width: 768px) 50vw, 180px"
                                                     quality={60}
-                                                    priority={index <= 0}
+                                                    priority={
+                                                        slideIndex <= 1 &&
+                                                        index <= 2
+                                                    }
+                                                    loading={
+                                                        slideIndex <= 1
+                                                            ? 'eager'
+                                                            : 'lazy'
+                                                    }
                                                     className="aspect-[3/4] bg-secondary dark:bg-primary rounded-[2px] w-full h-full object-cover"
                                                 />
                                             </Link>
