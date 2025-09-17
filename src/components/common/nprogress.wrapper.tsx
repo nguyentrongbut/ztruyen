@@ -1,7 +1,10 @@
-'use client'
+'use client';
 
-import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
-import { Suspense } from 'react'
+// ** React
+import { Suspense } from 'react';
+
+// ** next progress bar
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 
 const ProgressWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -16,7 +19,7 @@ const ProgressWrapper = ({ children }: { children: React.ReactNode }) => {
                 />
             </Suspense>
         </>
-    )
-}
+    );
+};
 
-export default ProgressWrapper
+export default ProgressWrapper;
