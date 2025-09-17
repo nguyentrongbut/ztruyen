@@ -1,6 +1,6 @@
 import { getListNew } from '@/lib/actions/home';
 import Link from 'next/link';
-import InteractiveThumbnail from '@/components/pages/home/InteractiveThumbnail';
+import InteractiveThumbnail from '@/modules/home/InteractiveThumbnail';
 
 const NewComic = async () => {
 

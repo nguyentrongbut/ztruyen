@@ -1,5 +1,5 @@
-import NavGenreSkeleton from '@/components/pages/the-loai/NavGenreSkeleton';
-import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
+import NavGenreSkeleton from '@/skeleton/the-loai/NavGenreSkeleton';
+import DynamicPageStatusSkeleton from '@/skeleton/DynamicPageStatusSkeleton';
 
 const Loading = () => {
     return (

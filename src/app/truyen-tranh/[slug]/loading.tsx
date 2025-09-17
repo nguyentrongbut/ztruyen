@@ -1,4 +1,4 @@
-import DetailPageSkeleton from '@/components/skeleton/truyen-tranh/DetailPageSkeleton';
+import DetailPageSkeleton from '@/skeleton/truyen-tranh/DetailPageSkeleton';
 
 const Loading = () => {
     return (

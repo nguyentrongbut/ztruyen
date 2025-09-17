@@ -1,9 +1,9 @@
 import axios from 'axios';
-import getIdFromUrl from '@/components/utils/getIdFromUrl';
-import ImgsChapter from '@/app/doc-truyen/@Chapter/ImageChapter';
-import { getChapterName } from '@/components/utils/getChapterName';
-import removeExtension from '@/components/utils/removeExtension';
-import Header from '@/components/common/Header';
+import getIdFromUrl from '@/utils/getIdFromUrl';
+import ImgsChapter from '@/modules/doc-truyen/ImageChapter';
+import { getChapterName } from '@/utils/getChapterName';
+import removeExtension from '@/utils/removeExtension';
+import Header from '@/layouts/components/Header';
 import Link from 'next/link';
 
 export async function generateMetadata({

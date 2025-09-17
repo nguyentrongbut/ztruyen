@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
-import NprogressWrapper from '@/lib/nprogress.wrapper';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
+import NprogressWrapper from '@/components/common/nprogress.wrapper';
+import Header from '@/layouts/components/Header';
+import Footer from '@/layouts/components/Footer';
 
 const montserrat = Montserrat({
     subsets: ['latin'],

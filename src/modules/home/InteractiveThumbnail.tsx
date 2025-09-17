@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
+import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
 
 const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     // State to store the selected comic
@@ -52,7 +52,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                             style={{ background: 'hsla(0, 0%, 100%, .4)' }}
                             title={tag?.name}
                         >
-                            <Link href={`/the-loai/${tag?.slug}.html`}>
+                            <Link href={`/src/skeletons/the-loai/${tag?.slug}.html`}>
                                 {tag?.name}
                             </Link>
                         </li>

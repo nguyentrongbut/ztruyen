@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ModeToggle } from '@/components/common/ModeToggle';
-import Search from '@/components/common/Search';
+import { ModeToggle } from '@/layouts/components/ModeToggle';
+import Search from '@/layouts/components/Search';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import IconMenu from '@/components/icons/IconMenu';
@@ -109,7 +109,7 @@ const Header = ({
                                     <SheetTitle asChild={true}>
                                         <li className="mb-3 flex justify-between">
                                             <Link
-                                                href="/"
+                                                href="/public"
                                                 className="flex items-center"
                                             >
                                                 <Image

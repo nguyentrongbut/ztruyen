@@ -13,8 +13,8 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
-import { getChapterName } from '@/components/utils/getChapterName';
-import getIdFromUrl from '@/components/utils/getIdFromUrl';
+import { getChapterName } from '@/utils/getChapterName';
+import getIdFromUrl from '@/utils/getIdFromUrl';
 import IconUnFullScreen from '@/components/icons/IconUnFullScreen';
 
 const Settings = ({

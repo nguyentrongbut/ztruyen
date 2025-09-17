@@ -1,6 +1,6 @@
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import removeExtension from '@/components/utils/removeExtension';
-import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
+import removeExtension from '@/utils/removeExtension';
+import DynamicPageStatusSkeleton from '@/skeleton/DynamicPageStatusSkeleton';
 import { Suspense } from 'react';
 import { getListStatusComic } from '@/lib/actions/dynamic.page';
 

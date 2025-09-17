@@ -12,8 +12,8 @@ import Link from 'next/link';
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { useRef } from 'react';
-import chunkArray from '@/components/utils/chunkArray';
-import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
+import chunkArray from '@/utils/chunkArray';
+import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);

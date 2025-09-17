@@ -1,15 +1,15 @@
-import NavbarGenre from '@/components/common/NavbarGenre';
+import NavbarGenre from '@/modules/home/NavbarGenre';
 import type { Metadata } from 'next';
-import GridCarouselWrapper from '@/components/pages/home/GridCarouselWrapper';
-import NewComic from '@/components/pages/home/NewComic';
-import ComingSoon from '@/components/pages/home/ComingSoon';
-import PublishingComic from '@/components/pages/home/PublishingComic';
-import CompleteComic from '@/components/pages/home/CompleteComic';
+import GridCarouselWrapper from '@/modules/home/GridCarouselWrapper';
+import NewComic from '@/modules/home/NewComic';
+import ComingSoon from '@/modules/home/ComingSoon';
+import PublishingComic from '@/modules/home/PublishingComic';
+import CompleteComic from '@/modules/home/CompleteComic';
 import { Suspense } from 'react';
-import GridCarouselSkeleton from '@/components/skeleton/home/GridCarouselSkeleton';
-import NavbarGenreSkeleton from '@/components/skeleton/home/NavbarGenreSkeleton';
-import ListComicSkeleton from '@/components/skeleton/home/ListComicSkeleton';
-import NewComicSkeleton from '@/components/skeleton/home/NewComicSkeleton';
+import GridCarouselSkeleton from '@/skeleton/home/GridCarouselSkeleton';
+import NavbarGenreSkeleton from '@/skeleton/home/NavbarGenreSkeleton';
+import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
+import NewComicSkeleton from '@/skeleton/home/NewComicSkeleton';
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://ztruyen.io.vn'),

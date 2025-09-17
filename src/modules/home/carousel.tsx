@@ -12,11 +12,11 @@ import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { useRef, useState } from 'react';
 import { Swiper as SwiperType } from 'swiper';
-import formatRelativeTime from '@/components/utils/formatRelativeTime';
+import formatRelativeTime from '@/utils/formatRelativeTime';
 import { useRouter } from 'next-nprogress-bar';
-import chunkArray from '@/components/utils/chunkArray';
-import getFirstNValues from '@/components/utils/getFirstNValues';
-import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
+import chunkArray from '@/utils/chunkArray';
+import getFirstNValues from '@/utils/getFirstNValues';
+import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
 
 const Carousel = ({
     data,

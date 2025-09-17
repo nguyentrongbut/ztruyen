@@ -19,7 +19,7 @@ const NavbarGenre = async () => {
                                   : 'block'
                         }`}
                     >
-                        <Link href={`/the-loai/${item.slug}.html`}>
+                        <Link href={`/src/skeletons/the-loai/${item.slug}.html`}>
                             {item.name}
                         </Link>
                     </li>

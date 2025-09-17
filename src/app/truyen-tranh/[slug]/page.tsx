@@ -11,8 +11,8 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
-import getIdFromUrl from '@/components/utils/getIdFromUrl';
-import RangeBtnPagination from '@/components/pages/truyen-tranh/RangeBtnPagination';
+import getIdFromUrl from '@/utils/getIdFromUrl';
+import RangeBtnPagination from '@/modules/truyen-tranh/RangeBtnPagination';
 import { getComicDetail, getListNewSection } from '@/lib/actions/detail';
 
 export async function generateMetadata({

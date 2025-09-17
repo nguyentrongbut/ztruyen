@@ -1,4 +1,4 @@
-import Carousel from '@/components/common/carousel';
+import Carousel from '@/modules/home/carousel';
 import { getListComingSoon } from '@/lib/actions/home';
 
 const ComingSoon = async () => {

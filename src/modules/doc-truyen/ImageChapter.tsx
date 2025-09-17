@@ -1,10 +1,10 @@
 'use client';
 import Image from 'next/image';
-import Settings from '@/app/doc-truyen/@Chapter/Settings';
+import Settings from '@/modules/doc-truyen/Settings';
 import { useEffect, useRef, useState } from 'react';
 import Overlay from '@/components/common/Overlay';
 import IconSettings from '@/components/icons/IconSettings';
-import useTailwindBreakpoints from '@/components/utils/useTailwindBreakpoints';
+import useTailwindBreakpoints from '@/utils/useTailwindBreakpoints';
 
 const ImgsChapter = ({
     chapters,

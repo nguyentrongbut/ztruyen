@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import removeExtension from '@/components/utils/removeExtension';
+import removeExtension from '@/utils/removeExtension';
 import { Suspense } from 'react';
-import DynamicPageStatusSkeleton from '@/components/skeleton/DynamicPageStatusSkeleton';
+import DynamicPageStatusSkeleton from '@/skeleton/DynamicPageStatusSkeleton';
 import { getGenreDetail, getGenres } from '@/lib/actions/dynamic.page';
 
 export async function generateMetadata({

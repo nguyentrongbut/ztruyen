@@ -1,4 +1,4 @@
-import SearchPageSkeleton from '@/components/skeleton/tim-kiem/SearchPageSkeleton';
+import SearchPageSkeleton from '@/skeleton/tim-kiem/SearchPageSkeleton';
 
 const Loading = () => {
     return (
