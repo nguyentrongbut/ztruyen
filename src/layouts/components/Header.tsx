@@ -1,11 +1,23 @@
+// ** React
+import { ReactNode } from 'react';
+
+// ** Next
 import Link from 'next/link';
+import Image from 'next/image';
+
+// ** Layouts
 import { ModeToggle } from '@/layouts/components/ModeToggle';
 import Search from '@/layouts/components/Search';
-import Image from 'next/image';
-import { ReactNode } from 'react';
+import NavHeader from '@/layouts/components/NavHeader';
+import NavHeaderMobile from '@/layouts/components/NavHeaderMobile';
+
+// ** Components
 import IconMenu from '@/components/icons/IconMenu';
+
+// ** Shadcn ui
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetTitle,
     SheetTrigger,
@@ -33,50 +45,7 @@ const Header = ({
                             ztruyện
                         </p>
                     </Link>
-                    {!asChild && (
-                        <ul className="hidden xl:flex items-center gap-[25px]">
-                            <li>
-                                <Link
-                                    href="/the-loai/tat-ca.html"
-                                    className="hover:text-primaryColor"
-                                >
-                                    Thể loại
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/danh-sach/dang-phat-hanh.html"
-                                    className="hover:text-primaryColor"
-                                >
-                                    Đang phát hành
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/danh-sach/hoan-thanh.html"
-                                    className="hover:text-primaryColor"
-                                >
-                                    Hoàn thành
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/danh-sach/sap-ra-mat.html"
-                                    className="hover:text-primaryColor"
-                                >
-                                    Sắp ra mắt
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/danh-sach/truyen-moi.html"
-                                    className="hover:text-primaryColor"
-                                >
-                                    Truyện mới
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
+                    {!asChild && <NavHeader />}
                 </div>
                 {children}
                 <div className="flex items-center gap-[17px]">
@@ -105,67 +74,29 @@ const Header = ({
                                 className="w-[255px]"
                                 hideCloseButton={true}
                             >
-                                <ul className="text-sm">
+                                <ul className="text-sm flex flex-col gap-2">
                                     <SheetTitle asChild={true}>
                                         <li className="mb-3 flex justify-between">
-                                            <Link
-                                                href="/public"
-                                                className="flex items-center"
-                                            >
-                                                <Image
-                                                    src="/logo.png"
-                                                    width={32}
-                                                    height={32}
-                                                    alt="ztruyện"
-                                                ></Image>
-                                                <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
-                                                    ztruyện
-                                                </p>
-                                            </Link>
+                                            <SheetClose asChild>
+                                                <Link
+                                                    href="/"
+                                                    className="flex items-center"
+                                                >
+                                                    <Image
+                                                        src="/logo.png"
+                                                        width={32}
+                                                        height={32}
+                                                        alt="ztruyện"
+                                                    ></Image>
+                                                    <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
+                                                        ztruyện
+                                                    </p>
+                                                </Link>
+                                            </SheetClose>
                                             <ModeToggle></ModeToggle>
                                         </li>
                                     </SheetTitle>
-                                    <SheetTitle asChild={true}>
-                                        <li className="rounded-md">
-                                            <Link
-                                                href="/the-loai/tat-ca.html"
-                                                className="hover:text-primaryColor py-2 pl-3 block"
-                                            >
-                                                Thể loại
-                                            </Link>
-                                        </li>
-                                    </SheetTitle>
-                                    <SheetTitle asChild={true}>
-                                        <li className="rounded-md">
-                                            <Link
-                                                href="/danh-sach/dang-phat-hanh.html"
-                                                className="hover:text-primaryColor py-2 pl-3 block"
-                                            >
-                                                Đang phát hành
-                                            </Link>
-                                        </li>
-                                    </SheetTitle>
-                                    <SheetTitle asChild={true}>
-                                        <li className="rounded-md">
-                                            <Link
-                                                href="/danh-sach/hoan-thanh.html"
-                                                className="hover:text-primaryColor py-2 pl-3 block"
-                                            >
-                                                Hoàn thành
-                                            </Link>
-                                        </li>
-                                    </SheetTitle>
-                                    <SheetTitle asChild={true}>
-                                        <li className="rounded-md">
-                                            <Link
-                                                href="/danh-sach/sap-ra-mat.html"
-                                                className="hover:text-primaryColor py-2 pl-3 block"
-                                            >
-                                                Sắp ra mắt
-                                            </Link>
-                                        </li>
-                                    </SheetTitle>
-                                    <SheetTitle asChild={true}></SheetTitle>
+                                    <NavHeaderMobile />
                                 </ul>
                             </SheetContent>
                         </Sheet>
