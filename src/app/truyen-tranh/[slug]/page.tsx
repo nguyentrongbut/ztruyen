@@ -27,11 +27,11 @@ export async function generateMetadata({
     const comicName: string = res?.data.seoOnPage.seoSchema.name;
 
     return {
-        title: `${comicName} Tiếng Việt`,
-        description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại Ztruyen.io.vn`,
+        title: `${comicName} Tiếng Việt - Ztruyện | ztruyen.io.vn`,
+        description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại ztruyen.io.vn`,
         keywords: [
             `${comicName}`,
-            `${comicName} tiếng việt`,
+            `${comicName} tiếng việt - Ztruyen | Ztruyen.io.vn`,
             `đọc truyện tranh ${comicName}`,
         ],
         alternates: {
@@ -41,8 +41,8 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: `${comicName} Tiếng Việt`,
-            description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại Ztruyen.io.vn`,
+            title: `${comicName} Tiếng Việt - Ztruyện | ztruyen.io.vn`,
+            description: `Đọc truyện tranh ${comicName} tiếng việt. Mới nhất nhanh nhất tại ztruyen.io.vn`,
             images: [
                 {
                     url: `${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${res?.data?.item?.thumb_url}`,
