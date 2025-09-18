@@ -9,12 +9,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
 
-// ** Layouts
-import Header from '@/layouts/components/Header';
-import Footer from '@/layouts/components/Footer';
-
 // ** Vercel
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const montserrat = Montserrat({
@@ -72,7 +68,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${montserrat.className} antialiased select-none overflow-x-hidden`}>
+            <body
+                className={`${montserrat.className} antialiased select-none overflow-x-hidden`}
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
@@ -80,9 +78,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <NprogressWrapper>
-                        <Header></Header>
                         <main className="mt-[56px]">{children}</main>
-                        <Footer></Footer>
                     </NprogressWrapper>
                 </ThemeProvider>
                 <Analytics />

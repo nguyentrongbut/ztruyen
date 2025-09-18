@@ -1,7 +1,13 @@
+// ** Next
 import Link from 'next/link';
 import Image from 'next/image';
+
+// ** Shadcn ui
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
+
+// ** action service
 import { getSearchComic } from '@/lib/actions/search';
+
 export async function generateMetadata({
     searchParams,
 }: {

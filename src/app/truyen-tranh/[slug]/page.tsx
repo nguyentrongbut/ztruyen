@@ -1,18 +1,32 @@
+// ** Next
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
+// ** Components
 import IconTag from '@/components/icons/IconTag';
-import 'dayjs/locale/vi';
 import IconCalendar from '@/components/icons/IconCalendar';
 import IconStatus from '@/components/icons/IconStatus';
+
+
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import Link from 'next/link';
-import getIdFromUrl from '@/utils/getIdFromUrl';
+
+// ** Modules
 import RangeBtnPagination from '@/modules/truyen-tranh/RangeBtnPagination';
+
+// ** Dayjs
+import 'dayjs/locale/vi';
+
+// ** utils
+import getIdFromUrl from '@/utils/getIdFromUrl';
+
+// ** action service
 import { getComicDetail, getListNewSection } from '@/lib/actions/detail';
 
 export async function generateMetadata({

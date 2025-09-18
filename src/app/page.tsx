@@ -1,11 +1,21 @@
-import NavbarGenre from '@/modules/home/NavbarGenre';
+// ** React
+import { Suspense } from 'react';
+
+// ** Next
 import type { Metadata } from 'next';
+
+// ** Layouts
+import DefaultLayout from '@/layouts/DefaultLayout';
+
+// ** Modules
+import NavbarGenre from '@/modules/home/NavbarGenre';
 import GridCarouselWrapper from '@/modules/home/GridCarouselWrapper';
 import NewComic from '@/modules/home/NewComic';
 import ComingSoon from '@/modules/home/ComingSoon';
 import PublishingComic from '@/modules/home/PublishingComic';
 import CompleteComic from '@/modules/home/CompleteComic';
-import { Suspense } from 'react';
+
+// ** Skeletons
 import GridCarouselSkeleton from '@/skeleton/home/GridCarouselSkeleton';
 import NavbarGenreSkeleton from '@/skeleton/home/NavbarGenreSkeleton';
 import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
@@ -31,9 +41,9 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Home() {
+const Home = () => {
     return (
-        <>
+        <DefaultLayout>
             <main>
                 <Suspense fallback={<GridCarouselSkeleton />}>
                     <GridCarouselWrapper />
@@ -47,7 +57,7 @@ export default function Home() {
                     <NewComic />
                 </Suspense>
 
-                <Suspense fallback={<ListComicSkeleton  bgColor/>}>
+                <Suspense fallback={<ListComicSkeleton bgColor />}>
                     <ComingSoon />
                 </Suspense>
 
@@ -55,11 +65,12 @@ export default function Home() {
                     <PublishingComic />
                 </Suspense>
 
-                <Suspense fallback={<ListComicSkeleton  bgColor/>}>
+                <Suspense fallback={<ListComicSkeleton bgColor />}>
                     <CompleteComic />
                 </Suspense>
-
             </main>
-        </>
+        </DefaultLayout>
     );
-}
+};
+
+export default Home;

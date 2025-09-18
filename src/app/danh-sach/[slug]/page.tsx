@@ -1,7 +1,16 @@
-import DynamicPageStatus from '@/components/common/DynamicPageStatus';
-import removeExtension from '@/utils/removeExtension';
-import DynamicPageStatusSkeleton from '@/skeleton/DynamicPageStatusSkeleton';
+// ** React
 import { Suspense } from 'react';
+
+// ** Components
+import DynamicPageStatus from '@/components/common/DynamicPageStatus';
+
+// ** utils
+import removeExtension from '@/utils/removeExtension';
+
+// ** Skeleton
+import DynamicPageStatusSkeleton from '@/skeleton/DynamicPageStatusSkeleton';
+
+// ** action service
 import { getListStatusComic } from '@/lib/actions/dynamic.page';
 
 export async function generateMetadata({

@@ -1,27 +1,38 @@
 'use client';
+
+// ** React
+import { useEffect, useState } from 'react';
+
+// ** Next
+import Link from 'next/link';
+
+// ** Components
 import IconPlus from '@/components/icons/IconPlus';
 import IconMinus from '@/components/icons/IconMinus';
-import { Slider } from '@/components/ui/slider';
 import IconNext from '@/components/icons/IconNext';
 import IconPrev from '@/components/icons/IconPrev';
 import IconMenu from '@/components/icons/IconMenu';
 import IconFullScreen from '@/components/icons/IconFullScreen';
-import { useEffect, useState } from 'react';
+import IconUnFullScreen from '@/components/icons/IconUnFullScreen';
+
+// ** Shadcn ui
+import { Slider } from '@/components/ui/slider';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import Link from 'next/link';
+
+// utils
 import { getChapterName } from '@/utils/getChapterName';
 import getIdFromUrl from '@/utils/getIdFromUrl';
-import IconUnFullScreen from '@/components/icons/IconUnFullScreen';
 
 const Settings = ({
     imgWidth = 50,
     totalImages,
     setImgWidth,
     listChapter,
+    indexCurrentChapter,
     currentUrl,
     imgRefs,
     currentImageIndex,
@@ -31,18 +42,13 @@ const Settings = ({
     totalImages: number;
     setImgWidth: (width: number) => void;
     listChapter: IChapter[];
+    indexCurrentChapter: number;
     currentUrl: string;
     imgRefs: React.RefObject<(HTMLImageElement | null)[]>;
     currentImageIndex: number;
     setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
     const [isFullScreen, setIsFullScreen] = useState(false);
-
-    const indexCurrentChapter = listChapter.findIndex(
-        (chapter) =>
-            getIdFromUrl(chapter.chapter_api_data, '/') ===
-            getIdFromUrl(currentUrl, '-')
-    );
 
     // Next chapter
     const nextChapter = listChapter[indexCurrentChapter + 1];
