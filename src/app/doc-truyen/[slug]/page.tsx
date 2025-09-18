@@ -1,10 +1,20 @@
-import axios from 'axios';
-import getIdFromUrl from '@/utils/getIdFromUrl';
+// ** Next
+import Link from 'next/link';
+
+// ** Layout
+import Header from '@/layouts/components/Header';
+
+// ** Modules
 import ImgsChapter from '@/modules/doc-truyen/ImageChapter';
+
+// ** utils
+import getIdFromUrl from '@/utils/getIdFromUrl';
 import { getChapterName } from '@/utils/getChapterName';
 import removeExtension from '@/utils/removeExtension';
-import Header from '@/layouts/components/Header';
-import Link from 'next/link';
+
+// ** action service
+import { getChapter } from '@/lib/actions/chapter';
+import { getComicDetail } from '@/lib/actions/detail';
 
 export async function generateMetadata({
     params,
@@ -13,10 +23,9 @@ export async function generateMetadata({
 }) {
     const slug = removeExtension((await params).slug, '.html');
 
-    const res = await axios.get(
-        `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`
-    );
-    const chapter: IReader = res?.data?.data?.item;
+    const res = await getChapter(getIdFromUrl(slug, '-') as string);
+
+    const chapter: IReader = res?.data?.item;
 
     return {
         title: `${chapter?.comic_name} - Chap ${chapter?.chapter_name} Next Chap ${Number(chapter?.chapter_name) + 1}  Tiếng Việt`,
@@ -55,33 +64,29 @@ const ChapterPage = async ({
 }) => {
     const slug = removeExtension((await params).slug, '.html');
 
-    const res = await axios.get(
-        `https://sv1.otruyencdn.com/v1/api/chapter/${getIdFromUrl(slug, '-')}`
-    );
-    const response = await axios.get(
-        `https://otruyenapi.com/v1/api/truyen-tranh/${getChapterName(slug)}`
-    );
-    const chapter: IReader = res?.data?.data?.item;
+    const res = await getChapter(getIdFromUrl(slug, '-') as string);
+    const response = await getComicDetail(getChapterName(slug));
+    const chapter: IReader = res?.data?.item;
 
     const listChapter: IChapter[] =
-        response?.data?.data?.item?.chapters[0].server_data;
+        response?.data?.item?.chapters[0].server_data;
     return (
         <>
             <Header asChild={true}>
                 <h1 className="text-sm line-clamp-1 hidden md:block">
                     <Link
-                        href={`/truyen-tranh/${response?.data?.data?.item.slug}`}
+                        href={`/truyen-tranh/${response?.data?.item.slug}`}
                         className="hover:text-primaryColor"
                     >
-                        {response?.data?.data?.item.name} {' - '}
+                        {response?.data?.item.name} {' - '}
                     </Link>
                     Chapter {chapter.chapter_name}
                 </h1>
             </Header>
             <ImgsChapter
-                numberOfChapters={res.data?.data?.item?.chapter_name}
+                numberOfChapters={res?.data?.item?.chapter_name}
                 chapters={chapter?.chapter_image}
-                url={res?.data?.data?.domain_cdn}
+                url={res?.data?.domain_cdn}
                 urlPath={chapter?.chapter_path}
                 chapterName={chapter?.comic_name}
                 listChapter={listChapter}

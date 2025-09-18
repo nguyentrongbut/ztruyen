@@ -1,10 +1,19 @@
+// ** Next
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
+
+// ** Styles
 import './globals.css';
+
+// ** Components
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
+
+// ** Layouts
 import Header from '@/layouts/components/Header';
 import Footer from '@/layouts/components/Footer';
+
+// ** Vercel
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -52,7 +61,7 @@ export const metadata: Metadata = {
         ],
     },
     verification: {
-        google: 'dOCBr5kCk-sa7ap46T-t94yqvkT2TJaNSONG8sIzP-0',
+        google: process.env.NEXT_PUBLIC_VERIFICATION_GOOGLE,
     },
 };
 

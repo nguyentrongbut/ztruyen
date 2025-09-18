@@ -1,14 +1,12 @@
-import axios from 'axios';
+//  ** action services
+import { getGenres } from '@/lib/actions/dynamic.page';
+import { getListNew } from '@/lib/actions/home';
 
 export default async function sitemap() {
     const baseURL = 'https://ztruyen.io.vn';
-    const resGenres = await axios.get(`https://otruyenapi.com/v1/api/the-loai`);
-    const resHome = await axios.get(
-        `https://otruyenapi.com/v1/api/danh-sach/truyen-moi`
-    );
-
-    const dataGenres: IGenres[] = resGenres?.data?.data?.items;
-    const dataHome: IComic[] = resHome?.data?.data?.items;
+    const resGenres = await getGenres();
+    const dataGenres: IGenres[] = resGenres?.data?.items;
+    const dataHome: IComic[] = await getListNew();
     const dataGenreUrls = dataGenres.map((genre) => ({
         url: `${baseURL}/the-loai/${genre.slug}.html`,
         lastModified: new Date(),
