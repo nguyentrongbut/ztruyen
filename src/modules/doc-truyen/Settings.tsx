@@ -49,7 +49,7 @@ const Settings = ({
     imgRefs: React.RefObject<(HTMLImageElement | null)[]>;
     currentImageIndex: number;
     setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
-    isDropdownOpen: boolean,
+    isDropdownOpen: boolean;
     setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const [isFullScreen, setIsFullScreen] = useState(false);

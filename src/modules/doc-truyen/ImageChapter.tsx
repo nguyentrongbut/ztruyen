@@ -68,14 +68,14 @@ const ImgsChapter = ({
         if (!isMd) {
             e.preventDefault();
             setIsModalOpen(!isModalOpen);
-            setIsDropdownOpen(false)
+            setIsDropdownOpen(false);
         }
     };
 
     const handleRightClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         setIsModalOpen(!isModalOpen);
-        setIsDropdownOpen(false)
+        setIsDropdownOpen(false);
     };
 
     useEffect(() => {
