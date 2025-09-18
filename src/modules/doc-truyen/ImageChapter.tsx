@@ -43,6 +43,7 @@ const ImgsChapter = ({
     const [imgWidth, setImgWidth] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
 
@@ -67,12 +68,14 @@ const ImgsChapter = ({
         if (!isMd) {
             e.preventDefault();
             setIsModalOpen(!isModalOpen);
+            setIsDropdownOpen(false)
         }
     };
 
     const handleRightClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         setIsModalOpen(!isModalOpen);
+        setIsDropdownOpen(false)
     };
 
     useEffect(() => {
@@ -128,6 +131,8 @@ const ImgsChapter = ({
                             currentImageIndex={currentImageIndex}
                             setCurrentImageIndex={setCurrentImageIndex}
                             indexCurrentChapter={indexCurrentChapter}
+                            isDropdownOpen={isDropdownOpen}
+                            setIsDropdownOpen={setIsDropdownOpen}
                         />
                     </Overlay>
                 }

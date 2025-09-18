@@ -1,7 +1,7 @@
 'use client';
 
 // ** React
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ** Next
 import Link from 'next/link';
@@ -37,6 +37,8 @@ const Settings = ({
     imgRefs,
     currentImageIndex,
     setCurrentImageIndex,
+    isDropdownOpen,
+    setIsDropdownOpen,
 }: {
     imgWidth?: number;
     totalImages: number;
@@ -47,6 +49,8 @@ const Settings = ({
     imgRefs: React.RefObject<(HTMLImageElement | null)[]>;
     currentImageIndex: number;
     setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
+    isDropdownOpen: boolean,
+    setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -197,28 +201,31 @@ const Settings = ({
             className={`w-full absolute bottom-0 flex flex-col items-center left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out`}
         >
             <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild={true}>
+                <DropdownMenu
+                    open={isDropdownOpen}
+                    onOpenChange={setIsDropdownOpen}
+                >
+                    <DropdownMenuTrigger asChild>
                         <div className="flex flex-col items-center gap-1 p-2 cursor-pointer ">
                             <IconMenu color="#777"></IconMenu>
                             <span className="text-xs">Mục lục</span>
                         </div>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                        asChild={true}
-                        onContextMenu={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        <div className="p-4 rounded-2xl w-[280px] max-h-[522px] !bg-[#272727e6] border-none text-white text-sm mb-4">
-                            <div className="text-base mb-4 ml-3">{`Tất cả các chương (${listChapter.length})`}</div>
-                            <ul className="bg-[#121212] rounded-2xl overflow-auto max-h-[456px] scroll-hidden">
+                    <DropdownMenuContent asChild>
+                        <div className="p-4 rounded-2xl w-[240px] sm:w-[280px] !bg-[#272727e6] border-none text-white mb-2">
+                            <div className="text-sm sm:text-base mb-4 ml-3">{`Tất cả các chương (${listChapter.length})`}</div>
+                            <ul className="bg-[#121212] rounded-2xl overflow-auto max-h-[320px] sm:max-h-[400px] scroll-hidden">
                                 {listChapter?.map((item, i) => {
                                     return (
-                                        <li key={i}>
+                                        <li
+                                            key={i}
+                                            onClick={() =>
+                                                setIsDropdownOpen(false)
+                                            }
+                                        >
                                             <Link
                                                 href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${item.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
-                                                className={`px-10 py-3 block text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-primaryColor' : ''}`}
+                                                className={`px-5 sm:px-10 py-3 block text-xs sm:text-sm text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-primaryColor' : ''}`}
                                             >
                                                 {`Chương ${item.chapter_name} ${item.chapter_title ? `- ${item.chapter_title}` : ''}`}
                                             </Link>
