@@ -1,7 +1,7 @@
 'use client';
 
 // ** React
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // ** Next
 import Link from 'next/link';
@@ -53,6 +53,18 @@ const Settings = ({
     setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const [isFullScreen, setIsFullScreen] = useState(false);
+    const listRef = useRef<HTMLUListElement | null>(null);
+
+    const scrollToActive = () => {
+        if (!listRef.current) return;
+        const activeEl = listRef.current.querySelector('.active-chapter');
+        if (activeEl) {
+            (activeEl as HTMLElement).scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }
+    };
 
     // Next chapter
     const nextChapter = listChapter[indexCurrentChapter + 1];
@@ -61,7 +73,6 @@ const Settings = ({
     const prevChapter = listChapter[indexCurrentChapter - 1];
 
     // Slider
-
     const scrollToImage = (index: number) => {
         if (imgRefs.current[index]) {
             imgRefs.current[index]?.scrollIntoView();
@@ -203,7 +214,12 @@ const Settings = ({
             <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max">
                 <DropdownMenu
                     open={isDropdownOpen}
-                    onOpenChange={setIsDropdownOpen}
+                    onOpenChange={(open) => {
+                        setIsDropdownOpen(open);
+                        if (open) {
+                            requestAnimationFrame(() => scrollToActive());
+                        }
+                    }}
                 >
                     <DropdownMenuTrigger asChild>
                         <div className="flex flex-col items-center gap-1 p-2 cursor-pointer ">
@@ -214,18 +230,26 @@ const Settings = ({
                     <DropdownMenuContent asChild>
                         <div className="p-4 rounded-2xl w-[240px] sm:w-[280px] !bg-[#272727e6] border-none text-white mb-2">
                             <div className="text-sm sm:text-base mb-4 ml-3">{`Tất cả các chương (${listChapter.length})`}</div>
-                            <ul className="bg-[#121212] rounded-2xl overflow-auto max-h-[320px] sm:max-h-[400px] scroll-hidden">
-                                {listChapter?.map((item, i) => {
+                            <ul
+                                ref={listRef}
+                                className="bg-[#121212] rounded-2xl overflow-auto max-h-[320px] sm:max-h-[400px] scroll-hidden"
+                            >
+                                {listChapter?.map((item, index) => {
+                                    const activeChapter =
+                                        getIdFromUrl(
+                                            item?.chapter_api_data,
+                                            '/'
+                                        ) === getIdFromUrl(currentUrl, '-');
                                     return (
                                         <li
-                                            key={i}
+                                            key={index}
                                             onClick={() =>
                                                 setIsDropdownOpen(false)
                                             }
                                         >
                                             <Link
                                                 href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${item.chapter_name}-${getIdFromUrl(item?.chapter_api_data, '/')}.html`}
-                                                className={`px-5 sm:px-10 py-3 block text-xs sm:text-sm text-center hover:bg-black ${getIdFromUrl(item?.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-') ? 'text-primaryColor' : ''}`}
+                                                className={`px-5 sm:px-10 py-3 block text-xs sm:text-sm text-center hover:bg-black ${activeChapter ? 'active-chapter  text-primaryColor' : ''}`}
                                             >
                                                 {`Chương ${item.chapter_name} ${item.chapter_title ? `- ${item.chapter_title}` : ''}`}
                                             </Link>
