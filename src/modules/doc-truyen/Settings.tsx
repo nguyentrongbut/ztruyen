@@ -60,7 +60,6 @@ const Settings = ({
         const activeEl = listRef.current.querySelector('.active-chapter');
         if (activeEl) {
             (activeEl as HTMLElement).scrollIntoView({
-                behavior: 'smooth',
                 block: 'center',
             });
         }
