@@ -46,7 +46,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
     return (
         <div className="flex flex-col gap-6">
             {/* Pagination buttons */}
-            <div className="flex flex-wrap gap-3 mt-5">
+            <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-3 mt-5">
                 {Array.from({ length: totalRanges }).map((_, idx) => {
                     const rangeStart = idx * rangeSize + 1;
                     const rangeEnd = Math.min((idx + 1) * rangeSize, maxChapter);
@@ -55,7 +55,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                         <button
                             key={idx}
                             onClick={() => setCurrentRange(idx)}
-                            className={`px-6 py-2 rounded-full text-xs transition ${
+                            className={`py-2 rounded-full text-xs transition ${
                                 idx === currentRange
                                     ? "bg-blue-100 text-blue-600"
                                     : "bg-gray-100 text-gray-600 hover:text-black"
