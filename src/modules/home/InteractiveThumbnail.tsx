@@ -52,7 +52,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                             style={{ background: 'hsla(0, 0%, 100%, .4)' }}
                             title={tag?.name}
                         >
-                            <Link href={`/src/skeletons/the-loai/${tag?.slug}.html`}>
+                            <Link href={`/the-loai/${tag?.slug}.html`}>
                                 {tag?.name}
                             </Link>
                         </li>
