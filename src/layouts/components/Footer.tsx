@@ -1,11 +1,12 @@
-// ** Next
-import Link from 'next/link';
-import Image from 'next/image';
+// ** Components
+import { Tag } from '@/components/common/Tag';
+import Logo from '@/components/common/Logo';
 
 type TTags = {
     title: string;
     href: string;
 };
+
 const tags: TTags[] = [
     {
         title: 'Truyện tranh',
@@ -53,29 +54,17 @@ const Footer = () => {
                     <div className="flex justify-between items-center gap-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5">
                             <div>
-                                <Link
-                                    href="/"
-                                    className="inline-flex items-center"
-                                >
-                                    <Image
-                                        src="/logo.png"
-                                        width={50}
-                                        height={50}
-                                        alt="ztruyện"
-                                    ></Image>
-                                    <p className="text-lg md:text-[25px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-2xl md:first-letter:text-4xl">
-                                        ztruyện
-                                    </p>
-                                </Link>
+                                <Logo size='lg'/>
                             </div>
                             <ul className="flex flex-wrap gap-2">
                                 {tags.map((tag) => (
-                                    <li
-                                        className="py-0.5 px-1 bg-gray-700 text-white rounded-sm text-xs opacity-80"
+                                    <Tag
                                         key={tag.href}
+                                        href={tag?.href}
+                                        theme="dark"
                                     >
-                                        <Link href={tag.href}>{tag.title}</Link>
-                                    </li>
+                                        {tag?.title}
+                                    </Tag>
                                 ))}
                             </ul>
                         </div>

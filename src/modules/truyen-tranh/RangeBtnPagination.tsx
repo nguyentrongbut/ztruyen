@@ -1,10 +1,17 @@
 "use client";
 
+// ** React
 import { useState, useMemo } from "react";
+
+// ** Next
 import Link from "next/link";
+
+// ** Shadcn ui
 import { Button } from "@/components/ui/button";
-import getIdFromUrl from "@/utils/getIdFromUrl";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+// ** utils
+import getIdFromUrl from "@/utils/getIdFromUrl";
 
 interface Props {
     chapters: IChapter[];
@@ -52,17 +59,17 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                     const rangeEnd = Math.min((idx + 1) * rangeSize, maxChapter);
 
                     return (
-                        <button
+                        <Button
                             key={idx}
                             onClick={() => setCurrentRange(idx)}
-                            className={`py-2 rounded-full text-xs transition ${
+                            className={`py-2 rounded-full text-xs transition  ${
                                 idx === currentRange
                                     ? "bg-blue-100 text-blue-600"
                                     : "bg-gray-100 text-gray-600 hover:text-black"
                             }`}
                         >
                             {rangeStart} - {rangeEnd}
-                        </button>
+                        </Button>
                     );
                 })}
             </div>

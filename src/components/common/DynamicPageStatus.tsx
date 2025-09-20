@@ -1,6 +1,11 @@
+// ** Next
 import Link from 'next/link';
 import Image from 'next/image';
+
+// ** Shadcn ui
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
+
+// ** action service
 import { getListCategoryComic, getListNewComic } from '@/lib/actions/dynamic.page';
 
 const DynamicPageStatus = async ({

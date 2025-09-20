@@ -4,7 +4,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 // ** Next
-import Image from 'next/image';
 import Link from 'next/link';
 
 // ** Swiper
@@ -19,6 +18,10 @@ import 'swiper/css/pagination';
 // ** Components
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
+import { Tag } from '@/components/common/Tag';
+
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
 
 // ** utils
 import formatRelativeTime from '@/utils/formatRelativeTime';
@@ -26,6 +29,7 @@ import formatRelativeTime from '@/utils/formatRelativeTime';
 // ** next progress bar
 import { useRouter } from 'next-nprogress-bar';
 import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
+import ComicImage from '@/components/common/ComicImage';
 
 const Carousel = ({
     data,
@@ -135,15 +139,13 @@ const Carousel = ({
                                         className="relative overflow-hidden"
                                         title={item.name}
                                     >
-                                        <Image
+                                        <ComicImage
                                             src={`https://img.otruyenapi.com/uploads/comics/${item.thumb_url}`}
-                                            width={219}
-                                            height={288}
                                             alt={item.name}
-                                            sizes="(max-width: 50px) 2vw, (max-width: 1920px) 180px"
-                                            quality={60}
                                             priority={i <= 0}
-                                            className="aspect-[3/4] w-full bg-secondary dark:bg-primary rounded-[8px] object-cover"
+                                            rounded="md"
+                                            size="full"
+                                            imgSize="xl"
                                         />
                                         <div
                                             className="absolute top-0 left-0 w-full h-full rounded-[8px] cursor-pointer"
@@ -161,21 +163,13 @@ const Carousel = ({
                                             {item.category
                                                 ?.slice(0, 2)
                                                 .map((tag, j) => (
-                                                    <li
+                                                    <Tag
                                                         key={j}
-                                                        className="rounded-sm text-white text-xs h-[20px] py-[1px] px-1.5 flex-shrink-0"
-                                                        style={{
-                                                            background:
-                                                                'hsla(0, 0%, 100%, .4)',
-                                                        }}
+                                                        href={`the-loai/${tag?.slug}.html`}
                                                         title={tag?.name}
                                                     >
-                                                        <Link
-                                                            href={`the-loai/${tag?.slug}.html`}
-                                                        >
-                                                            {tag?.name}
-                                                        </Link>
-                                                    </li>
+                                                        {tag?.name}
+                                                    </Tag>
                                                 ))}
                                         </ul>
                                     </div>
@@ -207,32 +201,34 @@ const Carousel = ({
                     </Swiper>
 
                     {/* Prev button */}
-                    <div
+                    <Button
+                        shape="circle"
+                        variant="lightOpacity"
                         className={`
-              absolute size-12 sm:size-[60px] md:size-[64px] lg:size-[74px]
+              absolute 
               -left-6 sm:-left-[36px] z-20 top-1/3 -translate-y-1/3
-              bg-white opacity-80 cursor-pointer flex items-center justify-center rounded-full
               ${atBeginning ? 'hidden' : ''}
             `}
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slidePrev()}
                     >
-                        <IconPrev className="text-secondary size-6 sm:size-8" />
-                    </div>
+                        <IconPrev className="size-6 sm:size-8" />
+                    </Button>
 
                     {/* Next button */}
-                    <div
+                    <Button
+                        shape="circle"
+                        variant="lightOpacity"
                         className={`
-              absolute size-12 sm:size-[60px] md:size-[64px] lg:size-[74px]
+              absolute
               -right-6 sm:-right-[34px] z-20 top-1/3 -translate-y-1/3
-              bg-white opacity-90 cursor-pointer flex items-center justify-center rounded-full
               ${atEnd ? 'hidden' : ''}
             `}
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slideNext()}
                     >
-                        <IconNext className="text-secondary size-6 sm:size-8" />
-                    </div>
+                        <IconNext className="size-6 sm:size-8" />
+                    </Button>
                 </div>
             </div>
         </section>

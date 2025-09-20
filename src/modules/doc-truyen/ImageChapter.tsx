@@ -5,20 +5,25 @@ import { useEffect, useRef, useState } from 'react';
 
 // ** Next
 import Image from 'next/image';
+import Link from 'next/link';
 
 // ** Modules
 import Settings from '@/modules/doc-truyen/Settings';
 
 // ** Components
-import Overlay from '@/components/common/Overlay';
+import Overlay from '@/modules/doc-truyen/Overlay';
 import IconSettings from '@/components/icons/IconSettings';
+
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
 
 // ** Hooks
 import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
+
+// ** utils
 import getIdFromUrl from '@/utils/getIdFromUrl';
-import { Button } from '@/components/ui/button';
 import { getChapterName } from '@/utils/getChapterName';
-import Link from 'next/link';
+
 
 const ImgsChapter = ({
     chapters,
@@ -185,7 +190,7 @@ const ImgsChapter = ({
                     <Link
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}.html`}
                     >
-                        <Button className="text-xs sm:text-sm">
+                        <Button className="text-xs sm:text-sm" variant='primary'>
                             Chương tiếp theo
                         </Button>
                     </Link>

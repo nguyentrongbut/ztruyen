@@ -1,7 +1,6 @@
 'use client';
 
 // ** Next
-import Image from 'next/image';
 import Link from 'next/link';
 
 // ** React
@@ -20,12 +19,14 @@ import 'swiper/css/pagination';
 // ** Components
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
+import ComicImage from '@/components/common/ComicImage';
 
 // ** utils
 import chunkArray from '@/utils/chunkArray';
 
 // ** skeleton
 import GridCarouselSkeleton from '@/skeleton/home/GridCarouselSkeleton';
+import { Button } from '@/components/ui/button';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
@@ -113,14 +114,10 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                                                 href={`/truyen-tranh/${item.slug}`}
                                                 className='md:h-full block'
                                             >
-                                                <Image
+                                                <ComicImage
                                                     src={`https://img.otruyenapi.com/uploads/comics/${item.thumb_url}`}
-                                                    width={180}
-                                                    height={240}
                                                     alt={item.name}
                                                     title={item.name}
-                                                    sizes="(max-width: 768px) 50vw, 180px"
-                                                    quality={60}
                                                     priority={
                                                         slideIndex <= 1 &&
                                                         index <= 2
@@ -130,7 +127,9 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                                                             ? 'eager'
                                                             : 'lazy'
                                                     }
-                                                    className="aspect-[3/4] bg-secondary dark:bg-primary rounded-[2px] w-full h-full object-cover"
+                                                    rounded='sm'
+                                                    size='full'
+                                                    imgSize='lg'
                                                 />
                                             </Link>
                                         </div>
@@ -155,18 +154,22 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                         'linear-gradient(90deg, rgba(0, 0, 0, .8), rgba(43, 43, 43, 0))',
                 }}
             ></div>
-            <div
-                className="absolute lg:w-8 lg:h-20 left-12 lg:left-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer hidden sm:flex items-center justify-center"
+            <Button
+                shape='verticalRectangle'
+                variant='darkOpacity'
+                className="absolute left-12 lg:left-[100px] top-1/2 z-20 -translate-y-1/2 hidden sm:flex"
                 onClick={() => swiperRef.current?.slidePrev()}
             >
                 <IconPrev className="text-white/60"></IconPrev>
-            </div>
-            <div
-                className="absolute lg:w-8 lg:h-20 right-12 lg:right-[100px] top-1/2 z-20 -translate-y-1/2 bg-black/50 cursor-pointer hidden sm:flex items-center justify-center"
+            </Button>
+            <Button
+                shape='verticalRectangle'
+                variant='darkOpacity'
+                className="absolute right-12 lg:right-[100px] top-1/2 z-20 -translate-y-1/2 hidden sm:flex"
                 onClick={() => swiperRef.current?.slideNext()}
             >
                 <IconNext className="text-white/60"></IconNext>
-            </div>
+            </Button>
         </div>
     );
 };

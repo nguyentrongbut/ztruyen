@@ -1,12 +1,11 @@
 // ** Next
-import Image from 'next/image';
 import Link from 'next/link';
 
 // ** Components
 import IconTag from '@/components/icons/IconTag';
 import IconCalendar from '@/components/icons/IconCalendar';
 import IconStatus from '@/components/icons/IconStatus';
-
+import ComicImage from '@/components/common/ComicImage';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
@@ -36,7 +35,7 @@ export async function generateMetadata({
 }) {
     const slug = (await params).slug;
 
-    const res = await getComicDetail(slug)
+    const res = await getComicDetail(slug);
 
     const comicName: string = res?.data.seoOnPage.seoSchema.name;
 
@@ -86,16 +85,14 @@ const DetailPage = async ({
     return (
         <div className="bg-[#fafafa] pt-5 dark:bg-secondary pb-20">
             <section className="wrapper flex flex-col items-center sm:items-stretch sm:flex-row gap-7 p-5 bg-primary dark:bg-black/10 shadow-[0_1px_3px_0_rgba(106,115,133,.08)]">
-                <Image
+                <ComicImage
                     src={`${response?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${data?.thumb_url}`}
                     width={240}
                     height={320}
                     alt={data?.name}
-                    sizes="(max-width: 50px) 2vw, max-width: 1920px) 240px)"
-                    quality="60"
                     priority={true}
-                    className="aspect-[3/4] bg-secondary dark:bg-primary"
-                ></Image>
+                    imgSize='2xl'
+                />
                 <div className="flex flex-col items-center sm:items-start justify-between w-full">
                     <h1 className="font-semibold text-xl">{data?.name}</h1>
                     <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
@@ -138,7 +135,7 @@ const DetailPage = async ({
                     </TooltipProvider>
 
                     {chapters?.length > 0 && (
-                        <Button className="mt-[21px] w-full" asChild={true}>
+                        <Button className="mt-[21px] w-full" asChild={true} variant='primary'>
                             <Link
                                 href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
                             >
@@ -156,7 +153,10 @@ const DetailPage = async ({
                             <h2 className="font-medium text-lg">
                                 Danh sách chương
                             </h2>
-                            <RangeBtnPagination chapters={chapters} slug={data?.slug} />
+                            <RangeBtnPagination
+                                chapters={chapters}
+                                slug={data?.slug}
+                            />
                         </>
                     ) : (
                         <p className="text-center m-6 text-[15px]">
@@ -183,20 +183,16 @@ const DetailPage = async ({
                                     >
                                         <figure className="flex mt-4 gap-3">
                                             <div className="lg:w-[35%]">
-                                                <Image
+                                                <ComicImage
                                                     src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
-                                                    width={100}
-                                                    height={240}
                                                     alt={item.name}
-                                                    sizes="(max-width: 50px) 2vw, max-width: 1920px) 100px)"
-                                                    quality="60"
                                                     priority={
                                                         index <= 0
                                                             ? true
                                                             : false
                                                     }
-                                                    className="aspect-[3/4] bg-secondary dark:bg-primary"
-                                                ></Image>
+                                                    imgSize='sm'
+                                                />
                                             </div>
                                             <figcaption className="w-[64%] flex justify-between flex-col">
                                                 <span

@@ -1,9 +1,20 @@
 'use client';
 
+// ** React
 import { useState } from 'react';
-import Image from 'next/image';
+
+// ** Next
 import Link from 'next/link';
+
+// ** Hooks
 import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
+
+// ** Components
+import { Tag } from '@/components/common/Tag';
+import ComicImage from '@/components/common/ComicImage';
+
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
 
 const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     // State to store the selected comic
@@ -34,7 +45,10 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
             }}
         >
             <div className="z-10 w-full sm:w-[49%]">
-                <figcaption className="lg:text-3xl line-clamp-1" title={selectedComic?.name}>
+                <figcaption
+                    className="lg:text-3xl line-clamp-1"
+                    title={selectedComic?.name}
+                >
                     {!isSm ? (
                         <Link href={`truyen-tranh/${selectedComic?.slug}`}>
                             {selectedComic?.name}
@@ -46,16 +60,14 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
 
                 <ul className="flex gap-1 sm:gap-2 md:gap-2.5 lg:gap-3 items-center overflow-hidden scroll-sub mt-5">
                     {selectedComic?.category?.slice(0, 5).map((tag) => (
-                        <li
-                            key={`${tag?.slug}-${tag?.name}`}
-                            className="rounded-sm text-white text-xs h-[20px] py-[1px] px-1.5 flex-shrink-0"
-                            style={{ background: 'hsla(0, 0%, 100%, .4)' }}
+                        <Tag
+                            key={`${tag?._id}`}
+                            href={`/the-loai/${tag?.slug}.html`}
                             title={tag?.name}
+                            theme="gray"
                         >
-                            <Link href={`/the-loai/${tag?.slug}.html`}>
-                                {tag?.name}
-                            </Link>
-                        </li>
+                            {tag?.name}
+                        </Tag>
                     ))}
                 </ul>
             </div>
@@ -74,13 +86,12 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                             }`}
                             onClick={() => handleImageClick(item)}
                         >
-                            <Image
+                            <ComicImage
                                 src={`${process.env.NEXT_PUBLIC_URL_IMG}/${item?.thumb_url}`}
                                 alt={item?.name}
-                                width={62}
-                                height={83}
-                                className="object-cover size-full"
                                 title={item?.name}
+                                size="full"
+                                imgSize="xs"
                             />
                         </div>
                     ))}
@@ -90,17 +101,21 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                     href={`truyen-tranh/${selectedComic?.slug}`}
                     className="hidden sm:block rounded-2xl overflow-hidden aspect-video absolute top-4  right-6 sm:-top-8 w-[45%]"
                 >
-                    <Image
+                    <ComicImage
                         src={`${process.env.NEXT_PUBLIC_URL_IMG}/${selectedComic?.thumb_url}`}
                         alt={selectedComic?.name || 'title name ztruyen'}
-                        width={522}
-                        height={300}
-                        className="object-cover size-full"
                         title={selectedComic?.name || 'title name ztruyen'}
+                        size="full"
+                        imgSize="3xl"
                     />
-                    <button className="bg-black/60 text-white absolute right-6 bottom-4 rounded-full px-4 py-2 text-xs hover:scale-105 transition ease-in-out">
+                    <Button
+                        shape="pill"
+                        variant="dark"
+                        className="absolute right-6 bottom-4 hover:scale-105 transition ease-in-out"
+                    >
                         Đọc ngay
-                    </button>
+                    </Button>
+                    <button></button>
                 </Link>
             </div>
 

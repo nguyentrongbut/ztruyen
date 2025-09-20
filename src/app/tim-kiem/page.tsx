@@ -1,12 +1,14 @@
 // ** Next
 import Link from 'next/link';
-import Image from 'next/image';
 
 // ** Shadcn ui
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 
 // ** action service
 import { getSearchComic } from '@/lib/actions/search';
+
+// ** Components
+import ComicImage from '@/components/common/ComicImage';
 
 export async function generateMetadata({
     searchParams,
@@ -70,18 +72,11 @@ const SearchPage = async ({
                             className="flex gap-4 lg:w-[calc(100%/3-16px)]"
                         >
                             <Link href={`/truyen-tranh/${item.slug}`}>
-                                <Image
+                                <ComicImage
                                     src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
-                                    width={135}
-                                    height={180}
                                     alt={item.name}
-                                    sizes="(max-width: 50px) 2vw, max-width: 1920px) 180px)"
-                                    quality="60"
                                     priority={index <= 0 ? true : false}
-                                    // placeholder="blur"
-                                    // blurDataURL={placeholders[index]}
-                                    className="aspect-[3/4] bg-secondary dark:bg-primary"
-                                ></Image>
+                                />
                             </Link>
                             <figcaption className="w-[180px] mt-1.5 text-lg flex flex-col justify-between">
                                 <h1 className="line-clamp-1 font-medium">

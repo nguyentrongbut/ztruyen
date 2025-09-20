@@ -3,16 +3,16 @@ import { ReactNode } from 'react';
 
 // ** Next
 import Link from 'next/link';
-import Image from 'next/image';
 
 // ** Layouts
-import { ModeToggle } from '@/layouts/components/ModeToggle';
+import { ModeToggle } from '@/components/common/ModeToggle';
 import Search from '@/layouts/components/Search';
 import NavHeader from '@/layouts/components/NavHeader';
 import NavHeaderMobile from '@/layouts/components/NavHeaderMobile';
 
 // ** Components
 import IconMenu from '@/components/icons/IconMenu';
+import Logo from '@/components/common/Logo';
 
 // ** Shadcn ui
 import {
@@ -34,17 +34,7 @@ const Header = ({
         <header className="shadow-custom z-40 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
             <nav className="wrapper flex justify-between items-center py-2 text-sm font-medium">
                 <div className="flex items-center gap-10">
-                    <Link href="/" className="flex items-center">
-                        <Image
-                            src="/logo.png"
-                            width={32}
-                            height={32}
-                            alt="ztruyện"
-                        ></Image>
-                        <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
-                            ztruyện
-                        </p>
-                    </Link>
+                    <Logo/>
                     {!asChild && <NavHeader />}
                 </div>
                 {children}
@@ -78,20 +68,7 @@ const Header = ({
                                     <SheetTitle asChild={true}>
                                         <li className="mb-3 flex justify-between">
                                             <SheetClose asChild>
-                                                <Link
-                                                    href="/"
-                                                    className="flex items-center"
-                                                >
-                                                    <Image
-                                                        src="/logo.png"
-                                                        width={32}
-                                                        height={32}
-                                                        alt="ztruyện"
-                                                    ></Image>
-                                                    <p className="text-[15px] font-bold first-letter:uppercase first-letter:text-primaryColor first-letter:text-xl">
-                                                        ztruyện
-                                                    </p>
-                                                </Link>
+                                                <Logo/>
                                             </SheetClose>
                                             <ModeToggle></ModeToggle>
                                         </li>

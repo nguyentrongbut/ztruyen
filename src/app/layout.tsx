@@ -6,7 +6,7 @@ import { Montserrat } from 'next/font/google';
 import './globals.css';
 
 // ** Components
-import { ThemeProvider } from '@/components/common/ThemeProvider';
+import { ThemeProvider } from '@/theme/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
 
 // ** Vercel
