@@ -59,9 +59,9 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                 </figcaption>
 
                 <ul className="flex gap-1 sm:gap-2 md:gap-2.5 lg:gap-3 items-center overflow-hidden scroll-sub mt-5">
-                    {selectedComic?.category?.slice(0, 5).map((tag) => (
+                    {selectedComic?.category?.slice(0, 5).map((tag, index) => (
                         <Tag
-                            key={`${tag?._id}`}
+                            key={`${index}-${tag?._id}-thumbnail`}
                             href={`/the-loai/${tag?.slug}.html`}
                             title={tag?.name}
                             theme="gray"
@@ -78,7 +78,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                 <div className="grid grid-cols-5 sm:grid-cols-7 gap-3 mb-4 mt-4 sm:mt-0">
                     {listNewComic?.slice(0, numberOfItems).map((item) => (
                         <div
-                            key={item?._id}
+                            key={`${item?._id}-thumbnail`}
                             className={`aspect-[3/4] rounded-[5px] overflow-hidden cursor-pointer transform transition-all ease-in-out duration-300 ${
                                 selectedComic?._id === item?._id
                                     ? 'scale-[1.15] border border-white'

@@ -59,7 +59,7 @@ const Footer = () => {
                             <ul className="flex flex-wrap gap-2">
                                 {tags.map((tag) => (
                                     <Tag
-                                        key={tag.href}
+                                        key={tag?.title}
                                         href={tag?.href}
                                         theme="dark"
                                     >
