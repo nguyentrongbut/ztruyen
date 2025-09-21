@@ -247,7 +247,7 @@ const ReadingHistory = () => {
                                             <AlertDialogContent>
                                                 <AlertDialogHeader>
                                                     <AlertDialogTitle>
-                                                        Ôi không! Bạn muốn tiễn truyện Ký Sự {i} lên thiên đường truyện tranh? (=^･ω･^=)
+                                                        Ôi không! Bạn muốn tiễn truyện {item.name} lên thiên đường truyện tranh? (=^･ω･^=)
                                                     </AlertDialogTitle>
                                                     <AlertDialogDescription>
                                                         Hành động này sẽ xoá truyện vĩnh viễn. Nhưng đừng buồn, ký ức về nó vẫn luôn ở lại trong tim bạn! (ฅ^ω^ฅ)
