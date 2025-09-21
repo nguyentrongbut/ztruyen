@@ -12,6 +12,7 @@ import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 // ** Components
 import { Tag } from '@/components/common/Tag';
 import ComicImage from '@/components/common/ComicImage';
+import { Heading } from '@/components/typography/Heading';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
@@ -46,15 +47,12 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
         >
             <div className="z-10 w-full sm:w-[49%]">
                 <figcaption
-                    className="lg:text-3xl line-clamp-1"
                     title={selectedComic?.name}
                 >
                     {!isSm ? (
-                        <Link href={`truyen-tranh/${selectedComic?.slug}`}>
-                            {selectedComic?.name}
-                        </Link>
+                        <Heading as='h3' title={selectedComic?.name as string} href={`truyen-tranh/${selectedComic?.slug}`}/>
                     ) : (
-                        selectedComic?.name
+                        <Heading as='h3' link={false} title={selectedComic?.name as string} size='3xl'/>
                     )}
                 </figcaption>
 

@@ -6,6 +6,7 @@ import IconTag from '@/components/icons/IconTag';
 import IconCalendar from '@/components/icons/IconCalendar';
 import IconStatus from '@/components/icons/IconStatus';
 import ComicImage from '@/components/common/ComicImage';
+import { Heading } from '@/components/typography/Heading';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
@@ -94,7 +95,7 @@ const DetailPage = async ({
                     imgSize='2xl'
                 />
                 <div className="flex flex-col items-center sm:items-start justify-between w-full">
-                    <h1 className="font-semibold text-xl">{data?.name}</h1>
+                    <Heading title={data?.name} link={false} fontWeight='semibold' size='xl' type='textFull' className='text-center sm:text-start'/>
                     <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconTag className="size-4"></IconTag>
@@ -139,7 +140,7 @@ const DetailPage = async ({
                             <Link
                                 href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
                             >
-                                Đọc chương {chapters[0]?.chapter_name}
+                                📖 Đọc chương {chapters[0]?.chapter_name} ngay thôi! (≧▽≦)
                             </Link>
                         </Button>
                     )}
@@ -150,9 +151,7 @@ const DetailPage = async ({
                 <section className="bg-primary p-5 lg:w-[70%] xl:w-[76%] h-min dark:bg-black/10">
                     {chapters?.length > 0 ? (
                         <>
-                            <h2 className="font-medium text-lg">
-                                Danh sách chương
-                            </h2>
+                            <Heading as='h2' link={false} title='Danh sách chương' fontWeight='medium' size='lg'/>
                             <RangeBtnPagination
                                 chapters={chapters}
                                 slug={data?.slug}
@@ -167,7 +166,7 @@ const DetailPage = async ({
                 </section>
                 <section className="bg-primary dark:bg-black/10 p-5 lg:w-[29%] xl:w-[23%] h-min">
                     <div className="flex items-center justify-between">
-                        <h2 className="font-medium text-lg">Truyện mới</h2>
+                        <Heading as='h2' link={false} title='Truyện mới' fontWeight='medium' size='lg'/>
                         <Link href="/danh-sach/truyen-moi" className="text-sm">
                             Xem thêm
                         </Link>
@@ -195,12 +194,7 @@ const DetailPage = async ({
                                                 />
                                             </div>
                                             <figcaption className="w-[64%] flex justify-between flex-col">
-                                                <span
-                                                    className="line-clamp-1"
-                                                    title={item?.name}
-                                                >
-                                                    {item.name}
-                                                </span>
+                                                <Heading as='h3' title={item?.name} />
                                                 <div className="flex flex-col gap-8">
                                                     <div className="text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                         <IconStatus className="size-3 flex-shrink-0"></IconStatus>

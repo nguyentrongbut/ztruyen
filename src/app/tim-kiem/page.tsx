@@ -9,6 +9,7 @@ import { getSearchComic } from '@/lib/actions/search';
 
 // ** Components
 import ComicImage from '@/components/common/ComicImage';
+import { Heading } from '@/components/typography/Heading';
 
 export async function generateMetadata({
     searchParams,
@@ -79,14 +80,7 @@ const SearchPage = async ({
                                 />
                             </Link>
                             <figcaption className="w-[180px] mt-1.5 text-lg flex flex-col justify-between">
-                                <h1 className="line-clamp-1 font-medium">
-                                    <Link
-                                        href={`/truyen-tranh/${item.slug}`}
-                                        title={item.name}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                </h1>
+                                <Heading as='h2' title={item.name} href={`/truyen-tranh/${item.slug}`} fontWeight='medium' size='lg' />
                                 <div className="text-xs text-black/30 dark:text-white/30">
                                     <ul className="flex gap-2 line-clamp-1">
                                         {item.author.map((author, index) => (

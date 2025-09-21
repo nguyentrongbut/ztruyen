@@ -8,6 +8,7 @@ import './globals.css';
 // ** Components
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
+import ToasterCustom from '@/components/common/ToasterCustom';
 
 // ** Vercel
 import { Analytics } from '@vercel/analytics/next';
@@ -79,6 +80,7 @@ export default function RootLayout({
                 >
                     <NprogressWrapper>
                         <main className="mt-[56px]">{children}</main>
+                        <ToasterCustom/>
                     </NprogressWrapper>
                 </ThemeProvider>
                 <Analytics />
