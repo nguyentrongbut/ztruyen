@@ -16,7 +16,7 @@ import EmptyPage from '@/modules/lich-su/EmptyPage';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
-import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
+// import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
     AlertDialog,
@@ -216,7 +216,7 @@ const ReadingHistory = () => {
                                     <Heading
                                         as="h2"
                                         title={item.name}
-                                        href={`/truyen-tranh/doc-chiem`}
+                                        href={item.path}
                                         size="sm"
                                     />
                                     <Link href={item.path}>
@@ -273,11 +273,11 @@ const ReadingHistory = () => {
                         ))}
                     </div>
 
-                    <PaginationWithLinks
-                        page={1}
-                        pageSize={1}
-                        totalCount={10}
-                    />
+                    {/*<PaginationWithLinks*/}
+                    {/*    page={1}*/}
+                    {/*    pageSize={1}*/}
+                    {/*    totalCount={10}*/}
+                    {/*/>*/}
                 </div>
             ) : (
                 <EmptyPage />
