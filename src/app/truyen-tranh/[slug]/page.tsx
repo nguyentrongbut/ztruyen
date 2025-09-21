@@ -9,7 +9,6 @@ import ComicImage from '@/components/common/ComicImage';
 import { Heading } from '@/components/typography/Heading';
 
 // ** Shadcn ui
-import { Button } from '@/components/ui/button';
 import {
     Tooltip,
     TooltipContent,
@@ -19,6 +18,7 @@ import {
 
 // ** Modules
 import RangeBtnPagination from '@/modules/truyen-tranh/RangeBtnPagination';
+import ReadNowBtn from '@/modules/truyen-tranh/ReadNowBtn';
 
 // ** Dayjs
 import 'dayjs/locale/vi';
@@ -92,10 +92,17 @@ const DetailPage = async ({
                     height={320}
                     alt={data?.name}
                     priority={true}
-                    imgSize='2xl'
+                    imgSize="2xl"
                 />
                 <div className="flex flex-col items-center sm:items-start justify-between w-full">
-                    <Heading title={data?.name} link={false} fontWeight='semibold' size='xl' type='textFull' className='text-center sm:text-start'/>
+                    <Heading
+                        title={data?.name}
+                        link={false}
+                        fontWeight="semibold"
+                        size="xl"
+                        type="textFull"
+                        className="text-center sm:text-start"
+                    />
                     <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
                             <IconTag className="size-4"></IconTag>
@@ -136,13 +143,11 @@ const DetailPage = async ({
                     </TooltipProvider>
 
                     {chapters?.length > 0 && (
-                        <Button className="mt-[21px] w-full" asChild={true} variant='primary'>
-                            <Link
-                                href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
-                            >
-                                📖 Đọc chương {chapters[0]?.chapter_name} ngay thôi! (≧▽≦)
-                            </Link>
-                        </Button>
+                        <ReadNowBtn
+                            chapter={chapters[0]?.chapter_name}
+                            slug={data?.slug}
+                            href={`/doc-truyen/${data?.slug}-chuong-${chapters[0]?.chapter_name}-${getIdFromUrl(chapters[0]?.chapter_api_data, '/')}.html`}
+                        />
                     )}
                 </div>
             </section>
@@ -151,7 +156,13 @@ const DetailPage = async ({
                 <section className="bg-primary p-5 lg:w-[70%] xl:w-[76%] h-min dark:bg-black/10">
                     {chapters?.length > 0 ? (
                         <>
-                            <Heading as='h2' link={false} title='Danh sách chương' fontWeight='medium' size='lg'/>
+                            <Heading
+                                as="h2"
+                                link={false}
+                                title="Danh sách chương"
+                                fontWeight="medium"
+                                size="lg"
+                            />
                             <RangeBtnPagination
                                 chapters={chapters}
                                 slug={data?.slug}
@@ -166,7 +177,13 @@ const DetailPage = async ({
                 </section>
                 <section className="bg-primary dark:bg-black/10 p-5 lg:w-[29%] xl:w-[23%] h-min">
                     <div className="flex items-center justify-between">
-                        <Heading as='h2' link={false} title='Truyện mới' fontWeight='medium' size='lg'/>
+                        <Heading
+                            as="h2"
+                            link={false}
+                            title="Truyện mới"
+                            fontWeight="medium"
+                            size="lg"
+                        />
                         <Link href="/danh-sach/truyen-moi" className="text-sm">
                             Xem thêm
                         </Link>
@@ -190,11 +207,14 @@ const DetailPage = async ({
                                                             ? true
                                                             : false
                                                     }
-                                                    imgSize='sm'
+                                                    imgSize="sm"
                                                 />
                                             </div>
                                             <figcaption className="w-[64%] flex justify-between flex-col">
-                                                <Heading as='h3' title={item?.name} />
+                                                <Heading
+                                                    as="h3"
+                                                    title={item?.name}
+                                                />
                                                 <div className="flex flex-col gap-8">
                                                     <div className="text-black/50 dark:text-white/50 flex gap-1 items-center">
                                                         <IconStatus className="size-3 flex-shrink-0"></IconStatus>
