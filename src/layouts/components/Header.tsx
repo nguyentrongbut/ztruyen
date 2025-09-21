@@ -1,9 +1,6 @@
 // ** React
 import { ReactNode } from 'react';
 
-// ** Next
-import Link from 'next/link';
-
 // ** Layouts
 import { ModeToggle } from '@/components/common/ModeToggle';
 import Search from '@/layouts/components/Search';
@@ -23,6 +20,9 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet';
 
+// ** Modules
+import ReadingHistoryBtn from '@/modules/home/ReadingHistoryBtn';
+
 const Header = ({
     asChild = false,
     children,
@@ -34,20 +34,16 @@ const Header = ({
         <header className="shadow-custom z-40 fixed left-0 top-0 right-0 bg-primary dark:bg-secondary">
             <nav className="wrapper flex justify-between items-center py-2 text-sm font-medium">
                 <div className="flex items-center gap-10">
-                    <Logo/>
+                    <Logo />
                     {!asChild && <NavHeader />}
                 </div>
                 {children}
                 <div className="flex items-center gap-[17px]">
                     {!asChild && <Search></Search>}
-                    <ul className="flex items-center gap-4 text-xs lg:text-sm">
-                        <li>
-                            <Link href="#">Đăng nhập</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Đăng ký</Link>
-                        </li>
-                    </ul>
+                    <div className="flex items-center gap-4 text-xs lg:text-sm">
+                        <div>Đăng nhập</div>
+                        <ReadingHistoryBtn/>
+                    </div>
                     <div className="hidden xl:block">
                         <ModeToggle></ModeToggle>
                     </div>
@@ -68,7 +64,7 @@ const Header = ({
                                     <SheetTitle asChild={true}>
                                         <li className="mb-3 flex justify-between">
                                             <SheetClose asChild>
-                                                <Logo/>
+                                                <Logo />
                                             </SheetClose>
                                             <ModeToggle></ModeToggle>
                                         </li>

@@ -3,9 +3,6 @@
 // ** React
 import { useEffect, useRef, useState } from 'react';
 
-// ** Next
-import Link from 'next/link';
-
 // ** Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -19,6 +16,8 @@ import 'swiper/css/pagination';
 import IconPrev from '@/components/icons/IconPrev';
 import IconNext from '@/components/icons/IconNext';
 import { Tag } from '@/components/common/Tag';
+import ComicImage from '@/components/common/ComicImage';
+import { Heading } from '@/components/typography/Heading';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
@@ -29,7 +28,6 @@ import formatRelativeTime from '@/utils/formatRelativeTime';
 // ** next progress bar
 import { useRouter } from 'next-nprogress-bar';
 import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
-import ComicImage from '@/components/common/ComicImage';
 
 const Carousel = ({
     data,
@@ -74,27 +72,20 @@ const Carousel = ({
         >
             <div className="wrapper">
                 {titleSeo ? (
-                    <h1>
-                        <p
-                            className="pt-[20px] pb-[16px] text-[22px] font-medium
-                sm:pt-[30px] sm:pb-[20px] sm:text-[26px]
-                md:pt-[40px] md:pb-[28px] md:text-[30px]
-                lg:pt-[60px] lg:pb-[38px] lg:text-[34px]"
-                        >
-                            <Link href={href}>{title}</Link>
-                        </p>
-                    </h1>
+                    <Heading
+                        title={title}
+                        href={href}
+                        fontWeight="medium"
+                        size="2xl"
+                    />
                 ) : (
-                    <h2>
-                        <p
-                            className="pt-[20px] pb-[16px] text-[22px] font-medium
-                sm:pt-[30px] sm:pb-[20px] sm:text-[26px]
-                md:pt-[40px] md:pb-[28px] md:text-[30px]
-                lg:pt-[60px] lg:pb-[38px] lg:text-[34px]"
-                        >
-                            <Link href={href}>{title}</Link>
-                        </p>
-                    </h2>
+                    <Heading
+                        as="h2"
+                        title={title}
+                        href={href}
+                        fontWeight="medium"
+                        size="2xl"
+                    />
                 )}
 
                 <div className="relative pb-[30px] sm:pb-[40px] md:pb-[50px] lg:pb-[65px]">
@@ -174,15 +165,13 @@ const Carousel = ({
                                         </ul>
                                     </div>
                                     <figcaption className="sm:w-[180px]">
-                                        <h3>
-                                            <Link
-                                                href={`/truyen-tranh/${item.slug}`}
-                                                className="text-[14px] sm:text-base md:text-lg line-clamp-1 mt-1.5 sm:mt-2.5 sm:mb-1"
-                                                title={item.name}
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        </h3>
+                                        <Heading
+                                            as="h3"
+                                            title={item.name}
+                                            href={`/truyen-tranh/${item.slug}`}
+                                            className="mt-1.5 sm:mt-2.5 sm:mb-1"
+                                            size="lgResponsive"
+                                        />
                                         <div
                                             className="text-[10px] sm:text-xs md:text-sm line-clamp-1"
                                             title={`Cập nhật ${formatRelativeTime(item.updatedAt)}`}
@@ -212,7 +201,7 @@ const Carousel = ({
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slidePrev()}
                     >
-                        <IconPrev className="size-6 sm:size-8" />
+                        <IconPrev className="size-6 sm:size-8 text-black" />
                     </Button>
 
                     {/* Next button */}
@@ -227,7 +216,7 @@ const Carousel = ({
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slideNext()}
                     >
-                        <IconNext className="size-6 sm:size-8" />
+                        <IconNext className="size-6 sm:size-8 text-black" />
                     </Button>
                 </div>
             </div>

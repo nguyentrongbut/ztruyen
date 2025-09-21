@@ -191,7 +191,7 @@ const ImgsChapter = ({
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}.html`}
                     >
                         <Button className="text-xs sm:text-sm" variant='primary'>
-                            Chương tiếp theo
+                            📖 Chương tiếp theo, đi thôi~ (≧▽≦)
                         </Button>
                     </Link>
                 </div>

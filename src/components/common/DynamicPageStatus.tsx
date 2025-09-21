@@ -1,12 +1,18 @@
 // ** Next
 import Link from 'next/link';
-import Image from 'next/image';
 
 // ** Shadcn ui
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links';
 
 // ** action service
-import { getListCategoryComic, getListNewComic } from '@/lib/actions/dynamic.page';
+import {
+    getListCategoryComic,
+    getListNewComic,
+} from '@/lib/actions/dynamic.page';
+
+// ** Components
+import ComicImage from '@/components/common/ComicImage';
+import { Heading } from '@/components/typography/Heading';
 
 const DynamicPageStatus = async ({
     category,
@@ -19,9 +25,9 @@ const DynamicPageStatus = async ({
 }) => {
     let res;
     if (category == 'the-loai/tat-ca') {
-        res = await getListNewComic(pageQuery)
+        res = await getListNewComic(pageQuery);
     } else {
-        res = await getListCategoryComic(category, pageQuery)
+        res = await getListCategoryComic(category, pageQuery);
     }
 
     const itemsPerPage = 24;
@@ -32,13 +38,15 @@ const DynamicPageStatus = async ({
     return (
         <section className="wrapper pt-6 pb-20">
             {title && (
-                <h1>
-                    <p className="capitalize text-xl mb-6">
-                        {res?.data?.titlePage}
-                    </p>
-                </h1>
+                <Heading
+                    link={false}
+                    title={res?.data?.titlePage}
+                    className="mb-6"
+                    size="xl"
+                    type="capitalize"
+                />
             )}
-            <div className="grid grid-cols-3 sm:w-grid-cols-4 md:w-grid-cols-5 lg:grid-cols-6 gap-4 mb-8">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-y-4 gap-2 md:gap-2.5 lg:gap-3 mb-8">
                 {dataGenre.map((item, index) => {
                     return (
                         <figure
@@ -47,26 +55,23 @@ const DynamicPageStatus = async ({
                             className="flex flex-col"
                         >
                             <Link href={`/truyen-tranh/${item.slug}`}>
-                                <Image
+                                <ComicImage
                                     src={`${res?.data?.APP_DOMAIN_CDN_IMAGE}/uploads/comics/${item.thumb_url}`}
-                                    width={180}
-                                    height={240}
+                                    imgSize="lg"
                                     alt={item.name}
-                                    sizes="(max-width: 50px) 2vw, max-width: 1920px) 180px)"
-                                    quality="60"
                                     priority={index <= 0 ? true : false}
-                                    className="aspect-[3/4] bg-secondary dark:bg-primary"
-                                ></Image>
+                                />
                             </Link>
                             <figcaption
-                                className="mt-1.5 text-sm line-clamp-1"
+                                className="mt-1.5 text-center"
                                 title={item.name}
                             >
-                                <h2>
-                                    <Link href={`/truyen-tranh/${item.slug}`}>
-                                        {item.name}
-                                    </Link>
-                                </h2>
+                                <Heading
+                                    as="h2"
+                                    title={item.name}
+                                    href={`/truyen-tranh/${item.slug}`}
+                                    size="sm"
+                                ></Heading>
                             </figcaption>
                         </figure>
                     );

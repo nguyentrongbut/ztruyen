@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
 
         unoptimized: true,
     },
+
+    // rewrites
+    async rewrites() {
+        return [
+            {
+                source: '/lich-su.html',
+                destination: '/lich-su',
+            },
+        ];
+    },
 };
 
 export default nextConfig;
