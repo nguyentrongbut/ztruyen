@@ -62,4 +62,14 @@ declare global {
         image_page: number;
         image_file: string;
     }
+
+    interface IHistory {
+        _id: string;
+        image: string;
+        slug: string;
+        chapter: string;
+        name: string;
+        path: string;
+        position: number;
+    }
 }

@@ -24,7 +24,6 @@ import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 import getIdFromUrl from '@/utils/getIdFromUrl';
 import { getChapterName } from '@/utils/getChapterName';
 
-
 const ImgsChapter = ({
     chapters,
     chapterName,
@@ -53,9 +52,7 @@ const ImgsChapter = ({
     const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
 
     const indexCurrentChapter = listChapter.findIndex(
-        (chapter) =>
-            getIdFromUrl(chapter.chapter_api_data, '/') ===
-            getIdFromUrl(currentUrl, '-')
+        (chapter) => getIdFromUrl(chapter.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-')
     );
 
     // Next chapter
@@ -95,6 +92,7 @@ const ImgsChapter = ({
         };
     }, [isModalOpen]);
 
+
     return (
         <>
             <div
@@ -118,7 +116,7 @@ const ImgsChapter = ({
                                   quality="60"
                                   priority={index === 0}
                                   loading={index === 0 ? 'eager' : 'lazy'}
-                                  className={`bg-secondary dark:bg-primary`}
+                                  className="bg-black dark:bg-white"
                                   style={{ width: `${imgWidth}%` }}
                               ></Image>
                           );
@@ -190,7 +188,10 @@ const ImgsChapter = ({
                     <Link
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}.html`}
                     >
-                        <Button className="text-xs sm:text-sm" variant='primary'>
+                        <Button
+                            className="text-xs sm:text-sm"
+                            variant="primary"
+                        >
                             📖 Chương tiếp theo, đi thôi~ (≧▽≦)
                         </Button>
                     </Link>

@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 // ** Next
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // ** Components
 import ComicImage from '@/components/common/ComicImage';
@@ -35,13 +36,20 @@ import { Trash, X } from 'lucide-react';
 // ** react hot toast
 import toast from 'react-hot-toast';
 
-const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
-    const listHistory = Array(10).fill(0);
+// ** utils
+import { historyService } from '@/utils/localStorage/historyService';
+
+const ReadingHistory = () => {
 
     const [deleteAll, setDeleteAll] = useState(false);
-    const [selected, setSelected] = useState<number[]>([]);
+    const [selected, setSelected] = useState<string[]>([]);
 
-    const toggleSelect = (id: number, checked: boolean) => {
+    const route = useRouter();
+
+    const listHistory = historyService.getAll()
+    const isHistory = listHistory.length > 0
+
+    const toggleSelect = (id: string, checked: boolean) => {
         setSelected((prev) =>
             checked ? [...prev, id] : prev.filter((item) => item !== id)
         );
@@ -51,24 +59,30 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
         if (selected.length === listHistory.length) {
             setSelected([]);
         } else {
-            setSelected(listHistory.map((_, idx) => idx));
+            setSelected(listHistory.map((item) => item._id));
         }
     };
 
     // delete 1
     const handleDelete = (id: string) => {
-        console.log('id:: ',id)
-        toast.success("Meow~ Tất cả đã biến mất như phép màu ")
+        try {
+            historyService.delete(id);
+            route.refresh()
+            toast.success("Meow~ Tất cả đã biến mất như phép màu ")
+        } catch {
+            toast.error('Huhu, có gì đó không ổn rồi...')
+        }
     }
 
     const handleDeleteMultiple = () => {
         if (selected.length > 0) {
-            console.log('ids:: ', selected);
+            historyService.deleteMany(selected)
+            route.refresh()
             toast.success("Meow~ Tất cả đã biến mất như phép màu ")
             setDeleteAll(false);
             setSelected([]);
         } else {
-            toast.error('Huhu, có gì đó không ổn rồi...')
+            toast.error('Hãy chọn ít nhất 1 truyện nhé...')
         }
     };
 
@@ -170,7 +184,7 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-y-4 gap-2 md:gap-2.5 lg:gap-3 mb-8">
                         {listHistory.map((item, i) => (
                             <figure
-                                key={i}
+                                key={item._id}
                                 title={item?.name ?? ''}
                                 className="flex flex-col relative"
                             >
@@ -178,8 +192,8 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
                                     onClick={() => {
                                         if (deleteAll) {
                                             toggleSelect(
-                                                i,
-                                                !selected.includes(i)
+                                                item._id,
+                                                !selected.includes(item._id)
                                             );
                                         }
                                     }}
@@ -188,8 +202,8 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
                                     }
                                 >
                                     <ComicImage
-                                        src={`https://img.otruyenapi.com/uploads/comics/doc-chiem-thumb.jpg`}
-                                        alt={i.toString()}
+                                        src={`${process.env.NEXT_PUBLIC_URL_IMG}/${item.image}`}
+                                        alt={item.name}
                                         imgSize="lg"
                                         priority={i <= 0 ? true : false}
                                     />
@@ -197,17 +211,17 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
 
                                 <figcaption
                                     className="mt-1.5 text-center"
-                                    title={i.toString()}
+                                    title={item.name}
                                 >
                                     <Heading
                                         as="h2"
-                                        title={`Ký Sự Hồi Quy ${i}`}
+                                        title={item.name}
                                         href={`/truyen-tranh/doc-chiem`}
                                         size="sm"
                                     />
-                                    <Link href="/doc-truyen/doc-chiem-chuong-1-688c469cc926626890abe30f.html">
+                                    <Link href={item.path}>
                                         <p className="line-clamp-1 text-xs mt-1.5 hover:text-primaryColor">
-                                            Đọc tiếp chương {i}
+                                            Đọc tiếp chương {item.chapter}
                                         </p>
                                     </Link>
                                 </figcaption>
@@ -215,10 +229,10 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
                                 <div className="absolute right-0 sm:right-1.5 top-0 sm:top-1.5 p-1.5 cursor-pointer">
                                     {deleteAll ? (
                                         <Checkbox
-                                            checked={selected.includes(i)}
+                                            checked={selected.includes(item._id)}
                                             onCheckedChange={(checked) =>
                                                 toggleSelect(
-                                                    i,
+                                                    item._id,
                                                     checked === true
                                                 )
                                             }
@@ -246,7 +260,7 @@ const ReadingHistory = ({ isHistory }: { isHistory: boolean }) => {
                                                         </Button>
                                                     </AlertDialogCancel>
                                                     <AlertDialogAction asChild>
-                                                        <Button onClick={() => handleDelete(i.toString())} variant='danger'>
+                                                        <Button onClick={() => handleDelete(item._id)} variant='danger'>
                                                             Đúng vậy! (=^･ｪ･^=)/
                                                         </Button>
                                                     </AlertDialogAction>

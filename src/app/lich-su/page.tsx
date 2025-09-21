@@ -33,10 +33,9 @@ export async function generateMetadata() {
 }
 
 const ReadingHistoryPage = () => {
-    const isHistory = true;
     return (
         <Suspense fallback={<DynamicPageStatusSkeleton/>}>
-            <ReadingHistory isHistory={isHistory} />
+            <ReadingHistory />
         </Suspense>
     );
 };

@@ -6,6 +6,7 @@ import Header from '@/layouts/components/Header';
 
 // ** Modules
 import ImgsChapter from '@/modules/doc-truyen/ImageChapter';
+import ScrollSaver from '@/modules/doc-truyen/ScrollSaver';
 
 // ** utils
 import getIdFromUrl from '@/utils/getIdFromUrl';
@@ -62,14 +63,19 @@ const ChapterPage = async ({
 }: {
     params: Promise<{ slug: string }>;
 }) => {
+    // slug page
     const slug = removeExtension((await params).slug, '.html');
 
     const res = await getChapter(getIdFromUrl(slug, '-') as string);
     const response = await getComicDetail(getChapterName(slug));
     const chapter: IReader = res?.data?.item;
+    // slug chapter
+    const slugChapter = response?.data?.item?.slug
+    const thumbImg = response?.data?.item?.thumb_url
 
     const listChapter: IChapter[] =
         response?.data?.item?.chapters[0].server_data;
+
     return (
         <>
             <Header asChild={true}>
@@ -91,6 +97,13 @@ const ChapterPage = async ({
                 chapterName={chapter?.comic_name}
                 listChapter={listChapter}
                 currentUrl={slug}
+            />
+            <ScrollSaver
+                chapterName={chapter?.comic_name}
+                numberOfChapters={res?.data?.item?.chapter_name}
+                currentUrl={slug}
+                image={thumbImg}
+                slug={slugChapter}
             />
         </>
     );
