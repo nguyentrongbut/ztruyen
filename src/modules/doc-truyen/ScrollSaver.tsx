@@ -1,7 +1,12 @@
 'use client';
 
+// ** React
 import { useCallback, useEffect, useRef } from 'react';
+
+// ** Next
 import { usePathname } from 'next/navigation';
+
+// ** utils
 import getIdFromUrl from '@/utils/getIdFromUrl';
 import { historyService } from '@/utils/localStorage/historyService';
 

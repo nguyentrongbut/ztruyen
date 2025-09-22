@@ -1,11 +1,10 @@
 'use client';
 
 // ** React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // ** Next
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 // ** Components
 import ComicImage from '@/components/common/ComicImage';
@@ -43,10 +42,17 @@ const ReadingHistory = () => {
 
     const [deleteAll, setDeleteAll] = useState(false);
     const [selected, setSelected] = useState<string[]>([]);
+    const [listHistory, setListHistory] = useState<IHistory[]>([]);
 
-    const route = useRouter();
+    // Load history khi mount
+    useEffect(() => {
+        setListHistory(historyService.getAll());
+    }, []);
 
-    const listHistory = historyService.getAll()
+    const refreshHistory = () => {
+        setListHistory(historyService.getAll());
+    };
+
     const isHistory = listHistory.length > 0
 
     const toggleSelect = (id: string, checked: boolean) => {
@@ -67,7 +73,7 @@ const ReadingHistory = () => {
     const handleDelete = (id: string) => {
         try {
             historyService.delete(id);
-            route.refresh()
+            refreshHistory()
             toast.success("Meow~ Tất cả đã biến mất như phép màu ")
         } catch {
             toast.error('Huhu, có gì đó không ổn rồi...')
@@ -77,7 +83,7 @@ const ReadingHistory = () => {
     const handleDeleteMultiple = () => {
         if (selected.length > 0) {
             historyService.deleteMany(selected)
-            route.refresh()
+            refreshHistory()
             toast.success("Meow~ Tất cả đã biến mất như phép màu ")
             setDeleteAll(false);
             setSelected([]);
