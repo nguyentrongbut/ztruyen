@@ -14,6 +14,9 @@ import ToasterCustom from '@/components/common/ToasterCustom';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
+// ** PostHog
+import { PostHogProvider } from '@/app/providers';
+
 const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['300', '400', '500', '600', '700'],
@@ -72,17 +75,19 @@ export default function RootLayout({
             <body
                 className={`${montserrat.className} antialiased select-none overflow-x-hidden`}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <NprogressWrapper>
-                        <main className="mt-[56px]">{children}</main>
-                        <ToasterCustom/>
-                    </NprogressWrapper>
-                </ThemeProvider>
+                <PostHogProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <NprogressWrapper>
+                            <main className="mt-[56px]">{children}</main>
+                            <ToasterCustom />
+                        </NprogressWrapper>
+                    </ThemeProvider>
+                </PostHogProvider>
                 <Analytics />
                 <SpeedInsights />
             </body>
