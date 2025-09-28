@@ -1,8 +1,15 @@
 'use client';
-import IconSearch from '@/components/icons/IconSearch';
+
+// ** React
 import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
+
+// ** Next
+import { useRouter } from 'next/navigation';
+
+// ** Lucide Icon
+import { SearchIcon } from 'lucide-react';
+
 
 const Search = () => {
     const router = useRouter();
@@ -65,7 +72,7 @@ const Search = () => {
                             type="submit"
                             className="px-[5px] pr-[17px] h-full"
                         >
-                            <IconSearch></IconSearch>
+                            <SearchIcon className='size-4'/>
                         </button>
                     </form>
                 </div>
@@ -76,7 +83,7 @@ const Search = () => {
                         setSearchIconClick(true);
                     }}
                 >
-                    <IconSearch></IconSearch>
+                    <SearchIcon className='size-4'/>
                 </div>
             </div>
         </>

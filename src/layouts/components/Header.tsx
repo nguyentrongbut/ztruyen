@@ -8,7 +8,6 @@ import NavHeader from '@/layouts/components/NavHeader';
 import NavHeaderMobile from '@/layouts/components/NavHeaderMobile';
 
 // ** Components
-import IconMenu from '@/components/icons/IconMenu';
 import Logo from '@/components/common/Logo';
 
 // ** Shadcn ui
@@ -22,6 +21,9 @@ import {
 
 // ** Modules
 import ReadingHistoryBtn from '@/modules/home/ReadingHistoryBtn';
+
+// ** Lucide Icon
+import { Menu } from 'lucide-react';
 
 const Header = ({
     asChild = false,
@@ -53,7 +55,7 @@ const Header = ({
                                 asChild={true}
                                 className="cursor-pointer"
                             >
-                                <IconMenu></IconMenu>
+                                <Menu className='size-5'/>
                             </SheetTrigger>
                             <SheetContent
                                 side="left"

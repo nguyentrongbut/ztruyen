@@ -17,16 +17,19 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
 // ** Components
-import IconPrev from '@/components/icons/IconPrev';
-import IconNext from '@/components/icons/IconNext';
 import ComicImage from '@/components/common/ComicImage';
+
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
 
 // ** utils
 import chunkArray from '@/utils/chunkArray';
 
 // ** skeleton
 import GridCarouselSkeleton from '@/skeleton/home/GridCarouselSkeleton';
-import { Button } from '@/components/ui/button';
+
+// ** Lucide Icon
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const GridCarousel = ({ data }: { data: IComic[] }) => {
     const swiperRef = useRef<SwiperType | null>(null);
@@ -160,7 +163,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 className="absolute left-12 lg:left-[100px] top-1/2 z-20 -translate-y-1/2 hidden sm:flex"
                 onClick={() => swiperRef.current?.slidePrev()}
             >
-                <IconPrev className="text-white/60"></IconPrev>
+                <ChevronLeft className="text-white/60"/>
             </Button>
             <Button
                 shape='verticalRectangle'
@@ -168,7 +171,7 @@ const GridCarousel = ({ data }: { data: IComic[] }) => {
                 className="absolute right-12 lg:right-[100px] top-1/2 z-20 -translate-y-1/2 hidden sm:flex"
                 onClick={() => swiperRef.current?.slideNext()}
             >
-                <IconNext className="text-white/60"></IconNext>
+                <ChevronRight className="text-white/60"/>
             </Button>
         </div>
     );

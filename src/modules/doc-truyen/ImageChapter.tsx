@@ -12,7 +12,6 @@ import Settings from '@/modules/doc-truyen/Settings';
 
 // ** Components
 import Overlay from '@/modules/doc-truyen/Overlay';
-import IconSettings from '@/components/icons/IconSettings';
 
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
@@ -23,6 +22,9 @@ import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 // ** utils
 import getIdFromUrl from '@/utils/getIdFromUrl';
 import { getChapterName } from '@/utils/getChapterName';
+
+// ** Lucide Icon
+import { SettingsIcon } from 'lucide-react';
 
 const ImgsChapter = ({
     chapters,
@@ -52,7 +54,9 @@ const ImgsChapter = ({
     const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
 
     const indexCurrentChapter = listChapter.findIndex(
-        (chapter) => getIdFromUrl(chapter.chapter_api_data, '/') === getIdFromUrl(currentUrl, '-')
+        (chapter) =>
+            getIdFromUrl(chapter.chapter_api_data, '/') ===
+            getIdFromUrl(currentUrl, '-')
     );
 
     // Next chapter
@@ -91,7 +95,6 @@ const ImgsChapter = ({
             document.body.classList.remove('modal-scrollbar-hidden');
         };
     }, [isModalOpen]);
-
 
     return (
         <>
@@ -163,19 +166,19 @@ const ImgsChapter = ({
                 </div>
 
                 <div
-                    className="fixed bottom-[24px] right-[65px] bg-[#fafafa] shadow dark:bg-[#030303] border dark:border-[#3e3e3e] hidden lg:flex gap-[11px] items-center rounded-full py-1.5 px-4 cursor-pointer"
+                    className="fixed bottom-[24px] right-[65px] bg-[#fafafa] shadow dark:bg-[#030303] border dark:border-[#3e3e3e] hidden lg:flex gap-[11px] items-center rounded-full py-2 px-4 cursor-pointer"
                     onClick={() => setIsModalOpen((prevState) => !prevState)}
                 >
                     {isModalOpen ? (
                         <>
-                            <IconSettings className="size-6 text-primaryColor"></IconSettings>
+                            <SettingsIcon className="size-5 text-primaryColor" />
                             <span className="hidden xl:block dark:text-white/85 text-xs">
                                 Ẩn thanh công cụ
                             </span>
                         </>
                     ) : (
                         <>
-                            <IconSettings className="size-6"></IconSettings>
+                            <SettingsIcon className="size-5" />
                             <span className="hidden xl:block dark:text-white/85 text-xs">
                                 Hiển thị thanh công cụ
                             </span>

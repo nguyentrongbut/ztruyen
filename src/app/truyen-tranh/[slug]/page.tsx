@@ -2,9 +2,6 @@
 import Link from 'next/link';
 
 // ** Components
-import IconTag from '@/components/icons/IconTag';
-import IconCalendar from '@/components/icons/IconCalendar';
-import IconStatus from '@/components/icons/IconStatus';
 import ComicImage from '@/components/common/ComicImage';
 import { Heading } from '@/components/typography/Heading';
 
@@ -20,11 +17,14 @@ import {
 import RangeBtnPagination from '@/modules/truyen-tranh/RangeBtnPagination';
 import ReadNowBtn from '@/modules/truyen-tranh/ReadNowBtn';
 
-// ** Dayjs
-import 'dayjs/locale/vi';
+// ** Lucide Icon
+import { Activity, CalendarRange, Tag } from 'lucide-react';
 
 // ** utils
 import getIdFromUrl from '@/utils/getIdFromUrl';
+
+// ** Dayjs
+import 'dayjs/locale/vi';
 
 // ** action service
 import { getComicDetail, getListNewSection } from '@/lib/actions/detail';
@@ -103,9 +103,9 @@ const DetailPage = async ({
                         type="textFull"
                         className="text-center sm:text-start"
                     />
-                    <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-1.5">
+                    <div className="flex flex-wrap sm:flex-col mt-3.5 gap-4 sm:gap-2">
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
-                            <IconTag className="size-4"></IconTag>
+                            <Tag className="size-4"/>
                             <div className="flex gap-2 flex-wrap">
                                 {data.category.map((item, index) => (
                                     <span key={index}>{item.name}</span>
@@ -113,11 +113,11 @@ const DetailPage = async ({
                             </div>
                         </div>
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
-                            <IconStatus className="size-4"></IconStatus>
+                            <Activity className="size-4"/>
                             <span className="text-sm">{data?.status}</span>
                         </div>
                         <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-start sm:items-center">
-                            <IconCalendar className="size-4"></IconCalendar>
+                            <CalendarRange className='size-4'/>
                             <span className="text-sm ">{`${chapters?.length > 0 ? `Đã cập nhật tới chương ${lastestChapter}` : 'Đang cập nhật'} `}</span>
                         </div>
                     </div>
@@ -217,13 +217,13 @@ const DetailPage = async ({
                                                 />
                                                 <div className="flex flex-col gap-8">
                                                     <div className="text-black/50 dark:text-white/50 flex gap-1 items-center">
-                                                        <IconStatus className="size-3 flex-shrink-0"></IconStatus>
+                                                        <Activity className="size-3 flex-shrink-0"/>
                                                         <span className="text-xs ">
                                                             {data.status}
                                                         </span>
                                                     </div>
                                                     <div className="text-sm text-black/50 dark:text-white/50 flex gap-1 items-center">
-                                                        <IconCalendar className="size-3 flex-shrink-0"></IconCalendar>
+                                                        <CalendarRange className='size-3 flex-shrink-0'/>
                                                         <span
                                                             className="text-sm line-clamp-1"
                                                             title={`${item.chaptersLatest !== null ? `Đã cập nhật tới chương ${item?.chaptersLatest[0]?.chapter_name}` : 'Đang cập nhật'}`}

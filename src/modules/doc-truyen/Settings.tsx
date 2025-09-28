@@ -6,15 +6,6 @@ import React, { useEffect, useRef, useState } from 'react';
 // ** Next
 import Link from 'next/link';
 
-// ** Components
-import IconPlus from '@/components/icons/IconPlus';
-import IconMinus from '@/components/icons/IconMinus';
-import IconNext from '@/components/icons/IconNext';
-import IconPrev from '@/components/icons/IconPrev';
-import IconMenu from '@/components/icons/IconMenu';
-import IconFullScreen from '@/components/icons/IconFullScreen';
-import IconUnFullScreen from '@/components/icons/IconUnFullScreen';
-
 // ** Shadcn ui
 import { Slider } from '@/components/ui/slider';
 import {
@@ -23,7 +14,17 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-// utils
+// ** lucide icon
+import {
+    ChevronLeft,
+    ChevronRight,
+    Expand, Menu,
+    Minus,
+    Plus,
+    Shrink,
+} from 'lucide-react';
+
+// ** utils
 import { getChapterName } from '@/utils/getChapterName';
 import getIdFromUrl from '@/utils/getIdFromUrl';
 
@@ -210,7 +211,7 @@ const Settings = ({
         <div
             className={`w-full absolute bottom-0 flex flex-col items-center left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out`}
         >
-            <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max">
+            <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max pt-1">
                 <DropdownMenu
                     open={isDropdownOpen}
                     onOpenChange={(open) => {
@@ -222,7 +223,7 @@ const Settings = ({
                 >
                     <DropdownMenuTrigger asChild>
                         <div className="flex flex-col items-center gap-1 p-2 cursor-pointer ">
-                            <IconMenu color="#777"></IconMenu>
+                            <Menu className='size-5 text-[#777]' />
                             <span className="text-xs">Mục lục</span>
                         </div>
                     </DropdownMenuTrigger>
@@ -267,14 +268,14 @@ const Settings = ({
                 >
                     {isFullScreen ? (
                         <>
-                            <IconUnFullScreen></IconUnFullScreen>
+                            <Shrink className="size-5" />
                             <span className="text-white text-xs">
                                 Thoát chế độ toàn màn hình
                             </span>
                         </>
                     ) : (
                         <>
-                            <IconFullScreen color="#777"></IconFullScreen>
+                            <Expand className="text-[#777] size-5" />
                             <span className="text-xs">Xem toàn màn hình </span>
                         </>
                     )}
@@ -288,11 +289,11 @@ const Settings = ({
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${prevChapter?.chapter_name}-${getIdFromUrl(prevChapter?.chapter_api_data, '/')}.html`}
                         className="p-2"
                     >
-                        <IconPrev></IconPrev>
+                        <ChevronLeft className="size-6" />
                     </Link>
                 ) : (
                     <span className="p-2 opacity-50">
-                        <IconPrev></IconPrev>
+                        <ChevronLeft className="size-6" />
                     </span>
                 )}
                 <span className="text-[#777] text-sm flex-shrink-0">{`${currentImageIndex + 1} / ${totalImages}`}</span>
@@ -311,11 +312,11 @@ const Settings = ({
                         href={`/doc-truyen/${getChapterName(currentUrl)}-chuong-${nextChapter?.chapter_name}-${getIdFromUrl(nextChapter?.chapter_api_data, '/')}.html`}
                         className="p-2"
                     >
-                        <IconNext></IconNext>
+                        <ChevronRight className="size-6" />
                     </Link>
                 ) : (
                     <span className="p-2 opacity-50">
-                        <IconNext></IconNext>
+                        <ChevronRight className="size-6" />
                     </span>
                 )}
                 <div className="absolute bottom-0 -left-[140px] hidden lg:block">
@@ -324,14 +325,14 @@ const Settings = ({
                             className="p-3 cursor-pointer"
                             onClick={handlePlusChange}
                         >
-                            <IconPlus></IconPlus>
+                            <Plus className="size-4" />
                         </span>
                         <span className="text-[13px] text-[#777]">{`${imgWidth}%`}</span>
                         <span
                             className="p-3 cursor-pointer"
                             onClick={handleMinusChange}
                         >
-                            <IconMinus></IconMinus>
+                            <Minus className="size-4" />
                         </span>
                     </div>
                 </div>

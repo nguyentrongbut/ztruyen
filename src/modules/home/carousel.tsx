@@ -13,8 +13,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 // ** Components
-import IconPrev from '@/components/icons/IconPrev';
-import IconNext from '@/components/icons/IconNext';
 import { Tag } from '@/components/common/Tag';
 import ComicImage from '@/components/common/ComicImage';
 import { Heading } from '@/components/typography/Heading';
@@ -27,7 +25,12 @@ import formatRelativeTime from '@/utils/formatRelativeTime';
 
 // ** next progress bar
 import { useRouter } from 'next-nprogress-bar';
+
+// ** Skeleton
 import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
+
+// ** Lucide Icon
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Carousel = ({
     data,
@@ -201,7 +204,7 @@ const Carousel = ({
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slidePrev()}
                     >
-                        <IconPrev className="size-6 sm:size-8 text-black" />
+                        <ChevronLeft className="size-6 sm:size-8 text-black" />
                     </Button>
 
                     {/* Next button */}
@@ -216,7 +219,7 @@ const Carousel = ({
                         style={{ boxShadow: '0 0 19px 0 rgba(0, 0, 0, .251)' }}
                         onClick={() => swiperRef.current?.slideNext()}
                     >
-                        <IconNext className="size-6 sm:size-8 text-black" />
+                        <ChevronRight className="size-6 sm:size-8 text-black" />
                     </Button>
                 </div>
             </div>
