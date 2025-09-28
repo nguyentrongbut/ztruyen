@@ -17,6 +17,9 @@ import { Heading } from '@/components/typography/Heading';
 // ** Shadcn ui
 import { Button } from '@/components/ui/button';
 
+// ** Configs
+import { CONFIG_API_OUT_SIDE } from '@/configs/api';
+
 const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
     // State to store the selected comic
     const [selectedComic, setSelectedComic] = useState<IComic | null>(
@@ -40,7 +43,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
         <figure
             className="rounded-2xl bg-black p-6 flex flex-col justify-between text-white relative h-[280px] sm:h-[300px]"
             style={{
-                backgroundImage: `url(${process.env.NEXT_PUBLIC_URL_IMG}/${selectedComic?.thumb_url})`,
+                backgroundImage: `url(${CONFIG_API_OUT_SIDE.IMAGE.INDEX}/${selectedComic?.thumb_url})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
             }}
@@ -85,7 +88,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                             onClick={() => handleImageClick(item)}
                         >
                             <ComicImage
-                                src={`${process.env.NEXT_PUBLIC_URL_IMG}/${item?.thumb_url}`}
+                                src={`${CONFIG_API_OUT_SIDE.IMAGE.INDEX}/${item?.thumb_url}`}
                                 alt={item?.name}
                                 title={item?.name}
                                 size="full"
@@ -100,7 +103,7 @@ const InteractiveThumbnail = ({ listNewComic }: { listNewComic: IComic[] }) => {
                     className="hidden sm:block rounded-2xl overflow-hidden aspect-video absolute top-4  right-6 sm:-top-8 w-[45%]"
                 >
                     <ComicImage
-                        src={`${process.env.NEXT_PUBLIC_URL_IMG}/${selectedComic?.thumb_url}`}
+                        src={`${CONFIG_API_OUT_SIDE.IMAGE.INDEX}/${selectedComic?.thumb_url}`}
                         alt={selectedComic?.name || 'title name ztruyen'}
                         title={selectedComic?.name || 'title name ztruyen'}
                         size="full"

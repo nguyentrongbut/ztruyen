@@ -1,12 +1,15 @@
 'use server';
 
-import { urlOutSide } from '@/lib/actions/url';
+// ** actions
 import { fetchAPI } from '@/lib/actions/api';
 
+// ** configs
+import { CONFIG_API_OUT_SIDE } from '@/configs/api';
+
 export async function getComicDetail(slug: string) {
-    return fetchAPI<any>(`${urlOutSide}/truyen-tranh/${slug}`, {}, 60);
+    return fetchAPI<any>(`${CONFIG_API_OUT_SIDE.DETAIL.INDEX}/${slug}`, {}, 60);
 }
 
 export async function getListNewSection() {
-    return fetchAPI<any>(`${urlOutSide}/danh-sach/truyen-moi`, {}, 60);
+    return fetchAPI<any>(`${CONFIG_API_OUT_SIDE.STATUS.NEW}`, {}, 60);
 }

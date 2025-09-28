@@ -38,6 +38,9 @@ import toast from 'react-hot-toast';
 // ** utils
 import { historyService } from '@/utils/localStorage/historyService';
 
+// ** configs
+import { CONFIG_API_OUT_SIDE } from '@/configs/api';
+
 const ReadingHistory = () => {
 
     const [deleteAll, setDeleteAll] = useState(false);
@@ -208,7 +211,7 @@ const ReadingHistory = () => {
                                     }
                                 >
                                     <ComicImage
-                                        src={`${process.env.NEXT_PUBLIC_URL_IMG}/${item.image}`}
+                                        src={`${CONFIG_API_OUT_SIDE.IMAGE.INDEX}/${item.image}`}
                                         alt={item.name}
                                         imgSize="lg"
                                         priority={i <= 0 ? true : false}

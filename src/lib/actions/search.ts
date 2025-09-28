@@ -1,8 +1,11 @@
 'use server';
 
-import { urlOutSide } from '@/lib/actions/url';
+// ** actions
 import { fetchAPI } from '@/lib/actions/api';
 
+// ** configs
+import { CONFIG_API_OUT_SIDE } from '@/configs/api';
+
 export async function getSearchComic(keyword: string, pageQuery: number) {
-    return fetchAPI<any>(`${urlOutSide}/tim-kiem?keyword=${keyword}&page=${pageQuery}`, {}, 60);
+    return fetchAPI<any>(`${CONFIG_API_OUT_SIDE.SEARCH.INDEX}?keyword=${keyword}&page=${pageQuery}`, {}, 60);
 }

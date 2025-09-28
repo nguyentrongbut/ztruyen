@@ -1,10 +1,11 @@
 'use server';
 
-import { urlOutSide } from '@/lib/actions/url';
+// ** Configs
+import { CONFIG_API_OUT_SIDE } from '@/configs/api';
 
-async function fetchData(endpoint: string, revalidate?: number) {
+async function fetchData(url: string, revalidate?: number) {
     try {
-        const res = await fetch(`${urlOutSide}${endpoint}`, {
+        const res = await fetch(url, {
             method: 'GET',
             ...(revalidate
                 ? { next: { revalidate } }
@@ -12,7 +13,7 @@ async function fetchData(endpoint: string, revalidate?: number) {
         });
 
         if (!res.ok) {
-            throw new Error(`Failed to fetch data from ${endpoint}: ${res.statusText}`);
+            throw new Error(`Failed to fetch data from ${url}: ${res.statusText}`);
         }
 
         const data = await res.json();
@@ -24,25 +25,25 @@ async function fetchData(endpoint: string, revalidate?: number) {
 }
 
 export async function getListHome() {
-    return fetchData('/home', 60); // cache 60s
+    return fetchData(`${CONFIG_API_OUT_SIDE.HOME.INDEX}`, 60); // cache 60s
 }
 
 export async function getListPublishing() {
-    return fetchData('/danh-sach/dang-phat-hanh?sort_field=updatedAt', 60);
+    return fetchData(`${CONFIG_API_OUT_SIDE.STATUS.PUBLISHING}?sort_field=updatedAt`, 60);
 }
 
 export async function getListComplete() {
-    return fetchData('/danh-sach/hoan-thanh?sort_field=updatedAt', 60);
+    return fetchData(`${CONFIG_API_OUT_SIDE.STATUS.COMPLETE}?sort_field=updatedAt`, 60);
 }
 
 export async function getListComingSoon() {
-    return fetchData('/danh-sach/sap-ra-mat?sort_field=updatedAt', 60);
+    return fetchData(`${CONFIG_API_OUT_SIDE.STATUS.COMING_SOON}?sort_field=updatedAt`, 60);
 }
 
 export async function getListNew() {
-    return fetchData('/danh-sach/truyen-moi?sort_field=updatedAt', 30);
+    return fetchData(`${CONFIG_API_OUT_SIDE.STATUS.NEW}?sort_field=updatedAt`, 30);
 }
 
 export async function getListGenre() {
-    return fetchData('/the-loai', 3600);
+    return fetchData(`${CONFIG_API_OUT_SIDE.GENRE.INDEX}`, 3600);
 }
