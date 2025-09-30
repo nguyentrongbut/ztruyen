@@ -1,3 +1,6 @@
+// ** React
+import { Suspense } from 'react';
+
 // ** Next
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
@@ -9,6 +12,7 @@ import './globals.css';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import NprogressWrapper from '@/components/common/nprogress.wrapper';
 import ToasterCustom from '@/components/common/ToasterCustom';
+import ScrollToTop from '@/components/common/ScrollToTop';
 
 // ** Vercel
 import { Analytics } from '@vercel/analytics/next';
@@ -83,6 +87,9 @@ export default function RootLayout({
                         disableTransitionOnChange
                     >
                         <NprogressWrapper>
+                            <Suspense fallback={null}>
+                                <ScrollToTop />
+                            </Suspense>
                             <main className="mt-[56px]">{children}</main>
                             <ToasterCustom />
                         </NprogressWrapper>
