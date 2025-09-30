@@ -7,33 +7,8 @@ import { usePathname } from 'next/navigation';
 // ** utils
 import removeExtension from '@/utils/removeExtension';
 
-export type NavHeader = {
-    title: string;
-    href: string;
-};
-
-export const navHeader: NavHeader[] = [
-    {
-        title: 'Thể loại',
-        href: '/the-loai/tat-ca.html',
-    },
-    {
-        title: 'Đang phát hành',
-        href: '/danh-sach/dang-phat-hanh.html',
-    },
-    {
-        title: 'Hoàn thành',
-        href: '/danh-sach/hoan-thanh.html',
-    },
-    {
-        title: 'Sắp ra mắt',
-        href: '/danh-sach/sap-ra-mat.html',
-    },
-    {
-        title: 'Truyện mới',
-        href: '/danh-sach/truyen-moi.html',
-    },
-];
+// ** Configs
+import { navHeader } from '@/configs/layout';
 
 const NavHeader = () => {
     const path = usePathname();

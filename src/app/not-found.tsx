@@ -28,7 +28,7 @@ export default function NotFound() {
                 Đường dẫn này không tồn tại, hãy quay lại để tiếp tục hành trình
                 nhé.
             </p>
-            <Link href="/" className="mt-1 sm:mt-2">
+            <Link href='/'className="mt-1 sm:mt-2">
                 <Button variant="primary" className="text-xs">
                     Về nhà thôi nào (≧▽≦)
                 </Button>

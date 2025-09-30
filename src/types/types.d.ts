@@ -33,4 +33,9 @@ declare global {
         /** screen ≥ 1536px (2xl) */
         is2xl: boolean;
     }
+
+    interface TLink {
+        title: string;
+        href: string;
+    }
 }

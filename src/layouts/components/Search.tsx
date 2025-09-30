@@ -7,9 +7,11 @@ import { FormEvent } from 'react';
 // ** Next
 import { useRouter } from 'next/navigation';
 
+// ** Shadcn ui
+import { Button } from '@/components/ui/button';
+
 // ** Lucide Icon
 import { SearchIcon } from 'lucide-react';
-
 
 const Search = () => {
     const router = useRouter();
@@ -72,7 +74,7 @@ const Search = () => {
                             type="submit"
                             className="px-[5px] pr-[17px] h-full"
                         >
-                            <SearchIcon className='size-4'/>
+                            <SearchIcon className="size-4" />
                         </button>
                     </form>
                 </div>
@@ -83,7 +85,9 @@ const Search = () => {
                         setSearchIconClick(true);
                     }}
                 >
-                    <SearchIcon className='size-4'/>
+                    <Button variant="ghost" shape="squareRounded">
+                        <SearchIcon className="size-4" />
+                    </Button>
                 </div>
             </div>
         </>

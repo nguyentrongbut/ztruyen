@@ -18,6 +18,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 
 // ** Modules
 import ReadingHistoryBtn from '@/modules/home/ReadingHistoryBtn';
@@ -40,22 +41,21 @@ const Header = ({
                     {!asChild && <NavHeader />}
                 </div>
                 {children}
-                <div className="flex items-center gap-[17px]">
-                    {!asChild && <Search></Search>}
+                <div className="flex items-center gap-2">
+                    {!asChild && <Search />}
                     <div className="flex items-center gap-4 text-xs lg:text-sm">
-                        <div>Đăng nhập</div>
-                        <ReadingHistoryBtn/>
+                        {/*<div>Đăng nhập</div>*/}
+                        <ReadingHistoryBtn />
                     </div>
                     <div className="hidden xl:block">
-                        <ModeToggle></ModeToggle>
+                        <ModeToggle/>
                     </div>
                     <div className="xl:hidden">
                         <Sheet>
-                            <SheetTrigger
-                                asChild={true}
-                                className="cursor-pointer"
-                            >
-                                <Menu className='size-5'/>
+                            <SheetTrigger asChild className="cursor-pointer">
+                                <Button variant="ghost" shape="squareRounded">
+                                    <Menu className="size-5" />
+                                </Button>
                             </SheetTrigger>
                             <SheetContent
                                 side="left"

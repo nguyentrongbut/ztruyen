@@ -22,7 +22,7 @@ import ListComicSkeleton from '@/skeleton/home/ListComicSkeleton';
 import NewComicSkeleton from '@/skeleton/home/NewComicSkeleton';
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://ztruyen.io.vn'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_YOUR_WEBSITE || ''),
     title: 'Đọc truyện tranh Manhwa, Manga, Manhua Online - Ztruyện ',
     description:
         'Web đọc truyện tranh manhwa, manhua, manga, ngôn tình, tiên hiệp, kiếm hiệp online hay và mới nhất cập nhật liên tục tại ztruyen.io.vn',

@@ -2,49 +2,8 @@
 import { Tag } from '@/components/common/Tag';
 import Logo from '@/components/common/Logo';
 
-type TTags = {
-    title: string;
-    href: string;
-};
-
-const tags: TTags[] = [
-    {
-        title: 'Truyện tranh',
-        href: '/',
-    },
-    {
-        title: 'Truyện Tranh Online',
-        href: '/',
-    },
-    {
-        title: 'Truyện Tranh Mới',
-        href: '/',
-    },
-    {
-        title: 'Truyện Tranh Hay',
-        href: '/',
-    },
-    {
-        title: 'Đọc Truyện Tranh',
-        href: '/',
-    },
-    {
-        title: 'Manhwa',
-        href: '/the-loai/manhwa.html',
-    },
-    {
-        title: 'Manhua',
-        href: '/the-loai/manhua.html',
-    },
-    {
-        title: 'Manga',
-        href: '/danh-sach/truyen-moi.html',
-    },
-    {
-        title: 'Truyện Ngôn Tình',
-        href: '/the-loai/ngon-tinh.html',
-    },
-];
+// ** Configs
+import { tagsFooter } from '@/configs/layout';
 
 const Footer = () => {
     return (
@@ -57,7 +16,7 @@ const Footer = () => {
                                 <Logo size='lg'/>
                             </div>
                             <ul className="flex flex-wrap gap-2">
-                                {tags.map((tag) => (
+                                {tagsFooter.map((tag) => (
                                     <Tag
                                         key={tag?.title}
                                         href={tag?.href}

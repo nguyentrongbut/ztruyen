@@ -3,7 +3,7 @@ import { getGenres } from '@/lib/actions/dynamic.page';
 import { getListNew } from '@/lib/actions/home';
 
 export default async function sitemap() {
-    const baseURL = 'https://ztruyen.io.vn';
+    const baseURL = process.env.NEXT_PUBLIC_YOUR_WEBSITE;
     const resGenres = await getGenres();
     const dataGenres: IGenres[] = resGenres?.data?.items;
     const dataHome: IComic[] = await getListNew();

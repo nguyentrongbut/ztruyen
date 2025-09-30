@@ -7,11 +7,11 @@ import { usePathname } from 'next/navigation';
 // ** Shadcn ui
 import { SheetClose, SheetTitle } from '@/components/ui/sheet';
 
-// ** Layouts
-import { navHeader } from '@/layouts/components/NavHeader';
-
 // ** utils
 import removeExtension from '@/utils/removeExtension';
+
+// ** Configs
+import { navHeader } from '@/configs/layout';
 
 const NavHeaderMobile = () => {
     const path = usePathname();
