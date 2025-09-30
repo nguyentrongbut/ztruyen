@@ -1,11 +1,11 @@
 // ** React
 import { Suspense } from 'react';
 
-// ** Next
-import Link from 'next/link';
-
 // ** Components
 import DynamicPageStatus from '@/components/common/DynamicPageStatus';
+
+// ** Modules
+import ListGenre from '@/modules/the-loai/ListGenre';
 
 // ** utils
 import removeExtension from '@/utils/removeExtension';
@@ -80,52 +80,7 @@ const Genre = async ({
                 <p className="flex-shrink-0 text-[15px] dark:text-[#ffffffbd] text-[#00000057]">
                     Thể loại
                 </p>
-                <ul className="flex gap-3.5 flex-wrap text-[15px]">
-                    {data.map((item, index) => (
-                        <li key={index}>
-                            {item.slug === slug ? (
-                                <h1>
-                                    <Link
-                                        href={`/the-loai/${item.slug}.html`}
-                                        className={`active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-primaryColor'}`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                </h1>
-                            ) : (
-                               <h2>
-                                   <Link
-                                       href={`/the-loai/${item.slug}.html`}
-                                       className={`active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 ${item.slug === slug && 'text-primaryColor'}`}
-                                   >
-                                       {item.name}
-                                   </Link>
-                               </h2>
-                            )}
-                        </li>
-                    ))}
-                    <li>
-                        {'tat-ca' === slug ? (
-                            <h1>
-                                <Link
-                                    href={`/the-loai/tat-ca.html`}
-                                    className="active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5 text-primaryColor"
-                                >
-                                    Tất cả
-                                </Link>
-                            </h1>
-                        ) : (
-                           <h2>
-                               <Link
-                                   href={`/the-loai/tat-ca.html`}
-                                   className="active:bg-primaryColor active:text-primary rounded-[5px] px-[10px] py-1.5"
-                               >
-                                   Tất cả
-                               </Link>
-                           </h2>
-                        )}
-                    </li>
-                </ul>
+               <ListGenre data={data} slug={slug} />
             </nav>
             <Suspense fallback={<DynamicPageStatusSkeleton/>}>
                 <DynamicPageStatus
