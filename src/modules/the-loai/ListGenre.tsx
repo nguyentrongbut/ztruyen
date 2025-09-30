@@ -32,7 +32,7 @@ const ListGenre = ({data, slug}: IListGenreProps) => {
     }, [slug, isSm]);
 
     return (
-        <ul className="flex gap-3.5 flex-wrap text-[15px] h-[130px] sm:h-auto overflow-y-auto sm:overflow-visible custom-scroll">
+        <ul className="flex gap-3.5 flex-wrap text-[15px] h-[122px] sm:h-auto overflow-y-auto sm:overflow-visible custom-scroll">
             {data.map((item, index) => (
                 <li key={index}>
                     {item.slug === slug ? (
