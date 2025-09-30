@@ -1,7 +1,10 @@
 "use client";
 
 // ** React
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from 'react';
+
+// ** Hooks
+import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
 
 // ** Next
 import Link from "next/link";
@@ -9,6 +12,9 @@ import Link from "next/link";
 // ** Shadcn ui
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+// ** Skeleton
+import ChapterListSkeleton from '@/skeleton/truyen-tranh/ChapterListSkeleton';
 
 // ** utils
 import getIdFromUrl from "@/utils/getIdFromUrl";
@@ -19,8 +25,14 @@ interface Props {
 }
 
 const RangeBtnPagination = ({ chapters, slug }: Props) => {
+
+    const { isSm } = useTailwindBreakpoints();
     const [currentRange, setCurrentRange] = useState(0);
-    const rangeSize = 50;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Sort chapters by decimal number (e.g. 10.1, 10.2, 11)
     const sortedChapters = useMemo(() => {
@@ -35,6 +47,9 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
             return 0;
         });
     }, [chapters]);
+
+    if (!mounted) return <ChapterListSkeleton/>;
+    const rangeSize = isSm ? 50 : 20;
 
     // Find the maximum chapter number (used to calculate total ranges)
     const maxChapter = Math.max(...sortedChapters.map(ch => parseFloat(ch.chapter_name)));
@@ -53,7 +68,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
     return (
         <div className="flex flex-col gap-6">
             {/* Pagination buttons */}
-            <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-3 mt-5">
+            <div className="flex sm:grid sm:grid-cols-4 md:grid-cols-6 gap-2.5 sm:gap-3 mt-5 overflow-x-auto scroll-hidden">
                 {Array.from({ length: totalRanges }).map((_, idx) => {
                     const rangeStart = idx * rangeSize + 1;
                     const rangeEnd = Math.min((idx + 1) * rangeSize, maxChapter);
@@ -62,7 +77,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                         <Button
                             key={idx}
                             onClick={() => setCurrentRange(idx)}
-                            className={`py-2 rounded-full text-xs transition  ${
+                            className={`py-2 rounded-full text-xs transition min-w-max sm:min-w-0  ${
                                 idx === currentRange
                                     ? "bg-blue-100 text-blue-600"
                                     : "bg-gray-100 text-gray-600 hover:text-black"
@@ -93,7 +108,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                                                 className="w-full dark:text-primary dark:border-primary"
                                             >
                                                 <span className="line-clamp-1">
-                                                    {`Chapter ${item.chapter_name} - ${item.chapter_title}`}
+                                                    {`Chương ${item.chapter_name} - ${item.chapter_title}`}
                                                 </span>
                                             </Button>
                                         </Link>
@@ -113,7 +128,7 @@ const RangeBtnPagination = ({ chapters, slug }: Props) => {
                                     variant="outline"
                                     className="w-full dark:text-primary dark:border-primary"
                                 >
-                                    {`Chapter ${item.chapter_name}`}
+                                    {`Chương ${item.chapter_name}`}
                                 </Button>
                             </Link>
                         )}

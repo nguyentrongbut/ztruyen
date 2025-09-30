@@ -86,7 +86,7 @@ const ChapterPage = async ({
                     >
                         {response?.data?.item.name} {' - '}
                     </Link>
-                    Chapter {chapter.chapter_name}
+                    Chương {chapter.chapter_name}
                 </h1>
             </Header>
             <ImgsChapter

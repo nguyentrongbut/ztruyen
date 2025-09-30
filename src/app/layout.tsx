@@ -15,7 +15,6 @@ import ToasterCustom from '@/components/common/ToasterCustom';
 import ScrollToTop from '@/components/common/ScrollToTop';
 
 // ** Vercel
-import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // ** PostHog
@@ -95,7 +94,6 @@ export default function RootLayout({
                         </NprogressWrapper>
                     </ThemeProvider>
                 </PostHogProvider>
-                <Analytics />
                 <SpeedInsights />
             </body>
         </html>
