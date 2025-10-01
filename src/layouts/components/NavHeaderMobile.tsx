@@ -27,18 +27,20 @@ const NavHeaderMobile = () => {
                         : removeExtension(path, '.html') ===
                           removeExtension(nav.href, '.html');
 
+                const Icon = nav.icon;
+
                 return (
                     <SheetTitle asChild={true} key={nav.href}>
                         <li className="rounded-md">
                             <SheetClose asChild>
                                 <Link
                                     href={nav.href}
-                                    className={`
-                                    'hover:text-primaryColor py-2 pl-3 block'
+                                    className={`hover:text-primaryColor py-2 pl-3 flex items-center gap-2
                                     ${isActive ? 'text-primaryColor' : ''}
-                                `}
+                                    `}
                                 >
-                                    {nav.title}
+                                    {Icon && <Icon className="size-4" />}
+                                    <span>{nav.title}</span>
                                 </Link>
                             </SheetClose>
                         </li>

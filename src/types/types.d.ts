@@ -38,4 +38,8 @@ declare global {
         title: string;
         href: string;
     }
+
+    interface TLinkWithIcon extends TLink {
+        icon: LucideIcon;
+    }
 }

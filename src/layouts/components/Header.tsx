@@ -62,7 +62,7 @@ const Header = ({
                                 className="w-[255px]"
                                 hideCloseButton={true}
                             >
-                                <ul className="text-sm flex flex-col gap-2">
+                                <ul className="text-sm flex flex-col gap-1.5">
                                     <SheetTitle asChild={true}>
                                         <li className="mb-3 flex justify-between">
                                             <SheetClose asChild>
