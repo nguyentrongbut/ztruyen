@@ -2,7 +2,7 @@
 import React from 'react';
 
 // ** Layouts
-import Header from '@/layouts/components/Header';
+import Header from '@/layouts/components/Header/Header';
 import Footer from '@/layouts/components/Footer';
 
 const DefaultLayout = ({ children }: { children: React.ReactNode }) => {

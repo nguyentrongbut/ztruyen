@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 // ** Layouts
 import { ModeToggle } from '@/components/common/ModeToggle';
 import Search from '@/layouts/components/Search';
-import NavHeader from '@/layouts/components/NavHeader';
-import NavHeaderMobile from '@/layouts/components/NavHeaderMobile';
+import NavHeader from '@/layouts/components/Header/NavHeader';
+import NavHeaderMobile from '@/layouts/components/Header/NavHeaderMobile';
 
 // ** Components
 import Logo from '@/components/common/Logo';

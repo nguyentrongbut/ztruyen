@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 // ** Layout
-import Header from '@/layouts/components/Header';
+import Header from '@/layouts/components/Header/Header';
 
 // ** Modules
 import ImgsChapter from '@/modules/doc-truyen/ImageChapter';
