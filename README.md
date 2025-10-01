@@ -114,7 +114,7 @@ src
 
 ## 🔍 SEO Improvements
 
-- Optimized SEO with the **top keyword "ztruyen"** to improve visibility on Google.
+- Optimized SEO with the **top keyword "ztruyen", "truyen echhi", etc, ...** to improve visibility on Google.
 - Updated meta tags and heading structure for better search engine indexing.
 
 ---
