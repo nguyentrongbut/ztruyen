@@ -3,6 +3,9 @@
 // ** React
 import React, { useEffect, useRef, useState } from 'react';
 
+// ** Hooks
+import useTailwindBreakpoints from '@/hooks/useTailwindBreakpoints';
+
 // ** Next
 import Link from 'next/link';
 
@@ -16,9 +19,11 @@ import {
 
 // ** lucide icon
 import {
+    BookOpenText,
     ChevronLeft,
     ChevronRight,
-    Expand, Menu,
+    Expand,
+    Menu,
     Minus,
     Plus,
     Shrink,
@@ -40,6 +45,7 @@ const Settings = ({
     setCurrentImageIndex,
     isDropdownOpen,
     setIsDropdownOpen,
+    slugChapter,
 }: {
     imgWidth?: number;
     totalImages: number;
@@ -52,7 +58,9 @@ const Settings = ({
     setCurrentImageIndex: React.Dispatch<React.SetStateAction<number>>;
     isDropdownOpen: boolean;
     setIsDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    slugChapter: string
 }) => {
+    const { isMd } = useTailwindBreakpoints();
     const [isFullScreen, setIsFullScreen] = useState(false);
     const listRef = useRef<HTMLUListElement | null>(null);
 
@@ -211,7 +219,20 @@ const Settings = ({
         <div
             className={`w-full absolute bottom-0 flex flex-col items-center left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out`}
         >
-            <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max pt-1">
+            <div className="bg-secondary border-[#3e3e3e] rounded-[40px] text-white/90 flex items-center justify-center px-5 max-w-max pt-1 gap-1.5">
+                {!isMd && (
+                    <Link
+                        href={`/truyen-tranh/${slugChapter}`}
+                        className="flex flex-col items-center gap-1 p-2 cursor-pointer text-[#777]"
+                    >
+                        <BookOpenText className="size-5" />
+                        <span className="text-white text-xs">
+                            Chi tiết truyện
+                        </span>
+                    </Link>
+                )}
+
+                {/* Menu */}
                 <DropdownMenu
                     open={isDropdownOpen}
                     onOpenChange={(open) => {
@@ -223,7 +244,7 @@ const Settings = ({
                 >
                     <DropdownMenuTrigger asChild>
                         <div className="flex flex-col items-center gap-1 p-2 cursor-pointer ">
-                            <Menu className='size-5 text-[#777]' />
+                            <Menu className="size-5 text-[#777]" />
                             <span className="text-xs">Mục lục</span>
                         </div>
                     </DropdownMenuTrigger>
@@ -262,24 +283,28 @@ const Settings = ({
                 </DropdownMenu>
 
                 {/*Full Screen*/}
-                <div
-                    className="flex flex-col items-center gap-1 p-2 cursor-pointer"
-                    onClick={toggleFullScreen}
-                >
-                    {isFullScreen ? (
-                        <>
-                            <Shrink className="size-5" />
-                            <span className="text-white text-xs">
-                                Thoát chế độ toàn màn hình
-                            </span>
-                        </>
-                    ) : (
-                        <>
-                            <Expand className="text-[#777] size-5" />
-                            <span className="text-xs">Xem toàn màn hình </span>
-                        </>
-                    )}
-                </div>
+                {isMd && (
+                    <div
+                        className="flex flex-col items-center gap-1 p-2 cursor-pointer"
+                        onClick={toggleFullScreen}
+                    >
+                        {isFullScreen ? (
+                            <>
+                                <Shrink className="size-5" />
+                                <span className="text-white text-xs">
+                                    Thoát chế độ toàn màn hình
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <Expand className="text-[#777] size-5" />
+                                <span className="text-xs">
+                                    Xem toàn màn hình{' '}
+                                </span>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/*Slider*/}

@@ -97,6 +97,7 @@ const ChapterPage = async ({
                 chapterName={chapter?.comic_name}
                 listChapter={listChapter}
                 currentUrl={slug}
+                slugChapter={slugChapter}
             />
             <ScrollSaver
                 chapterName={chapter?.comic_name}

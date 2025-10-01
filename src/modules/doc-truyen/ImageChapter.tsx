@@ -34,6 +34,7 @@ const ImgsChapter = ({
     listChapter,
     currentUrl,
     numberOfChapters,
+    slugChapter,
 }: {
     chapters: IChapterImg[];
     chapterName: string;
@@ -42,14 +43,16 @@ const ImgsChapter = ({
     listChapter: IChapter[];
     currentUrl: string;
     numberOfChapters: number;
+    slugChapter: string;
 }) => {
     const totalImages = chapters?.length;
 
-    const { isMd } = useTailwindBreakpoints();
+    const { isLg } = useTailwindBreakpoints();
     const [imgWidth, setImgWidth] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [showGuide, setShowGuide] = useState(false);
 
     const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
 
@@ -63,15 +66,23 @@ const ImgsChapter = ({
     const nextChapter = listChapter[indexCurrentChapter + 1];
 
     useEffect(() => {
-        if (isMd) {
+        const hasSeenGuide = localStorage.getItem('ZTC-hasSeenGuide');
+        if (!hasSeenGuide) {
+            setShowGuide(true);
+            localStorage.setItem('ZTC-hasSeenGuide', 'true');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isLg) {
             setImgWidth(50);
         } else {
             setImgWidth(100);
         }
-    }, [isMd]);
+    }, [isLg]);
 
     const handleOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!isMd) {
+        if (!isLg) {
             e.preventDefault();
             setIsModalOpen(!isModalOpen);
             setIsDropdownOpen(false);
@@ -139,6 +150,7 @@ const ImgsChapter = ({
                             indexCurrentChapter={indexCurrentChapter}
                             isDropdownOpen={isDropdownOpen}
                             setIsDropdownOpen={setIsDropdownOpen}
+                            slugChapter={slugChapter}
                         />
                     </Overlay>
                 }
@@ -198,6 +210,18 @@ const ImgsChapter = ({
                             📖 Chương tiếp theo, đi thôi~ (≧▽≦)
                         </Button>
                     </Link>
+                </div>
+            )}
+            {showGuide && !isLg && chapters && (
+                <div className="fixed top-1/4 left-1/2 -translate-x-1/2 pointer-events-none">
+                    <div
+                        className="z-50 bg-primaryColor text-white
+                 text-xs sm:text-sm w-fit text-center
+                 px-4 py-2 rounded-md shadow-lg
+                 animate-fadeInOut"
+                    >
+                        Nhấp vào ảnh để hiển thị thanh công cụ nhé ~ (≧▽≦)
+                    </div>
                 </div>
             )}
         </>
